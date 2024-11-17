@@ -20,3 +20,7 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.bg-gradent {
+    background-image: linear-gradient(to right, #013664, #3C6DB2);
+}

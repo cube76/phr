@@ -57,35 +57,31 @@
                 </li>
                 <li>
                     <a class="nav-link text-truncate">
-                        <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Passed Signal</span>
+                        <i class="fs-5 bi-table"></i><span class="ms-1 d-sm-inline">Passed Signal</span>
                     </a>
                 </li>
                 <li>
                     <a class="nav-link text-truncate">
-                        <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline">Notifikasi</span>
+                        <i class="fs-5 bi-grid"></i><span class="ms-1 d-sm-inline">Notifikasi</span>
                     </a>
                 </li>
             </ul>
         </div>
     </div>
     </header>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col min-vh-100 py-3">
-                <!-- toggler -->
-                <button class="btn float-start" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
-                    <i class="bi bi-list fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
-                </button>
-                @RenderBody()
-            </div>
-        </div>
+    <div class="col bg-black">
+        <!-- toggler -->
+        <button class="btn float-start" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+            <i class="bi bi-list fs-3 text-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
+        </button>
+        @RenderBody()
     </div>
 
-    <footer class="border-top footer text-muted">
+    @* <footer class="border-top footer text-muted bg-white">
         <div class="container">
             &copy; 2024 - phr - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> *@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
