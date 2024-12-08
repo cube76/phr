@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/phr.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="bg-light">
 	<header>
 		@* <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
 		<div class="container">
@@ -69,13 +69,13 @@
 			</div>
 		</div>
 	</header>
-	<div class="col bg-black">
+	@* <div class="col bg-black"> *@
 		<!-- toggler -->
 		<button class="btn float-start" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
 			<i class="bi bi-list fs-3 text-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
 		</button>
 		@RenderBody()
-	</div>
+	@* </div> *@
 
 	@* <footer class="border-top footer text-muted bg-white">
 	<div class="container">

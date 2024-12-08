@@ -4,15 +4,6 @@
 	ViewData["Title"] = "Home page";
 }
 
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bootstrap demo</title>
-
-</head>
-<body class="bg-light">
 
 	<div style="height: 160px;" class="bg-gradent" />
 	<div class="container pt-2">
@@ -40,28 +31,28 @@
 					<div class="col-3 border-end">
 						<div class="d-flex flex-column h-100">
 							<div style="font-size: 0.8rem;">Well Exception</div>
-							<div class="fs-3 fw-bold mt-auto">2</div>
+							<div class="fs-3 fw-bold mt-auto">@ViewData["WellException"]</div>
 						</div>
 					</div>
 
 					<div class="col-3 border-end">
 						<div class="d-flex flex-column h-100">
 							<div style="font-size: 0.8rem;">Non Well Exception</div>
-							<div class="fs-3 fw-bold mt-auto">2</div>
+							<div class="fs-3 fw-bold mt-auto">@ViewData["NonWellException"]</div>
 						</div>
 					</div>
 
 					<div class="col-3 border-end">
 						<div class="d-flex flex-column h-100">
 							<div style="font-size: 0.8rem;">Well Passed Signal</div>
-							<div class="fs-3 fw-bold mt-auto">2</div>
+							<div class="fs-3 fw-bold mt-auto">@ViewData["WellSignals"]</div>
 						</div>
 					</div>
 
 					<div class="col-3">
 						<div class="d-flex flex-column h-100">
 							<div style="font-size: 0.8rem;">Non Well Passed Signal</div>
-							<div class="fs-3 fw-bold mt-auto">2</div>
+							<div class="fs-3 fw-bold mt-auto">@ViewData["NonWellSignals"]</div>
 						</div>
 					</div>
 				</div>
@@ -83,7 +74,24 @@
 
 	<div class="container text-center mt-2">
 		<div class="row g-2 row-cols-2 row-cols-lg-5">
-			<div class="col-6">
+			@foreach (var exception in Model.Exceptions.Take(4))
+			{
+				<div class="col-6">
+					<div class="p-3 bg-white border rounded">
+					<div class="row">
+							<div class="col text-start fs-5 fw-bold">@exception.TotalException</div>
+						<div class="col"><img src="~/images/oil_icon.png" class="rounded float-end" alt="..."></div>
+					</div>
+					<div class="col text-start fs-6 fw-bold text-uppercase">
+							@exception.ExceptCode
+					</div>
+					<div class="col text-start text-secondary">
+							@exception.ExceptName
+					</div>
+				</div>
+			</div>
+			}
+			@* <div class="col-6">
 				<div class="p-3 bg-white border rounded">
 					<div class="row">
 						<div class="col text-start fs-5 fw-bold">3</div>
@@ -124,21 +132,7 @@
 						Dawn Thrust Condition
 					</div>
 				</div>
-			</div>
-			<div class="col-6">
-				<div class="p-3 bg-white border rounded">
-					<div class="row">
-						<div class="col text-start fs-5 fw-bold">3</div>
-						<div class="col"><img src="~/images/oil_icon.png" class="rounded float-end" alt="..."></div>
-					</div>
-					<div class="col text-start fs-6 fw-bold text-uppercase">
-						WALIFT012
-					</div>
-					<div class="col text-start text-secondary">
-						Dawn Thrust Condition
-					</div>
-				</div>
-			</div>
+			</div> *@
 
 		</div>
 	</div>
@@ -156,7 +150,24 @@
 
 	<div class="container text-center mt-2">
 		<div class="row g-2 row-cols-2 row-cols-lg-5">
-			<div class="col-6">
+			@foreach (var passed in Model.Signals.Take(4))
+			{
+				<div class="col-6">
+					<div class="p-3 bg-white border rounded">
+					<div class="row">
+							<div class="col text-start fs-5 fw-bold">@passed.TotalAction</div>
+						<div class="col"><img src="~/images/signal.png" class="rounded float-end" alt="..."></div>
+					</div>
+					<div class="col text-start fs-6 fw-bold text-uppercase">
+							@passed.ActionCode
+					</div>
+					<div class="col text-start text-secondary">
+							@passed.ActionName
+					</div>
+				</div>
+			</div>
+			}
+			@* <div class="col-6">
 				<div class="p-3 bg-white border rounded">
 					<div class="row">
 						<div class="col text-start fs-5 fw-bold">3</div>
@@ -197,25 +208,9 @@
 						Dawn Thrust Condition
 					</div>
 				</div>
-			</div>
-			<div class="col-6">
-				<div class="p-3 bg-white border rounded">
-					<div class="row">
-						<div class="col text-start fs-5 fw-bold">3</div>
-						<div class="col"><img src="~/images/signal.png" class="rounded float-end" alt="..."></div>
-					</div>
-					<div class="col text-start fs-6 fw-bold text-uppercase">
-						AXT038
-					</div>
-					<div class="col text-start text-secondary">
-						Dawn Thrust Condition
-					</div>
-				</div>
-			</div>
+			</div> *@
 
 		</div>
 	</div>
 
 
-</body>
-</html>
