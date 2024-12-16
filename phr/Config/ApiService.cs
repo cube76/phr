@@ -26,7 +26,7 @@ namespace phr.Config
 
 			// Add custom headers
 			_httpClient.DefaultRequestHeaders.Clear();
-			_httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "HeaderValue");  // Example of adding a custom header
+			_httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "001f1f5b4cde4dfa8928523eb43dc1c4");  // Example of adding a custom header
 
 			// Send the POST request
 			var response = await _httpClient.PostAsync("https://api1.example.com/data", content);
