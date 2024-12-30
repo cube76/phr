@@ -1,0 +1,107 @@
+﻿@page
+@model phr.Pages.Exceptions.General_Information.GeneralInfoModel
+@{
+	ViewData["Title"] = "General Info";
+}
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>General Information</strong></h4>
+	</div>
+	<div class="col-12">
+		<nav>
+			<div class="nav nav-underline navbar-scroll d-flex flex-nowrap border-bottom" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-1-tab" data-bs-toggle="tab" data-bs-target="#nav-1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Codes</button>
+				<button class="nav-link" id="nav-2-tab" data-bs-toggle="tab" data-bs-target="#nav-2" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Sub Area and Casing</button>
+				<button class="nav-link" id="nav-3-tab" data-bs-toggle="tab" data-bs-target="#nav-3" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Control and Completion</button>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-1" role="tabpanel" ar ia-labelledby="nav-1-tab" tabindex="0">
+				<label for="UWI" class="form-label mt-3"><strong>UWI</strong></label>
+				<input class="form-control" id="UWI" type="text" value="MINAA000676VI" readonly>
+
+				<label for="StringName" class="form-label mt-3"><strong>String Name</strong></label>
+				<input class="form-control" id="StringName" type="text" value="7d-13" readonly>
+
+				<label for="Grid Name" class="form-label mt-3"><strong>Grid Name</strong></label>
+				<input class="form-control" id="Grid Name" type="text" value="7d-13" readonly>
+
+				<label for="OU" class="form-label mt-3"><strong>OU</strong></label>
+				<input class="form-control" id="OU" type="text" value="SLS" readonly>
+
+				<label for="Field" class="form-label mt-3"><strong>Field</strong></label>
+				<input class="form-control" id="Field" type="text" value="MINAS" readonly>
+
+				<label for="Area" class="form-label mt-3"><strong>Area</strong></label>
+				<input class="form-control" id="Area" type="text" value="MINAS" readonly>
+
+			</div>
+			<div class="tab-pane fade show" id="nav-2" role="tabpanel" ar ia-labelledby="nav-2-tab" tabindex="0">
+				@* Sub Area and Casing *@
+				<label for="osac" class="form-label mt-3"><strong>Op Sub Area Code</strong></label>
+				<input class="form-control" id="osac" type="text" value="MINAA000676VI" readonly disabled>
+
+				<label for="pc" class="form-label mt-3"><strong>Prod Casing OD/ID/GR/WG</strong></label>
+				<input class="form-control" id="pc" type="text" value="9.625/8.921/J-55/36" readonly disabled>
+
+				<label for="fa" class="form-label mt-3"><strong>Focus Area</strong></label>
+				<input class="form-control" id="fa" type="text" value="3FA3" readonly disabled>
+
+				<label for="tp" class="form-label mt-3"><strong>Tapping Position</strong></label>
+				<input class="form-control" id="tp" type="text" value="-" readonly disabled>
+
+				<label for="si" class="form-label mt-3"><strong>Scada Installed</strong></label>
+				<input class="form-control" id="si" type="text" value="N" readonly disabled>
+
+				<label for="kva" class="form-label mt-3"><strong>KVA Max</strong></label>
+				<input class="form-control" id="kva" type="text" value="-" readonly disabled>
+
+				<label for="sv" class="form-label mt-3"><strong>Secondary Voltage</strong></label>
+				<input class="form-control" id="sv" type="text" value="-" readonly disabled>
+
+				<label for="wmo" class="form-label mt-3"><strong>Wall Must On</strong></label>
+				<input class="form-control" id="wmo" type="text" value="N" readonly disabled>
+
+				<label for="ve" class="form-label mt-3"><strong>Venting Equipment</strong></label>
+				<input class="form-control" id="ve" type="text" value="Peculator" readonly disabled>
+
+				<label for="vsd" class="form-label mt-3"><strong>VSD</strong></label>
+				<input class="form-control" id="vsd" type="text" value="-" readonly disabled>
+
+				<label for="vsd2" class="form-label mt-3"><strong>VSD</strong></label>
+				<input class="form-control" id="vsd2" type="text" value="Yes" readonly disabled>
+
+				<label for="dmt" class="form-label mt-3"><strong>DMT</strong></label>
+				<input class="form-control" id="dmt" type="text" value="No" readonly disabled>
+
+			</div>
+			<div class="tab-pane fade show" id="nav-3" role="tabpanel" ar ia-labelledby="nav-3-tab" tabindex="0">
+				@* Control and Completion *@
+				<label for="ct" class="form-label mt-3"><strong>Controller Type</strong></label>
+				<input class="form-control" id="ct" type="text" value="-" readonly disabled>
+
+				<label for="tht" class="form-label mt-3"><strong>Tubing Hanger Type</strong></label>
+				<input class="form-control" id="tht" type="text" value="Mandrel EFT" readonly disabled>
+
+				<label for="si" class="form-label mt-3"><strong>ScInhibitor Inj</strong></label>
+				<input class="form-control" id="si" type="text" value="-" readonly disabled>
+
+				<label for="cl" class="form-label mt-3"><strong>Commingle List</strong></label>
+				<input class="form-control" id="cl" type="text" value="-" readonly disabled>
+
+				<label for="wtt" class="form-label mt-3"><strong>W/T Train | Manifold</strong></label>
+				<input class="form-control" id="wtt" type="text" value="-" readonly disabled>
+
+				<label for="onoff" class="form-label mt-3"><strong>ON-OFF Timer</strong></label>
+				<input class="form-control" id="onoff" type="text" value="No" readonly disabled>
+
+				<label for="wttype" class="form-label mt-3"><strong>WT Type</strong></label>
+				<input class="form-control" id="wttype" type="text" value="AWT" readonly disabled>
+
+				<label for="awts" class="form-label mt-3"><strong>AWT Status</strong></label>
+				<input class="form-control" id="awts" type="text" value="-" readonly disabled>
+
+			</div>
+		</div>
+	</div>
+</div>

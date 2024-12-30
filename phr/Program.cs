@@ -17,6 +17,19 @@ builder.Services.AddHttpClient();
 builder.Services.AddRazorPages();
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 builder.Services.AddScoped<ApiService>();
+builder.Services.AddDistributedMemoryCache(); // Required for session state
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(1199); // Set session timeout
+    options.Cookie.HttpOnly = true; // Cookie is accessible only by the server
+    options.Cookie.IsEssential = true; // Required for GDPR compliance
+});
+
+
+builder.Services.AddControllersWithViews(); // Add MVC services
+
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -34,6 +47,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
 app.UseRouting();
 

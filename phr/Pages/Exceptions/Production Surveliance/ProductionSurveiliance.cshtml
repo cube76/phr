@@ -1,0 +1,497 @@
+﻿@page
+@model phr.Pages.Exceptions.Production_Surveliance.ProductionSurveilianceModel
+@{
+	ViewData["Title"] = "Production Surveiliance";
+}
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Production Surveiliancet</strong></h4>
+	</div>
+	<div class="col-12">
+		<nav>
+			<div class="nav nav-underline navbar-scroll d-flex flex-nowrap border-bottom" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-1-tab" data-bs-toggle="tab" data-bs-target="#nav-1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Production Chart</button>
+				<button class="nav-link" id="nav-2-tab" data-bs-toggle="tab" data-bs-target="#nav-2" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Production Table</button>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-1" role="tabpanel" ar ia-labelledby="nav-1-tab" tabindex="0">
+				<div class="p-3 bg-gray mt-2">
+					<div><strong>Data Form</strong></div>
+					<div>(1 Mei 2024 - 8 mei 2024)</div>
+				</div>
+				<canvas id="chart" width="400" height="200" class="mb-2 border-bottom"></canvas>
+				<canvas id="chart2" width="400" height="200" class="mt-2"></canvas>
+				<div class="d-grid gap-2 my-2">
+					<button type="button" class="btn btn-outline-primary" onclick="location.href='/Exceptions/Production Surveliance/DetailGraphic'">View Detail</button>
+				</div>
+				<div class="list-group pt-2 border-top">
+					<a href="/Exceptions/WorkoverHistory" class="list-group-item list-group-item-action">
+						<div class="d-flex">
+							<div class="p-2 rounded-circle icon-container align-self-center">
+								<i class="bi bi-clock-history icon"></i>
+							</div>
+							<div class="p-2">Workover History</div>
+							<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+						</div>
+					</a>
+					<a href="/Exceptions/Production Surveliance/SonologHist" class="list-group-item list-group-item-action">
+						<div class="d-flex">
+							<div class="p-2 rounded-circle icon-container align-self-center">
+								<i class="bi bi-app icon"></i>
+							</div>
+							<div class="p-2">Production & Sonolog Hist</div>
+							<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+						</div>
+					</a>
+					<a href="/Exceptions/Production Surveliance/productionSurveiliance" class="list-group-item list-group-item-action">
+						<div class="d-flex">
+							<div class="p-2 rounded-circle icon-container align-self-center">
+								<i class="bi bi-graph-up-arrow icon"></i>
+							</div>
+							<div class="p-2">SD Chart Summary</div>
+							<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade" id="nav-2" role="tabpanel" ar ia-labelledby="nav-2-tab" tabindex="0">
+				<ul class="nav nav-pills my-3" id="pills-tab" role="tablist">
+					<li class="nav-item me-2" style="font-size: 12px" role="presentation">
+						<button class="nav-link active rounded-5 border" id="pills-1-tab" data-bs-toggle="pill" data-bs-target="#pills-1" type="button" role="tab" aria-controls="pills-1" aria-selected="true"><strong>Allocation</strong></button>
+					</li>
+					<li class="nav-item me-2" style="font-size: 12px" role="presentation">
+						<button class="nav-link rounded-5 border" id="pills-2-tab" data-bs-toggle="pill" data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2" aria-selected="false"><strong>Theoretical</strong></button>
+					</li>
+					<li class="nav-item" style="font-size: 12px" role="presentation">
+						<button class="nav-link rounded-5 border" id="pills-3-tab" data-bs-toggle="pill" data-bs-target="#pills-3" type="button" role="tab" aria-controls="pills-3" aria-selected="false"><strong>Well Test</strong></button>
+					</li>
+				</ul>
+				<div class="tab-content" id="pills-tabContent">
+					<div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab" tabindex="0">
+						<div class="col-12">
+							<div class="accordion accordion-flush" id="accordionFlushExample">
+
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-last" aria-expanded="false" aria-controls="flush-collapseOne">
+											Last Data
+										</button>
+									</h2>
+									<div id="flush-collapse-last" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body">
+											<div class="d-flex flex-column">
+												<div class="d-flex justify-content-between border-bottom pb-3">
+													<div class=""><strong>BPFD</strong></div>
+													<div class="">4</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BOPD</strong></div>
+													<div class="">2024-05-11</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BWPD</strong></div>
+													<div class="">4.87</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-3" aria-expanded="false" aria-controls="flush-collapseOne">
+											Last 3 Mo Avg
+										</button>
+									</h2>
+									<div id="flush-collapse-3" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body">
+											<div class="d-flex flex-column">
+												<div class="d-flex justify-content-between border-bottom pb-3">
+													<div class=""><strong>BPFD</strong></div>
+													<div class="">4</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BOPD</strong></div>
+													<div class="">2024-05-11</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BWPD</strong></div>
+													<div class="">4.87</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-delta" aria-expanded="false" aria-controls="flush-collapseOne">
+											Delta
+										</button>
+									</h2>
+									<div id="flush-collapse-delta" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body">
+											<div class="d-flex flex-column">
+												<div class="d-flex justify-content-between border-bottom pb-3">
+													<div class=""><strong>BPFD</strong></div>
+													<div class="">4</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BOPD</strong></div>
+													<div class="">2024-05-11</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BWPD</strong></div>
+													<div class="">4.87</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab" tabindex="0">
+						<div class="col-12">
+							<div class="accordion accordion-flush" id="accordionFlushExample">
+
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-last" aria-expanded="false" aria-controls="flush-collapseOne">
+											Last Data
+										</button>
+									</h2>
+									<div id="flush-collapse-last" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body">
+											<div class="d-flex flex-column">
+												<div class="d-flex justify-content-between border-bottom pb-3">
+													<div class=""><strong>BPFD</strong></div>
+													<div class="">4</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BOPD</strong></div>
+													<div class="">2024-05-11</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BWPD</strong></div>
+													<div class="">4.87</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-3" aria-expanded="false" aria-controls="flush-collapseOne">
+											Last 3 Mo Avg
+										</button>
+									</h2>
+									<div id="flush-collapse-3" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body">
+											<div class="d-flex flex-column">
+												<div class="d-flex justify-content-between border-bottom pb-3">
+													<div class=""><strong>BPFD</strong></div>
+													<div class="">4</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BOPD</strong></div>
+													<div class="">2024-05-11</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BWPD</strong></div>
+													<div class="">4.87</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="accordion-item">
+									<h2 class="accordion-header">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-delta" aria-expanded="false" aria-controls="flush-collapseOne">
+											Delta
+										</button>
+									</h2>
+									<div id="flush-collapse-delta" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body">
+											<div class="d-flex flex-column">
+												<div class="d-flex justify-content-between border-bottom pb-3">
+													<div class=""><strong>BPFD</strong></div>
+													<div class="">4</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BOPD</strong></div>
+													<div class="">2024-05-11</div>
+												</div>
+												<div class="d-flex justify-content-between border-bottom py-3">
+													<div class=""><strong>BWPD</strong></div>
+													<div class="">4.87</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab" tabindex="0">
+					<div class="col-12 my-2">
+						<select class="form-select">
+							<option selected>Start Date</option>
+							<option value="1">2024</option>
+							<option value="2">2023</option>
+							<option value="3">2022</option>
+						</select>
+					</div>
+					<div class="col-12">
+						<div class="accordion accordion-flush" id="accordionFlushExample">
+
+							<div class="accordion-item">
+								<h2 class="accordion-header">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-last" aria-expanded="false" aria-controls="flush-collapseOne">
+										Last Data
+									</button>
+								</h2>
+								<div id="flush-collapse-last" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+									<div class="accordion-body">
+										<div class="d-flex flex-column">
+											<div class="d-flex justify-content-between border-bottom pb-3">
+												<div class=""><strong>BPFD</strong></div>
+												<div class="">4</div>
+											</div>
+											<div class="d-flex justify-content-between border-bottom py-3">
+												<div class=""><strong>BOPD</strong></div>
+												<div class="">2024-05-11</div>
+											</div>
+											<div class="d-flex justify-content-between border-bottom py-3">
+												<div class=""><strong>BWPD</strong></div>
+												<div class="">4.87</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="accordion-item">
+								<h2 class="accordion-header">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-3" aria-expanded="false" aria-controls="flush-collapseOne">
+										Last 3 Mo Avg
+									</button>
+								</h2>
+								<div id="flush-collapse-3" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+									<div class="accordion-body">
+										<div class="d-flex flex-column">
+											<div class="d-flex justify-content-between border-bottom pb-3">
+												<div class=""><strong>BPFD</strong></div>
+												<div class="">4</div>
+											</div>
+											<div class="d-flex justify-content-between border-bottom py-3">
+												<div class=""><strong>BOPD</strong></div>
+												<div class="">2024-05-11</div>
+											</div>
+											<div class="d-flex justify-content-between border-bottom py-3">
+												<div class=""><strong>BWPD</strong></div>
+												<div class="">4.87</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="accordion-item">
+								<h2 class="accordion-header">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-delta" aria-expanded="false" aria-controls="flush-collapseOne">
+										Delta
+									</button>
+								</h2>
+								<div id="flush-collapse-delta" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+									<div class="accordion-body">
+										<div class="d-flex flex-column">
+											<div class="d-flex justify-content-between border-bottom pb-3">
+												<div class=""><strong>BPFD</strong></div>
+												<div class="">4</div>
+											</div>
+											<div class="d-flex justify-content-between border-bottom py-3">
+												<div class=""><strong>BOPD</strong></div>
+												<div class="">2024-05-11</div>
+											</div>
+											<div class="d-flex justify-content-between border-bottom py-3">
+												<div class=""><strong>BWPD</strong></div>
+												<div class="">4.87</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+	var chartData = @Html.Raw(ViewData["ChartData"]);
+	var dates = chartData.map(data => data.testDate);
+	var fluids = chartData.map(data => data.allocFluid);
+	var oils = chartData.map(data => data.allocOil);
+	console.log("chartData1",dates);
+	console.log("chartData",dates.slice(1));
+	const ctx = document.getElementById('chart').getContext('2d');
+	const myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: dates.slice(1),
+			datasets: [
+				{
+					label: '(L1) Alloc Fluid',
+					data: fluids.slice(1),
+					borderColor: 'blue',
+					backgroundColor: 'blue',
+					yAxisID: 'y2',
+					fill: false
+				},
+				{
+					label: '(L3) Alloc Oil',
+					data: oils.slice(1),
+					borderColor: 'green',
+					backgroundColor: 'green',
+					yAxisID: 'y1',
+					fill: false
+				},
+				{
+					label: 'Annot.jobs',
+					data: [10],
+					borderColor: 'red',
+					backgroundColor: 'red',
+					yAxisID: 'y3',
+					fill: false
+				},
+			]
+		},
+		options: {
+			scales: {
+				y1: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'green',
+					},
+					title: {
+						display: false,
+						text: 'Kilograms (kg)'
+					},
+				},
+				y2: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'rgba(54, 162, 235, 1)',
+					},
+					title: {
+						display: false,
+						text: 'Liters (L)'
+					},
+				},
+				y3: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'red',
+					},
+					title: {
+						display: false,
+						text: 'Liters (L)'
+					},
+				}
+			}
+		}
+	});
+	const ctx2 = document.getElementById('chart2').getContext('2d');
+	const myChart2 = new Chart(ctx2, {
+		type: 'line',
+		data: {
+			labels: [
+				'2023-01-01',
+				'2023-01-02',
+				'2023-01-03',
+				'2023-01-04',
+				'2023-01-05',
+				'2023-01-06'
+			],
+			datasets: [
+				{
+					label: '(L1) Alloc Fluid',
+					data: [200, 400, 500, 300, 500, 700],
+					borderColor: 'blue',
+					backgroundColor: 'blue',
+					yAxisID: 'y2',
+					fill: false
+				},
+				{
+					label: '(L3) Alloc Oil',
+					data: [15, 60, 35, 5, 55, 100],
+					borderColor: 'green',
+					backgroundColor: 'green',
+					yAxisID: 'y1',
+					fill: false
+				},
+				{
+					label: 'Annot.jobs',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: 'red',
+					backgroundColor: 'red',
+					yAxisID: 'y3',
+					fill: false
+				},
+			]
+		},
+		options: {
+			scales: {
+				y1: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'green',
+					},
+					title: {
+						display: false,
+						text: 'Kilograms (kg)'
+					},
+				},
+				y2: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'rgba(54, 162, 235, 1)',
+					},
+					title: {
+						display: false,
+						text: 'Liters (L)'
+					},
+				},
+				y3: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'red',
+					},
+					title: {
+						display: false,
+						text: 'Liters (L)'
+					},
+				}
+			}
+		}
+	});
+</script>

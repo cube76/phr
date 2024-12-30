@@ -1,0 +1,266 @@
+﻿@page
+@model phr.Pages.Exceptions.Production_Surveliance.DetailGraphicModel
+@{
+	ViewData["Title"] = "Detail Graphic";
+}
+<div class="container p-2 d-flex flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<div class="d-flex justify-content-between">
+			<h4><strong>Detail Graphic</strong></h4>
+			<i class="bi bi-calendar4" style="font-size: 20px;"></i>
+		</div>
+		<div class="text-muted">Today (4 Aug 2024)</div>
+	</div>
+	<div class="col-12 mt-3">
+		<form class="row align-items-end">
+			<div class="col">
+				<label for="l1"><strong>L1</strong></label>
+				<select class="form-select">
+					<option selected>Linear</option>
+					<option value="Non">Non Linear</option>
+				</select>
+			</div>
+			<div class="col">
+				<label for="name"><strong>String Name</strong></label>
+				<input type="text" class="form-control" id="name" placeholder="BALAM SE-0014-01">
+			</div>
+			<div class="col-auto">
+				<button type="button" class="btn btn-light border" data-bs-toggle="offcanvas" data-bs-target="#filterBottom"><i class="bi bi-funnel"></i></button>
+			</div>
+		</form>
+	</div>
+	<div class="alert alert-danger d-sm-none d-block my-2">
+		Rotate your screen for bigger view
+	</div>
+	<canvas id="chart" width="400" height="200" class="mb-2 border-bottom"></canvas>
+	<canvas id="chart2" width="400" height="200" class="mb-2 border-bottom"></canvas>
+</div>
+
+<div class="offcanvas offcanvas-bottom" tabindex="1" id="filterBottom">
+	<div class="offcanvas-header">
+		<div class="col">
+			<div class="d-flex align-items-center">
+				<button type="button" class="btn" data-bs-dismiss="offcanvas"><i class="bi bi-x-lg"></i></button>
+				<h5 class="offcanvas-title" id="offcanvasBottomLabel"><strong>Filter</strong></h5>
+			</div>
+			<div class="ms-3">Linear Type Only</div>
+		</div>
+	</div>
+	<div class="offcanvas-body">
+		<div class="row">
+			<div class="col">
+				<label for="l1"><strong>L1</strong></label>
+				<input type="text" class="form-control" id="l1" placeholder="Min">
+			</div><div class="col d-flex">
+				<input type="text" class="form-control align-self-end" placeholder="Max">
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col">
+				<label for="l2"><strong>L2</strong></label>
+				<input type="text" class="form-control" id="l2" placeholder="Min">
+			</div><div class="col d-flex">
+				<input type="text" class="form-control align-self-end" placeholder="Max">
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+	const ctx = document.getElementById('chart').getContext('2d');
+	const myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: [
+				'2023-01-01',
+				'2023-01-02',
+				'2023-01-03',
+				'2023-01-04',
+				'2023-01-05',
+				'2023-01-06'
+			],
+			datasets: [
+				{
+					label: '(L1) Alloc Fluid',
+					data: [200, 400, 500, 300, 500, 700],
+					borderColor: 'blue',
+					backgroundColor: 'blue',
+					yAxisID: 'y2',
+					fill: false
+				},
+				{
+					label: '(L3) Alloc Oil',
+					data: [15, 60, 35, 5, 55, 100],
+					borderColor: 'green',
+					backgroundColor: 'green',
+					yAxisID: 'y1',
+					fill: false
+				},
+				{
+					label: 'Annot.jobs',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: 'red',
+					backgroundColor: 'red',
+					yAxisID: 'y3',
+					fill: false
+				},
+			]
+		},
+		options: {
+			scales: {
+				y1: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'green',
+					},
+				},
+				y2: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'rgba(54, 162, 235, 1)',
+					},
+				},
+				y3: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'red',
+					},
+				}
+			}
+		}
+	});
+
+	const ctx2 = document.getElementById('chart2').getContext('2d');
+	const myChart2 = new Chart(ctx2, {
+		type: 'line',
+		data: {
+			labels: [
+				'2023-01-01',
+				'2023-01-02',
+				'2023-01-03',
+				'2023-01-04',
+				'2023-01-05',
+				'2023-01-06'
+			],
+			datasets: [
+				{
+					label: '(L1) Alloc Fluid',
+					data: [200, 400, 500, 300, 500, 700],
+					borderColor: 'blue',
+					backgroundColor: 'blue',
+					yAxisID: 'y2',
+					fill: false
+				},
+				{
+					label: '(L1) PumpFill',
+					data: [15, 60, 35, 5, 55, 100],
+					borderColor: 'green',
+					backgroundColor: 'green',
+					yAxisID: 'y1',
+					fill: false
+				},
+				{
+					label: '(L1) PumpSlip',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: 'red',
+					backgroundColor: 'red',
+					yAxisID: 'y3',
+					fill: false
+				},
+				{
+					label: '(L2) WHP',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: '#00BFFF',
+					backgroundColor: '#00BFFF',
+					yAxisID: 'y3',
+					fill: false
+				},
+				{
+					label: '(L2) TubingPress',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: '#00008B',
+					backgroundColor: '#00008B',
+					yAxisID: 'y3',
+					fill: false
+				},
+				{
+					label: '(L2) CsgPressUp',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: '#FF0C0C',
+					backgroundColor: '#FF0C0C',
+					yAxisID: 'y3',
+					fill: false
+				},
+				{
+					label: '(L2) Ampere',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: '#8D0303',
+					backgroundColor: '#8D0303',
+					yAxisID: 'y3',
+					fill: false
+				},
+				{
+					label: '(L2) Amp(SCADA)',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: '#FF9900',
+					backgroundColor: '#FF9900',
+					yAxisID: 'y3',
+					fill: false
+				},
+				{
+					label: '(L3) Alloc Oil',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: '#73C100',
+					backgroundColor: '#73C100',
+					yAxisID: 'y3',
+					fill: false
+				},
+				{
+					label: '(L3) Mtr Winding',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: '#EC5800',
+					backgroundColor: '#EC5800',
+					yAxisID: 'y3',
+					fill: false
+				},
+				{
+					label: '(L3) Bottom Hole',
+					data: [10, 15, 13, 25, 35, 60],
+					borderColor: '#ED6778',
+					backgroundColor: '#ED6778',
+					yAxisID: 'y3',
+					fill: false
+				},
+			]
+		},
+		options: {
+			scales: {
+				y1: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'green',
+					},
+				},
+				y2: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'rgba(54, 162, 235, 1)',
+					},
+				},
+				y3: {
+					type: 'linear',
+					position: 'left',
+					ticks: {
+						color: 'red',
+					},
+				}
+			}
+		}
+	});
+</script>

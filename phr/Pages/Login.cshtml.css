@@ -1,0 +1,25 @@
+﻿.vh-100-lg {
+    height: auto; /* Default height for larger screens */
+}
+
+.rounded-bottom-lg-5 {
+    border-bottom-left-radius: 0rem; /* 48px */
+    border-bottom-right-radius: 0rem; /* 48px */
+}
+
+@media (min-width: 992px) { /* Below lg breakpoint */
+
+    .vh-100-lg {
+        height: 100vh; /* 100% of viewport height on smaller screens */
+    }
+
+    .img-lg-fluid {
+        min-height: 400px;
+        min-width: 400px;
+    }
+
+    .rounded-bottom-lg-5 {
+        border-bottom-left-radius: 2rem; /* 48px */
+        border-bottom-right-radius: 2rem; /* 48px */
+    }
+}

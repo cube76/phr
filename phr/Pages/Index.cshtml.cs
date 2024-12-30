@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -6,95 +7,93 @@ using phr.Models;
 
 namespace phr.Pages
 {
-	public class IndexModel : PageModel
-	{
-		private readonly ILogger<IndexModel> _logger;
-		private readonly ApiService _apiService;
-		private readonly IHttpClientFactory _httpClientFactory;
-		private readonly string _apiBaseUrl;
-		private readonly string _apiKeyAzure;
-		private readonly string _ocpApimSubscriptionKey;
+    public class IndexModel : PageModel
+    {
+        private readonly ILogger<IndexModel> _logger;
+        private readonly ApiService _apiService;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly string _apiBaseUrl;
+        private readonly string _apiKeyAzure;
+        private readonly string _ocpApimSubscriptionKey;
 
-		public IndexModel(ILogger<IndexModel> logger, ApiService apiService, IHttpClientFactory httpClientFactory, IConfiguration configuration)
-		{
-			_logger = logger;
-			_apiService = apiService;
-			_httpClientFactory = httpClientFactory;
-			_apiBaseUrl = configuration["ApiSettings:BaseUrl"];
-			_apiKeyAzure = configuration["ApiSettings:ApiKeyAzure"];
-			_ocpApimSubscriptionKey = configuration["ApiSettings:OcpApimSubscriptionKey"];
-		}
+        public IndexModel(ILogger<IndexModel> logger, ApiService apiService, IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        {
+            _logger = logger;
+            _apiService = apiService;
+            _httpClientFactory = httpClientFactory;
+            _apiBaseUrl = configuration["ApiSettings:BaseUrl"];
+            _apiKeyAzure = configuration["ApiSettings:ApiKeyAzure"];
+            _ocpApimSubscriptionKey = configuration["ApiSettings:OcpApimSubscriptionKey"];
+        }
 
-		//public void OnGet()
-		//{
+        //public void OnGet()
+        //{
 
-		//}
+        //}
 
-		public List<ExceptionDetails> Exceptions { get; set; }
-		public List<PassedSignals> Signals { get; set; }
+        public List<ExceptionDetails> Exceptions { get; set; }
+        public List<PassedSignals> Signals { get; set; }
 
-		public async Task<IActionResult> OnPostAsync()
-		{
-			var requestBody = new
-			{
-				userName = "userwell1",
-				password = "userwell1"
-			};
+        public async Task<IActionResult> OnGetAsync()
+        {
+            _logger.LogInformation("Calling the API for exception details...");
 
-			var response = await _apiService.Login(requestBody);
+            //try
+            //{
+            //var token = HttpContext.Session.GetString("Token");
+            //            _logger.LogInformation("hasil: {ExceptCode}", token);
+            //            if (token == null)
+            //{
+            //                return RedirectToPage("/Login");
+            //            }
+            //            int retryCount = 0;
+            //            int MaxRetries = 2;
 
-			// Handle the response
-			ViewData["ApiResponse"] = response;
+            //            while (retryCount < MaxRetries)
+            //{
+            try
+            {
+                var task1 = _apiService.GetExceptionSignals();
+                var task2 = _apiService.GetPassedSignals();
 
-			return Page();
-		}
+                // Run both tasks concurrently
+                await Task.WhenAll(task1, task2);
 
-		public async Task OnGetAsync()
-		{
-			_logger.LogInformation("Calling the API for exception details...");
+                var result1 = await task1;
+                var result2 = await task2;
+                var jsonException = JsonConvert.DeserializeObject<List<ExceptionDetails>>(result1);
+                var jsonPassed = JsonConvert.DeserializeObject<List<PassedSignals>>(result2);
 
-			try
-			{
-				var client1 = new HttpClient();
-				var request = new HttpRequestMessage(HttpMethod.Post, "https://phrapigw-dev.azure-api.net/Account/Token");
-				request.Headers.Add("Ocp-Apim-Subscription-Key", "001f1f5b4cde4dfa8928523eb43dc1c4");
-				var content = new StringContent("{\r\n    \"userName\": \"userwell1\",\r\n    \"password\": \"userwell1\"\r\n}", null, "application/json");
-				request.Content = content;
-				var response1 = await client1.SendAsync(request);
-				response1.EnsureSuccessStatusCode();
-				var responseContent = await response1.Content.ReadAsStringAsync();
-				var objects = JsonConvert.DeserializeObject<Login>(responseContent);
-				_logger.LogInformation("hasil: {ExceptCode}", objects.jwtToken);
-				try
-				{
-					var task1 = _apiService.GetExceptionSignals(objects.jwtToken);
-					var task2 = _apiService.GetPassedSignals(objects.jwtToken);
+                Exceptions = jsonException.Take(4).ToList();
+                Signals = jsonPassed.Take(4).ToList();
+                ViewData["WellException"] = jsonException?.Count(e => e.ExceptType == "WELL") ?? 0;
+                ViewData["NonWellException"] = jsonException?.Count(e => e.ExceptType != "WELL") ?? 0;
+                ViewData["WellSignals"] = jsonPassed?.Count(e => e.ActionType == "WELL") ?? 0;
+                ViewData["NonWellSignals"] = jsonPassed?.Count(e => e.ActionType != "WELL") ?? 0;
+                ViewData["ItemCount"] = 4;
 
-					// Run both tasks concurrently
-					await Task.WhenAll(task1, task2);
-
-					var result1 = await task1;
-					var result2 = await task2;
-
-					Exceptions = JsonConvert.DeserializeObject<List<ExceptionDetails>>(result1);
-					Signals = JsonConvert.DeserializeObject<List<PassedSignals>>(result2);
-					ViewData["WellException"] = Exceptions?.Count(e => e.ExceptType == "WELL") ?? 0;
-					ViewData["NonWellException"] = Exceptions?.Count(e => e.ExceptType != "WELL") ?? 0;
-					ViewData["WellSignals"] = Signals?.Count(e => e.ActionType == "WELL") ?? 0;
-					ViewData["NonWellSignals"] = Signals?.Count(e => e.ActionType != "WELL") ?? 0;
-					ViewData["ItemCount"] = 4;
-
-					_logger.LogInformation("oweowe: {ExceptCode}", Exceptions?.Count);
-				}
-				catch (Exception ex)
-				{
-					_logger.LogError("Error calling the API: {ErrorMessage}", ex.Message);
-				}
-			}
-			catch (Exception ex)
-			{
-				_logger.LogError("Error calling the API: {ErrorMessage}", ex.Message);
-			}
-		}
-	}
+                _logger.LogInformation("oweowe: {ExceptCode}", result1.GetType());
+                return Page();
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogError("token invalid",ex.Message);
+                //return RedirectToPage("/Login");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error calling the API 1: {ErrorMessage}", ex.Message);
+                //return RedirectToPage("/Error");
+            }
+            //}
+            //}
+            //catch (Exception ex)
+            //{
+            //	_logger.LogError("Error calling the API: {ErrorMessage}", ex.Message);
+            //             //return RedirectToPage("/Error");
+            //         }
+            return RedirectToPage("/Login");
+            //return Page();
+        }
+    }
 }

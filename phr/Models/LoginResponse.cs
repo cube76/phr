@@ -1,6 +1,6 @@
 ﻿namespace phr.Models
 {
-	public class Login
+	public class LoginResponse
 	{
 		public int expiresIn { get; set; }
 		public string userName { get; set; }

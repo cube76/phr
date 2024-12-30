@@ -1,0 +1,215 @@
+﻿@page
+@model phr.Pages.Exceptions.WellDetailInformationModel
+@{
+	ViewData["Title"] = "Well Detail Information";
+}
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Exception Signals List</strong></h4>
+	</div>
+	<div class="col-12 pt-2">
+		<dl class="row">
+			<dd class="col-3">UWI</dd>
+			<dt class="col-9">@ViewData["code"]</dt>
+			<dd class="col-3">String Name</dd>
+			<dt class="col-9">@ViewData["name"]</dt>
+			<dd class="col-3">Field</dd>
+			<dt class="col-9">MINAS</dt>
+			<dd class="col-3">Area Section</dd>
+			<dt class="col-9">MINAS</dt>
+		</dl>
+	</div>
+	<div class="col-12">
+		<nav>
+			<div class="nav nav-underline navbar-scroll d-flex flex-nowrap border-bottom" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Summary</button>
+				<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Graphic</button>
+				<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Exception Signal</button>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" ar ia-labelledby="nav-home-tab" tabindex="0">
+				@* summary *@
+				<div class="list-group mt-2">
+					<a href="/Exceptions/General Information/GeneralInformation" class="list-group-item list-group-item-action">
+						<div class="d-flex">
+							<div class="p-2 rounded-circle icon-container align-self-center">
+								<i class="bi bi-info-circle icon"></i>
+							</div>
+							<div class="p-2">General Information</div>
+							<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+						</div>
+					</a>
+					<a href="/Exceptions/Production Surveliance/productionSurveiliance" class="list-group-item list-group-item-action">
+						<div class="d-flex">
+							<div class="p-2 rounded-circle icon-container align-self-center">
+								<i class="bi bi-app icon"></i>
+							</div>
+							<div class="p-2">Production & Surveliance</div>
+							<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+						</div>
+					</a>
+					<a href="/Exceptions/WorkoverHistory" class="list-group-item list-group-item-action">
+						<div class="d-flex">
+							<div class="p-2 rounded-circle icon-container align-self-center">
+								<i class="bi bi-clock-history icon"></i>
+							</div>
+							<div class="p-2">Workover History</div>
+							<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+				@* Graphic *@
+				<div class="col-12 p-4 mt-2 rounded-4" style="background-color: #E4EDF9">
+					<div class="row">
+							<div class="col-6">
+							<div class="card rounded-4">
+									<div class="card-body">
+									<h6 class="card-title text-muted">Last BFPD</h6>
+									<h5 class="card-text"><strong>68</strong></h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-6">
+							<div class="card rounded-4">
+									<div class="card-body">
+									<h6 class="card-title text-muted">Last BOPD</h6>
+									<h5 class="card-text"><strong>5</strong></h5>
+									</div>
+								</div>
+							</div>
+							</div>
+				</div>
+				<canvas id="chart" width="400" height="200"></canvas>
+			</div>
+			<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+				@* Exception signal *@
+				<div class="col-12 my-2">
+					<div class="row d-flex align-items-center">
+						<div class="col fs-6 fw-bold">
+							Exception Signals
+						</div>
+						<div class="col text-end text-primary cursor-pointer" style="font-size: 0.8rem;">
+							@* <a asp-page="Exception" style="text-decoration: none;">View More</a> *@
+						</div>
+					</div>
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item">
+							<div class="d-flex justify-content-between">
+								<div class="p-2"><strong>Signal Name</strong></div>
+								<div class="p-2"><strong>Signal Date</strong></div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="d-flex justify-content-between">
+								<div class="p-2"><span class="text-primary">WALIFTO19</span> - SLO</div>
+								<div class="p-2">18 Jul 2024</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="d-flex justify-content-between">
+								<div class="p-2"><span class="text-primary">WALIFTO19</span> - SLO</div>
+								<div class="p-2">18 Jul 2024</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="d-flex justify-content-between">
+								<div class="p-2"><span class="text-primary">WALIFTO19</span> - SLO</div>
+								<div class="p-2">18 Jul 2024</div>
+							</div>
+						</li>
+						<li class="list-group-item">
+							<div class="d-flex justify-content-between">
+								<div class="p-2"><span class="text-primary">WALIFTO19</span> - SLO</div>
+								<div class="p-2">18 Jul 2024</div>
+							</div>
+						</li>
+					</ul>
+			</div>
+		</div>
+	</div>
+
+	<footer class="col-12 mt-auto">
+		<div class="d-flex">
+			<button type="button" class="btn btn-outline-primary flex-fill">Back to Home</button>
+		</div>
+	</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+	const ctx = document.getElementById('chart').getContext('2d');
+	   const myChart = new Chart(ctx, {
+		   type: 'line', 
+		   data: {
+				labels: [
+					'2023-01-01',
+					'2023-01-02',
+					'2023-01-03',
+					'2023-01-04',
+					'2023-01-05',
+					'2023-01-06'
+				],
+				datasets: [
+					{
+						label: 'BFPD',
+						data: [100, 200, 300, 400, 500, 600], 
+						borderColor: 'rgba(54, 162, 235, 1)',
+						backgroundColor: 'rgba(54, 162, 235, 1)',
+						yAxisID: 'y2',
+						fill: false
+					},
+					{
+						label: 'BOPD',
+						data: [200, 400, 500, 300, 500, 700],
+						borderColor: '#E697FF',
+						backgroundColor: '#E697FF',
+						yAxisID: 'y2',
+						fill: false
+					},
+					{
+						label: 'INFERRED BFPD',
+						data: [15, 60, 35, 5, 55, 100], 
+						borderColor: '#FFA5CB',
+						backgroundColor: '#FFA5CB',
+						yAxisID: 'y1', 
+						fill: false
+					},
+					{
+						label: 'INFERRED BOPD',
+						data: [10, 15, 13, 25, 35, 60],
+						borderColor: 'rgba(255, 99, 132, 1)',
+						backgroundColor: 'rgba(255, 99, 132, 1)',
+						yAxisID: 'y1',
+						fill: false
+					},
+				]
+			},
+		   options: {
+			   scales: {
+				   y1: {
+					   type: 'linear', 
+					   position: 'left', 
+					   title: {
+						   display: false,
+						   text: 'Kilograms (kg)' 
+					   },
+				   },
+				   y2: {
+					   type: 'linear', 
+					   position: 'left',
+					   ticks: {
+							color: 'rgba(54, 162, 235, 1)',
+						},
+					   title: {
+						   display: false,
+						   text: 'Liters (L)' 
+					   },
+				   }
+			   }
+		   }
+	   });
+</script>

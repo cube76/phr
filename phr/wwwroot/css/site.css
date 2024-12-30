@@ -1,26 +1,136 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .bg-gradent {
     background-image: linear-gradient(to right, #013664, #3C6DB2);
+}
+
+.single-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.bg-green {
+    background-color: #ADC52D;
+}
+
+.bg-gray {
+    background-color: #e1e2e3;
+}
+
+.text-bg-gray {
+    background-color: #e1e2e3;
+    color: black;
+}
+
+.text-bg-green {
+    background-color: #ADC52D;
+    color: white;
+}
+
+.bg-orange {
+    background-color: #E28400;
+}
+
+.text-bg-orange {
+    background-color: #E28400;
+    color: white;
+}
+
+.bg-purple {
+    background-color: #D085ED;
+}
+
+.text-bg-purple {
+    background-color: #D085ED;
+    color: white;
+}
+
+@media (max-width: 991.98px) { /* Below lg breakpoint */
+
+    .rounded-bottom-lg-5 {
+        border-bottom-left-radius: 3rem; /* 48px */
+        border-bottom-right-radius: 3rem; /* 48px */
+    }
+}
+
+:root {
+    --accordion-active-bg: white; /* Define your CSS variable */
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--accordion-active-bg);
+}
+
+.navbar-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.navbar-scroll::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+.navbar-scroll button {
+    display: inline-block;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+.nav-link {
+    flex: 0 0 auto;
+    color: #868E96;
+}
+
+.nav-underline .nav-link.active {
+    color: #3083DC !important;
+}
+
+.icon {
+    color: #3083DC;
+    align-content: center;
+}
+
+.icon-container {
+    display: flex; 
+    height: 32px;
+    width: 32px;
+    align-items: center;
+    background-color: #F0F8FE;
+}
+
+.bg-blue-progress {
+    background: linear-gradient(90deg, #C5D5EB 0%, #2059A8 100%); 
+}
+
+.bg-gray-progress {
+    background: linear-gradient(90deg, #C0C4C4 0%, #A2A2A2 100%);
 }

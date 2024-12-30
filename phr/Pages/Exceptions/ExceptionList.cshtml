@@ -1,0 +1,181 @@
+﻿@page "{id:int}"
+@model phr.Pages.Exceptions.ExceptionListModel
+@{
+	ViewData["Title"] = "Exception List";
+}
+
+<div class="container p-2">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Exception Signals List</strong></h4>
+	</div>
+	<div class="col-12 pt-2">
+		<button type="button" class="btn btn-outline-primary">Export to Excel</button>
+	</div>
+	<div class="col-12 pt-2">
+		<dl class="row">
+			<dd class="col-3">Signal Code</dd>
+			<dt class="col-9">@ViewData["code"]</dt>
+			<dd class="col-3">Signal Name</dd>
+			<dt class="col-9">@ViewData["name"]</dt>
+		</dl>
+	</div>
+	<div class="col-12 pt-2 border-bottom">
+		<div class="accordion accordion-flush" id="accordionFlushExample">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="flush-headingOne">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+
+						<div class="d-flex w-100">
+							<div class="me-auto"><strong>Summary</strong></div>
+							<span class="badge text-bg-gray me-2" style="font-size:1rem;">1</span>
+							<span class="badge text-bg-gray me-2" style="font-size:1rem;">2</span>
+							<span class="badge text-bg-gray me-2" style="font-size:1rem;">3</span>
+							<span class="badge text-bg-gray me-2" style="font-size:1rem;">4</span>
+							<span class="badge text-bg-gray me-2" style="font-size:1rem;">5</span>
+						</div>
+					</button>
+				</h2>
+				<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+					<div class="accordion-body">
+						<div class="d-flex flex-column">
+							<div class="d-flex justify-content-between border-bottom pb-3">
+								<div class="">Current Signal</div>
+								<div class=""><strong>1</strong></div>
+							</div>
+							<div class="d-flex justify-content-between border-bottom py-3">
+								<div class="">Today Signal</div>
+								<div class=""><strong>2</strong></div>
+							</div>
+							<div class="d-flex justify-content-between border-bottom py-3">
+								<div class="">Open</div>
+								<div class=""><strong>3</strong></div>
+							</div>
+							<div class="d-flex justify-content-between border-bottom py-3">
+								<div class="">Inprogress</div>
+								<div class=""><strong>4</strong></div>
+							</div>
+							<div class="d-flex justify-content-between pt-3">
+								<div class="">Closed (Last 3 Months)</div>
+								<div class=""><strong>5</strong></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 pt-4 border-top">
+		<div class="d-flex flex-row align-items-center">
+			<div class="input-group">
+				<span class="input-group-text bg-white" id="basic-addon1"><i class="bi bi-search"></i></span>
+				<input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1" id="searchInput">
+			</div>
+			<i class="bi bi-sort-down ms-2 cursor-pointer" id="filter"></i>
+		</div>
+	</div>
+	<div class="col-12 pt-2">
+		<div class="accordion accordion-flush" id="accordionFlushCode">
+			@for (int i = 0; i < 4; i++)
+			{
+				<div class="accordion-item code-name-item">
+					<h2 class="accordion-header" id="flush-heading">
+						<div class="form-check ms-2 d-flex ">
+							<input class="form-check-input align-self-center my-auto" type="checkbox" value="" id="flexCheckDefault" onchange="itemCheck(event, element)" style="transform: scale(0.8);">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-code-@i" aria-expanded="false" aria-controls="flush-collapseOne">
+								<div class="d-flex w-100">
+									<label class="form-check-label" id="nameCode-@i" for="">
+										<strong>MNA00676VI\@i</strong>
+									</label>
+								</div>
+							</button>
+						</div>
+					</h2>
+					<div id="flush-code-@i" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushCode">
+						<div class="accordion-body">
+							<div class="d-flex flex-column">
+								<div class="d-flex justify-content-between border-bottom pb-3">
+									<div class=""><strong>String Name</strong></div>
+									<div class="">7D-13</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Total Exception</strong></div>
+									<div class="">4</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<a class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#exception-modal"><strong>List Exception</strong></a>
+									<div class="single-line">-[ONMSLO001] Active op Well</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Latest Test</strong></div>
+									<div class="">2024-05-11</div>
+								</div>
+								<div class="d-flex justify-content-between py-3">
+									<div class=""><strong>Last BOPD</strong></div>
+									<div class="">4.87</div>
+								</div>
+								<button type="button" class="btn btn-outline-primary" onclick="location.href='/Exceptions/WellDetailInformation?id=1&code=MINAA000676VI&name=7d-13'">View Detail</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+	<div class="col-12 pt-2">
+		<div class="d-grid gap-2">
+			<button type="button" class="btn btn-primary">Create Recomendation</button>
+		</div>
+	</div>
+</div>
+
+<script>
+	function openModal(event, element) {
+		event.stopPropagation();
+	}
+
+	const toggleFilter = document.querySelector('#filter');
+	var ascending = false;
+	toggleFilter.onclick = function() {
+		const container = document.getElementById('accordionFlushCode');
+		const exceptionsArray = Array.from(container.querySelectorAll('.code-name-item'));
+
+		exceptionsArray.sort((a, b) => {
+			const titleA = a.querySelector('[id^="nameCode"]').textContent.toLowerCase();
+			const titleB = b.querySelector('[id^="nameCode"]').textContent.toLowerCase();
+
+			return ascending ? titleA.localeCompare(titleB) : titleB.localeCompare(titleA);
+		});
+
+		container.innerHTML = ''; // Clear existing items
+		exceptionsArray.forEach(exception => container.appendChild(exception));
+
+		ascending = !ascending;
+		toggleFilter.classList.toggle('bi-sort-down');
+		toggleFilter.classList.toggle('bi-sort-up');
+	};
+
+	function itemCheck(event, element) {
+		console.log('Checkbox checked:', element.checked);
+	}
+</script>
+
+<div class="modal fade" tabindex="-1" id="exception-modal">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header border-0">
+				<h5 class="modal-title"><strong>List Exception</strong></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<ul>
+					<li>[ONMSLO001] Active op Well</li>
+					<li>[ONMS0007] No ORDC certain duration for certain critical type wells at 22-MAY-2024 09:00</li>
+					<li>[WALIFT019] LO Repetitive subsurface well down >= 1 time in 1 year at 29-May-2024 04:03</li>
+				</ul>
+			</div>
+			<div class="modal-footer border-0">
+				<button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -6,52 +6,76 @@ namespace phr.Config
 {
 	public class ApiService
 	{
-		private readonly HttpClient _httpClient;
+        private readonly ILogger<ApiService> _logger;
+        private readonly HttpClient _httpClient;
 		private readonly string _apiBaseUrl;
 		private readonly string _apiKeyAzure;
 		private readonly string _ocpApimSubscriptionKey;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-		public ApiService(HttpClient httpClient, IConfiguration configuration)
+        public ApiService(ILogger<ApiService> logger, HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
 		{
-			_httpClient = httpClient;
+            _logger = logger;
+            _httpClient = httpClient;
 			_apiBaseUrl = configuration["ApiSettings:BaseUrl"];
 			_apiKeyAzure = configuration["ApiSettings:ApiKeyAzure"];
 			_ocpApimSubscriptionKey = configuration["ApiSettings:OcpApimSubscriptionKey"];
-		}
+            _httpContextAccessor = httpContextAccessor;
+        }
 
-		public async Task<string> Login(object requestBody)
+        private string ValidateToken()
+        {
+            var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                throw new InvalidOperationException("Token is null or empty. Please log in.");
+            }
+            return token; 
+        }
+
+        public async Task<string> Login(object requestBody)
 		{
-			var jsonContent = JsonConvert.SerializeObject(requestBody);
+            var jsonContent = JsonConvert.SerializeObject(requestBody);
 			var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-			// Add custom headers
 			_httpClient.DefaultRequestHeaders.Clear();
-			_httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "001f1f5b4cde4dfa8928523eb43dc1c4");  // Example of adding a custom header
+			_httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", _ocpApimSubscriptionKey); 
 
-			// Send the POST request
-			var response = await _httpClient.PostAsync("https://api1.example.com/data", content);
+			var response = await _httpClient.PostAsync("https://phrapigw-dev.azure-api.net/Account/Token", content);
 			response.EnsureSuccessStatusCode();
 
-			// Read the response content as a string
 			var responseData = await response.Content.ReadAsStringAsync();
 
 			return responseData;
 		}
 
-		public async Task<string> GetExceptionSignals(string token)
+		public async Task<string> GetExceptionSignals()
 		{
-			_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var token = ValidateToken();
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 			_httpClient.DefaultRequestHeaders.Add("X-Api-Key", _apiKeyAzure);
 			var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/iem/api/ExceptionSignals");
 			return response;
 		}
 
-		public async Task<string> GetPassedSignals(string token)
+		public async Task<string> GetPassedSignals()
 		{
-			_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var token = ValidateToken();
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 			_httpClient.DefaultRequestHeaders.Add("X-Api-Key", _apiKeyAzure);
 			var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/iem/api/PassedSignals");
 			return response;
 		}
-	}
+
+        public async Task<string> GetProductionCharts()
+        {
+            Console.WriteLine("Entering GetProductionCharts method.");
+            var token = ValidateToken();
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Add("X-Api-Key", _apiKeyAzure);
+            var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/iem/api/ProductionCharts");
+            return response;
+        }
+    }
 }

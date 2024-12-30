@@ -1,19 +1,68 @@
 @page
 @model LoginModel
 @{
+	Layout = "_LayoutDefault";
 	ViewData["Title"] = "Login";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="col-lg-6">
-                <img src="~/images/logo_phr.png" class="img-fluid mx-auto" alt="...">
-            </div>
-            <div class="col-lg-6">
-                <img src="~/images/login_img.png" class="img-fluid" alt="...">
-            </div>
-        </div>
-        <div class="col-lg-6"></div>
-    </div>
+@* <div class="container-fluid vh-100"> *@
+@* <div> *@
+	<div class="d-lg-flex align-items-center justify-content-between vh-100 px-lg-5">
+	<div class="col-lg-6">
+		<div class="d-lg-flex flex-column align-items-center">
+		<div class="col-lg-6 d-flex justify-content-center pt-5">
+			<img src="~/images/logo_iem.png" class="img-fluid" alt="..." style="height: 60px;">
+		</div>
+		<div class="col-lg-6 px-5 pb-5">
+				<img src="~/images/login_img.png" class="img-fluid img-lg-fluid" alt="...">
+		</div>
+		</div>
+	</div>
+	<div class="col-lg-6 h-50">
+		<div class="card w-100 h-100 p-4 rounded-top-5 rounded-bottom-lg-5 d-flex justify-content-around">
+			<div>
+				<h3><strong>Welcome!</strong></h3>
+				<h6>To stay connected, please Login</h6>
+			</div>
+			<div>
+				<form method="post">
+					<div class="d-flex flex-column justify-content-evenly">
+						<div class="form-group mb-3">
+							<label asp-for="Input.Username"><strong>Username</strong></label>
+							<input type="username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email" asp-for="Input.Username"/>
+							<span asp-validation-for="Input.Username"></span>
+						</div>
+						<div class="form-group position-relative mb-3">
+							<label asp-for="Input.Password"><strong>Password</strong></label>
+							<input type="password" class="form-control" id="password" placeholder="Password" asp-for="Input.Password"/>
+							<i class="bi bi-eye-slash position-absolute" id="togglePassword" style="right: 10px; top: 65%; transform: translateY(-50%); cursor: pointer;"></i>
+							<span asp-validation-for="Input.Password"></span>
+						</div>
+						<button type="submit" class="btn btn-primary mb-3">Login</button>
+					</div>
+				</form>
+				<div class="d-flex justify-content-center">
+					<img src="~/images/logo_phr.png" class="img-fluid" alt="..." style="height: 50px;">
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+@* </div> *@
+
+<script>
+
+	const togglePassword = document.querySelector('#togglePassword');
+	const password = document.querySelector('#password');
+
+	togglePassword.addEventListener('click', () => {
+		// Toggle the type attribute
+		const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+		password.setAttribute('type', type);
+
+		// Toggle the eye and bi-eye icon
+		togglePassword.classList.toggle('bi-eye');
+		togglePassword.classList.toggle('bi-eye-slash');
+	});
+
+</script>
