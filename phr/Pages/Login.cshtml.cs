@@ -91,7 +91,7 @@ namespace phr.Pages
                 _logger.LogError("login failed: {ErrorMessage}", ex.Message);
 
                 // Optionally log the exception
-
+                ViewData["Error"] = ErrorMessage;
             }
 
             catch (JsonException ex)
@@ -102,7 +102,7 @@ namespace phr.Pages
                 _logger.LogError("login Error calling the API: {ErrorMessage}", ex.Message);
 
                 // Optionally log the exception
-
+                ViewData["Error"] = ErrorMessage;
             }
 
 

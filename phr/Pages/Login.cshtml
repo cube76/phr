@@ -24,6 +24,12 @@
 				<h3><strong>Welcome!</strong></h3>
 				<h6>To stay connected, please Login</h6>
 			</div>
+			@if (ViewData["Error"] != null)
+			{
+				<div class="alert alert-danger" role="alert">
+					@ViewData["Error"]
+				</div>
+			}
 			<div>
 				<form method="post">
 					<div class="d-flex flex-column justify-content-evenly">
