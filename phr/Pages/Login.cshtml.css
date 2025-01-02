@@ -3,11 +3,11 @@
 }
 
 .rounded-bottom-lg-5 {
-    border-bottom-left-radius: 0rem; /* 48px */
-    border-bottom-right-radius: 0rem; /* 48px */
+    border-bottom-left-radius: 0rem; 
+    border-bottom-right-radius: 0rem; 
 }
 
-@media (min-width: 992px) { /* Below lg breakpoint */
+@media (min-width: 992px) { 
 
     .vh-100-lg {
         height: 100vh; /* 100% of viewport height on smaller screens */
@@ -19,7 +19,7 @@
     }
 
     .rounded-bottom-lg-5 {
-        border-bottom-left-radius: 2rem; /* 48px */
-        border-bottom-right-radius: 2rem; /* 48px */
+        border-bottom-left-radius: 2rem; 
+        border-bottom-right-radius: 2rem; 
     }
 }

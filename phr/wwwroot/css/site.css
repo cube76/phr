@@ -7,6 +7,16 @@ html {
         font-size: 16px;
     }
 }
+@media (max-height: 400px) and (orientation: landscape) {
+
+    .offcanvas {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 300px; /* Adjust width as needed */
+    }
+}
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -71,13 +81,13 @@ body {
     color: white;
 }
 
-@media (max-width: 991.98px) { /* Below lg breakpoint */
+/*@media (min-width: 992px) {*/ /* Below lg breakpoint */
 
-    .rounded-bottom-lg-5 {
-        border-bottom-left-radius: 3rem; /* 48px */
-        border-bottom-right-radius: 3rem; /* 48px */
-    }
-}
+    /*.rounded-bottom-lg-5 {
+        border-bottom-left-radius: 3rem;*/ /* 48px */
+        /*border-bottom-right-radius: 3rem;*/ /* 48px */
+    /*}
+}*/
 
 :root {
     --accordion-active-bg: white; /* Define your CSS variable */

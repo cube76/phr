@@ -345,8 +345,6 @@
 	var dates = chartData.map(data => data.testDate);
 	var fluids = chartData.map(data => data.allocFluid);
 	var oils = chartData.map(data => data.allocOil);
-	console.log("chartData1",dates);
-	console.log("chartData",dates.slice(1));
 	const ctx = document.getElementById('chart').getContext('2d');
 	const myChart = new Chart(ctx, {
 		type: 'line',

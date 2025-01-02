@@ -36,7 +36,7 @@
 	<canvas id="chart2" width="400" height="200" class="mb-2 border-bottom"></canvas>
 </div>
 
-<div class="offcanvas offcanvas-bottom" tabindex="1" id="filterBottom">
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="filterBottom">
 	<div class="offcanvas-header">
 		<div class="col">
 			<div class="d-flex align-items-center">
@@ -68,22 +68,48 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+	const header = document.getElementById('filterBottom');
+	const mediaQuery = window.matchMedia('(min-height: 845px) and (min-width: 400px) and (orientation: landscape)');
+	function updateClasses(mediaQuery) {
+
+			console.log("masuk")
+
+		if (mediaQuery.matches) {
+			header.classList.remove('offcanvas-bottom');
+			header.classList.add('offcanvas-end'); // Add class for large screens in landscape
+
+		} else {
+			header.classList.remove('offcanvas-end');
+			header.classList.add('offcanvas-bottom'); // Add class for other cases
+
+		}
+
+	}
+
+
+	// Initial check
+
+	updateClasses(mediaQuery);
+
+
+	// Add a listener for changes to the media query
+
+	mediaQuery.addEventListener('change', updateClasses);
+			
+			
+	var chartData = @Html.Raw(ViewData["ChartData"]);
+	var dates = chartData.map(data => data.testDate);
+	var fluids = chartData.map(data => data.allocFluid);
+	var oils = chartData.map(data => data.allocOil);
 	const ctx = document.getElementById('chart').getContext('2d');
 	const myChart = new Chart(ctx, {
 		type: 'line',
 		data: {
-			labels: [
-				'2023-01-01',
-				'2023-01-02',
-				'2023-01-03',
-				'2023-01-04',
-				'2023-01-05',
-				'2023-01-06'
-			],
+			labels: dates.slice(1),
 			datasets: [
 				{
 					label: '(L1) Alloc Fluid',
-					data: [200, 400, 500, 300, 500, 700],
+					data: fluids.slice(1),
 					borderColor: 'blue',
 					backgroundColor: 'blue',
 					yAxisID: 'y2',
@@ -91,7 +117,7 @@
 				},
 				{
 					label: '(L3) Alloc Oil',
-					data: [15, 60, 35, 5, 55, 100],
+					data: oils.slice(1),
 					borderColor: 'green',
 					backgroundColor: 'green',
 					yAxisID: 'y1',
@@ -99,7 +125,7 @@
 				},
 				{
 					label: 'Annot.jobs',
-					data: [10, 15, 13, 25, 35, 60],
+					data: [10],
 					borderColor: 'red',
 					backgroundColor: 'red',
 					yAxisID: 'y3',
@@ -115,6 +141,10 @@
 					ticks: {
 						color: 'green',
 					},
+					title: {
+						display: false,
+						text: 'Kilograms (kg)'
+					},
 				},
 				y2: {
 					type: 'linear',
@@ -122,12 +152,20 @@
 					ticks: {
 						color: 'rgba(54, 162, 235, 1)',
 					},
+					title: {
+						display: false,
+						text: 'Liters (L)'
+					},
 				},
 				y3: {
 					type: 'linear',
 					position: 'left',
 					ticks: {
 						color: 'red',
+					},
+					title: {
+						display: false,
+						text: 'Liters (L)'
 					},
 				}
 			}
