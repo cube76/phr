@@ -10,13 +10,13 @@
 	<div class="col-12 pt-2">
 		<dl class="row">
 			<dd class="col-3">UWI</dd>
-			<dt class="col-9">@ViewData["code"]</dt>
+			<dt class="col-9">@ViewData["uwi"]</dt>
 			<dd class="col-3">String Name</dd>
 			<dt class="col-9">@ViewData["name"]</dt>
 			<dd class="col-3">Field</dd>
-			<dt class="col-9">MINAS</dt>
+			<dt class="col-9">@ViewData["field"]</dt>
 			<dd class="col-3">Area Section</dd>
-			<dt class="col-9">MINAS</dt>
+			<dt class="col-9">@ViewData["area"]</dt>
 		</dl>
 	</div>
 	<div class="col-12">
@@ -33,7 +33,7 @@
 				<div class="list-group mt-2">
 					<a href="/Exceptions/General Information/GeneralInformation" class="list-group-item list-group-item-action">
 						<div class="d-flex">
-							<div class="p-2 rounded-circle icon-container align-self-center">
+							<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
 								<i class="bi bi-info-circle icon"></i>
 							</div>
 							<div class="p-2">General Information</div>
@@ -42,7 +42,7 @@
 					</a>
 					<a href="/Exceptions/Production Surveliance/productionSurveiliance" class="list-group-item list-group-item-action">
 						<div class="d-flex">
-							<div class="p-2 rounded-circle icon-container align-self-center">
+							<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
 								<i class="bi bi-app icon"></i>
 							</div>
 							<div class="p-2">Production & Surveliance</div>
@@ -51,7 +51,7 @@
 					</a>
 					<a href="/Exceptions/WorkoverHistory" class="list-group-item list-group-item-action">
 						<div class="d-flex">
-							<div class="p-2 rounded-circle icon-container align-self-center">
+							<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
 								<i class="bi bi-clock-history icon"></i>
 							</div>
 							<div class="p-2">Workover History</div>
@@ -68,7 +68,7 @@
 							<div class="card rounded-4">
 									<div class="card-body">
 									<h6 class="card-title text-muted">Last BFPD</h6>
-									<h5 class="card-text"><strong>68</strong></h5>
+									<h5 class="card-text"><strong>@ViewData["bfpd"]</strong></h5>
 									</div>
 								</div>
 							</div>
@@ -76,7 +76,7 @@
 							<div class="card rounded-4">
 									<div class="card-body">
 									<h6 class="card-title text-muted">Last BOPD</h6>
-									<h5 class="card-text"><strong>5</strong></h5>
+									<h5 class="card-text"><strong>@ViewData["bopd"]</strong></h5>
 									</div>
 								</div>
 							</div>

@@ -9,7 +9,7 @@ using phr.Models;
 
 namespace phr.Pages.Exceptions
 {
-    public class ExceptionModel : PageModel
+    public class ExceptionModel : BasePageModel
     {
         private readonly ILogger<ExceptionModel> _logger;
         private readonly ApiService _apiService;
@@ -39,8 +39,8 @@ namespace phr.Pages.Exceptions
             }
             catch (Exception ex)
             {
-                Console.WriteLine("pertama" + ex.Message);
                 _logger.LogInformation("exceptionslist: {Code}", ex.Message);
+                return RedirectToPage("/Login");
             }
             return Page();
         }

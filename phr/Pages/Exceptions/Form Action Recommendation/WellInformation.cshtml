@@ -1,0 +1,72 @@
+﻿@page
+@model phr.Pages.Exceptions.Form_Action_Recommendation.WellInformationModel
+@using static phr.Config.Helper
+@{
+	ViewData["Title"] = "Well Information";
+}
+
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Well Information</strong></h4>
+	</div>
+	<div class="col-12 pt-2">
+		<dl class="row">
+			<dd class="col-3">UWI</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.Uwi)</dt>
+
+			<dd class="col-3">Operating Unit (OU)</dd>
+			<dt class="col-9">SLS</dt>
+
+			<dd class="col-3">Well Name</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.FaName)</dt>
+
+			<dd class="col-3">Area Section Code</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.AreaCode)</dt>
+
+			<dd class="col-3">Asset Area</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.AssetArea)</dt>
+
+			<dd class="col-3">Pump Type</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.PumpType)</dt>
+
+			<dd class="col-3">Status</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.Status)</dt>
+
+			<dd class="col-3">Status Date</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.StatusStartDate)</dt>
+
+			<dd class="col-3">Field</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.Field)</dt>
+
+			<dd class="col-3">Area</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.Area)</dt>
+
+			<dd class="col-3">Field Code</dd>
+			<dt class="col-9">-</dt>
+
+			<dd class="col-3">Scr. Liner OD</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.ScrlinerOd)</dt>
+
+			<dd class="col-3">Latest BOPD</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.WtBopd)</dt>
+
+			<dd class="col-3">Current Pump Size</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.PumpSize)</dt>
+		</dl>
+	</div>
+	<div class="col-12">
+		<label class="form-label"><strong>Cost Center</strong></label>
+		<input class="form-control" type="text" value="">
+		<label class="form-label mt-3"><strong>Program No</strong></label>
+		<input class="form-control" type="text" value="">
+	</div>
+	<div class="col-12 mt-3">
+		<dl class="row">
+			<dd class="col-3">Last Pump Installed</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.InstallDate)</dt>
+
+			<dd class="col-3">Pump Depth</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.PumpDepth)</dt>
+		</dl>
+	</div>
+</div>

@@ -1,0 +1,210 @@
+﻿@page
+@model phr.Pages.Passed.PassedListModel
+@using static phr.Config.Helper
+@{
+	ViewData["Title"] = "Passed Signal List";
+}
+
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Passed Signal List</strong></h4>
+	</div>
+	<div class="col-12 pt-4 border-top">
+		<div class="d-flex flex-row align-items-center">
+			<div class="input-group">
+				<span class="input-group-text bg-white" id="basic-addon1"><i class="bi bi-search"></i></span>
+				<input type="text" class="form-control border-start-0" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1" id="searchInput">
+			</div>
+			<i class="bi bi-funnel ms-2 cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" id="filter"></i>
+		</div>
+	</div>
+	<div class="col-12 mt-3">
+		<h6><strong>Action Code</strong></h6>
+	</div>
+	<div class="col-12 pt-2">
+		<div class="accordion accordion-flush" id="accordionFlushCode">
+			@foreach (var info in Model.OutstandingPasseds)
+			{
+				<div class="accordion-item code-name-item">
+					<h2 class="accordion-header" id="flush-heading">
+						<div class="form-check ms-2 d-flex ">
+							<input class="form-check-input align-self-center my-auto" type="checkbox" value="" id="flexCheckDefault" onchange="itemCheck(event, element)" style="transform: scale(0.8);">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-code-@info.Id" aria-expanded="false" aria-controls="flush-collapseOne">
+								<div class="d-flex w-100">
+									<label class="form-check-label" id="nameCode-@info.Id" for="">
+										<strong>@info.Uwi</strong>
+									</label>
+								</div>
+							</button>
+						</div>
+					</h2>
+					<div id="flush-code-@info.Id" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushCode">
+						<div class="accordion-body">
+							<div class="d-flex flex-column">
+								<div class="d-flex justify-content-between border-bottom pb-3">
+									<div class=""><strong>Action Desc</strong></div>
+									<div class="">@GetValueOrDefault(info.ActionDesc)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Action Status</strong></div>
+									<div class="">@GetValueOrDefault(info.ActionStatus)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div><strong>Progress Status</strong></div>
+									<div class="single-line">@GetValueOrDefault(info.ActionFlowStep)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Role Name</strong></div>
+									<div class="">@GetValueOrDefault(info.RoleName)</div>
+								</div>
+								<div class="d-flex justify-content-between py-3">
+									<div class=""><strong>Uwi</strong></div>
+									<div class="">@GetValueOrDefault(info.Uwi)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>String Name</strong></div>
+									<div class="">@GetValueOrDefault(info.StringName)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Action Status</strong></div>
+									<div class="">@GetValueOrDefault(info.ActionStatus)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Action Status</strong></div>
+									<div class="">@GetValueOrDefault(info.ActionStatus)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Alt Name</strong></div>
+									<div class="">@GetValueOrDefault(info.AltName)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Status Well</strong></div>
+									<div class="">@GetValueOrDefault(info.StatusWell)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Finding</strong></div>
+									<div class="">@GetValueOrDefault(info.Finding)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Job Plan</strong></div>
+									<div class="">@GetValueOrDefault(info.JobPlan)</div>
+								</div>
+								<div class="d-grid gap-2">
+									<a asp-page="/Passed/FollowUp" role="button" class="btn btn-outline-primary flex-fill">Follow Up</a>
+									<a class="btn btn-outline-primary border-0" style="text-decoration: underline;" role="button" href="/Passed/WellDetailInformation">View</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+
+<div class="offcanvas offcanvas-end" width="100%" tabindex="1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+	<div class="offcanvas-header">
+		<div class="col">
+			<div class="d-flex align-items-center">
+				<button type="button" class="btn" data-bs-dismiss="offcanvas"><i class="bi bi-x-lg"></i></button>
+				<h5 class="offcanvas-title" id="offcanvasBottomLabel"><strong>Filter</strong></h5>
+			</div>
+		</div>
+	</div>
+	<div class="offcanvas-body">
+
+		<h6 class="pt-3 border-top">
+			<strong>PTM Region Jogja</strong>
+		</h6>
+		<div class="mb-3">
+			<label for="ptmRegionJogja" class="form-label"><strong>PTM Region</strong></label>
+			<select class="form-select" id="ptmRegionJogja">
+				<option selected="">Region 1</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="zona" class="form-label"><strong>Zona</strong></label>
+			<select class="form-select" id="zona">
+				<option selected="">Zona 2 &amp; 3</option>
+			</select>
+		</div>
+		<h6 class="pt-3 border-top">
+			<strong>PTM Region Jogja</strong>
+		</h6>
+		<div class="mb-3">
+			<label for="unit" class="form-label"><strong>Unit</strong></label>
+			<select class="form-select" id="unit">
+				<option selected="">All</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="areaSection" class="form-label"><strong>Area Section</strong></label>
+			<input type="text" class="form-control" id="areaSection">
+		</div>
+		<div class="mb-3">
+			<label for="role" class="form-label"><strong>Role</strong></label>
+			<select class="form-select" id="role">
+				<option selected="">16 - ARTIFICIAL LIFT</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="p15DateBetween" class="form-label"><strong>P15 Date Between</strong></label>
+			<input type="text" class="form-control" id="p15DateBetween">
+		</div>
+		<div class="mb-3">
+			<label for="submitBy1" class="form-label"><strong>Submit By</strong></label>
+			<select class="form-select" id="submitBy1">
+				<option selected="">Field Group</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="submitBy2" class="form-label"><strong>Submit By</strong></label>
+			<select class="form-select" id="submitBy2">
+				<option selected="">CGS</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="bopd" class="form-label"><strong>BOPD</strong></label>
+			<select class="form-select" id="bopd">
+				<option selected="">Field Group</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="actionCode" class="form-label"><strong>Action Code</strong></label>
+			<select class="form-select" id="actionCode">
+				<option selected="">ACT123 - SLO ESP Wells repetitive tr</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="opSubArea" class="form-label"><strong>Op Sub Area</strong></label>
+			<input type="text" class="form-control" id="opSubArea">
+		</div>
+		<div class="mb-3">
+			<label for="bfpd" class="form-label"><strong>BFPD</strong></label>
+			<select class="form-select" id="bfpd">
+				<option selected="">All</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="signal" class="form-label"><strong>Signal</strong></label>
+			<select class="form-select" id="signal" disabled>
+				<option selected="">All</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="area" class="form-label"><strong>Area</strong></label>
+			<input type="text" class="form-control" id="area">
+		</div>
+		<div class="mb-3">
+			<label for="wellTier" class="form-label"><strong>Well Tier</strong></label>
+			<select class="form-select" id="wellTier">
+				<option selected="">All</option>
+			</select>
+		</div>
+		<div class="d-grid gap-2">
+			<button class="btn btn-primary" type="button"><i class="bi bi-search me-2"></i>Search</button>
+			<button class="btn btn-outline-primary" type="button"><i class="bi bi-box-arrow-up me-2"></i>Export</button>
+		</div>
+
+	</div>
+</div>

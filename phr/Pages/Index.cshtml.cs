@@ -7,7 +7,7 @@ using phr.Models;
 
 namespace phr.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel : BasePageModel
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly ApiService _apiService;
@@ -26,37 +26,16 @@ namespace phr.Pages
             _ocpApimSubscriptionKey = configuration["ApiSettings:OcpApimSubscriptionKey"];
         }
 
-        //public void OnGet()
-        //{
-
-        //}
-
         public List<ExceptionDetails> Exceptions { get; set; }
         public List<PassedSignals> Signals { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
-        {
-            _logger.LogInformation("Calling the API for exception details...");
-
-            //try
-            //{
-            //var token = HttpContext.Session.GetString("Token");
-            //            _logger.LogInformation("hasil: {ExceptCode}", token);
-            //            if (token == null)
-            //{
-            //                return RedirectToPage("/Login");
-            //            }
-            //            int retryCount = 0;
-            //            int MaxRetries = 2;
-
-            //            while (retryCount < MaxRetries)
-            //{
+        {            
             try
             {
                 var task1 = _apiService.GetExceptionSignals();
                 var task2 = _apiService.GetPassedSignals();
 
-                // Run both tasks concurrently
                 await Task.WhenAll(task1, task2);
 
                 var result1 = await task1;
@@ -72,28 +51,22 @@ namespace phr.Pages
                 ViewData["NonWellSignals"] = jsonPassed?.Count(e => e.ActionType != "WELL") ?? 0;
                 ViewData["ItemCount"] = 4;
 
-                _logger.LogInformation("oweowe: {ExceptCode}", result1.GetType());
+                var user = HttpContext.Session.GetObjectFromJson<LoginResponse>("User");
+                ViewData["username"] = user.userName;
+                ViewData["role"] = user.role[0];
+
                 return Page();
             }
             catch (InvalidOperationException ex)
             {
                 _logger.LogError("token invalid",ex.Message);
-                //return RedirectToPage("/Login");
             }
             catch (Exception ex)
             {
                 _logger.LogError("Error calling the API 1: {ErrorMessage}", ex.Message);
-                //return RedirectToPage("/Error");
             }
-            //}
-            //}
-            //catch (Exception ex)
-            //{
-            //	_logger.LogError("Error calling the API: {ErrorMessage}", ex.Message);
-            //             //return RedirectToPage("/Error");
-            //         }
+
             return RedirectToPage("/Login");
-            //return Page();
         }
     }
 }

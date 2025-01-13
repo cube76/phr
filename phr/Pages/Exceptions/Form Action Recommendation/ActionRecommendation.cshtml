@@ -1,0 +1,69 @@
+﻿@page
+@model phr.Pages.Exceptions.Form_Action_Recommendation.ActionRecommendationModel
+@using static phr.Config.Helper
+@{
+	ViewData["Title"] = "Action Recommendation";
+}
+
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Action Recommendation</strong></h4>
+	</div>
+	<div class="col-12 pt-2">
+		<dl class="row">
+			<dd class="col-3">UWI</dd>
+			<dt class="col-9">@ViewData["uwi"]</dt>
+			<dd class="col-3">String Name</dd>
+			<dt class="col-9">@ViewData["name"]</dt>
+			<dd class="col-3">Alt Name</dd>
+			<dt class="col-9">@ViewData["alt"]</dt>
+			<dd class="col-3">Grid Name</dd>
+			<dt class="col-9">@ViewData["grid"]</dt>
+		</dl>
+	</div>
+	<div class="col-12">
+		<div class="list-group mt-2">
+			<form id="genInfo" method="post" asp-page="/Exceptions/Form Action Recommendation/Recommendation">
+				@* <input type="hidden" name="wellLastInfo" value='@ViewData["WellLastInfo"]' /> *@
+				<a onclick="document.getElementById('genInfo').submit();" class="list-group-item list-group-item-action cursor-pointer">
+					<div class="d-flex">
+						<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
+							<i class="bi bi-lightbulb icon"></i>
+						</div>
+						<div class="p-2">Recommendation</div>
+						<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+					</div>
+				</a>
+			</form>
+			<form id="Welldown" method="post" asp-page="/Exceptions/Form Action Recommendation/EconomicCalculation">
+				@* <input type="hidden" name="wellLastInfo" value='@ViewData["WellLastInfo"]' /> *@
+				<a onclick="document.getElementById('Welldown').submit();" class="list-group-item list-group-item-action cursor-pointer">
+					<div class="d-flex">
+						<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
+							<i class="bi bi-calculator icon"></i>
+						</div>
+						<div class="p-2">Economic Calculation</div>
+						<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+					</div>
+				</a>
+			</form>
+			<form id="PumpInfo" method="get" asp-page="/Exceptions/Form Action Recommendation/RSCT">
+				 @* <input type="hidden" name="wellLastInfo" value='@ViewData["WellLastInfo"]' />  *@
+				<a onclick="document.getElementById('PumpInfo').submit();" class="list-group-item list-group-item-action cursor-pointer">
+					<div class="d-flex">
+						<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
+							<i class="bi bi-file-earmark icon"></i>
+						</div>
+						<div class="p-2">Form RSCT</div>
+						<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+					</div>
+				</a>
+			</form>
+		</div>
+	</div>
+	<footer class="col-12 mt-auto">
+		<div class="d-flex">
+			<button type="button" class="btn btn-primary flex-fill">Submit</button>
+		</div>
+	</footer>
+</div>

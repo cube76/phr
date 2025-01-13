@@ -1,0 +1,123 @@
+﻿@page
+@model phr.Pages.Passed.WellDetailInformationModel
+@using static phr.Config.Helper
+@{
+	ViewData["Title"] = "Well Detail Information";
+}
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Exception Signals List</strong></h4>
+	</div>
+	<div class="col-12 pt-2">
+		<dl class="bg-secondary pt-2 bg-opacity-10 row">
+			<dd class="col-4">Passed Signal Number</dd>
+			<dt class="col-8">533696 - 819531</dt>
+		</dl>
+		<dl class="row">
+			<dd class="col-3">UWI</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.Uwi)</dt>
+			<dd class="col-3">String Name</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.StringName)</dt>
+			<dd class="col-3">Field</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.Field)</dt>
+			<dd class="col-3">Area Section</dd>
+			<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.Area)</dt>
+		</dl>
+	</div>
+	<div class="col-12">
+		<nav>
+			<div class="nav nav-underline navbar-scroll d-flex flex-nowrap border-bottom" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Identification</button>
+				<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Operational Status</button>
+				<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Performance & Exceptions</button>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" ar ia-labelledby="nav-home-tab" tabindex="0">
+				
+				<div class="list-group mt-2">
+					<a href="/Passed/LastCurrentJob" class="list-group-item list-group-item-action">
+						<div class="d-flex">
+							<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
+								<i class="bi bi-calendar-check icon"></i>
+							</div>
+							<div class="p-2">Last Completed Job and Current Scheduled Job</div>
+							<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+						</div>
+					</a>
+					<a href="/Passed/ActionRequest" class="list-group-item list-group-item-action">
+						<div class="d-flex">
+							<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
+								<i class="bi bi-clipboard2 icon"></i>
+							</div>
+							<div class="p-2">Action Request</div>
+							<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+						</div>
+					</a>
+					<a href="/Passed/ActionFlow" class="list-group-item list-group-item-action">
+						<div class="d-flex">
+							<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
+								<i class="bi bi-clock-history icon"></i>
+							</div>
+							<div class="p-2">
+								Collaboration / Action Flow
+								Step <span class="text-primary">1</span><span class="text-secondary">/6</span>
+							</div>
+							<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+				<dl class="row mt-3 ms-2">
+					<dd class="col-3">String Type</dd>
+					<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.ProdStringType)</dt>
+					<dd class="col-3">Dril Type</dd>
+					<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.DrillType)</dt>
+					<dd class="col-3">Status Type</dd>
+					<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.StatusType)</dt>
+					<dd class="col-3">Status</dd>
+					<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.Status)</dt>
+					<dd class="col-3">Status Date</dd>
+					<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.StatusStartDate?.ToString("dd-MM-yyyy"))</dt>
+					<dd class="col-3">Global Tier</dd>
+					<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.GlobalTier)</dt>
+					<dd class="col-3">AWT Tier</dd>
+					<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.AwtTier)</dt>
+					<dd class="col-3">Sand</dd>
+					<dt class="col-9">@GetValueOrDefault(Model.WellLastInfo.Sand)</dt>
+				</dl>
+			</div>
+			<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+				<div class="col-12 m-3">
+					<div>PIS Date</div>
+					<div class="mt-2"><strong>@GetValueOrDefault(Model.WellLastInfo.PisDate?.ToString("dd-MM-yyyy"))</strong></div>
+				</div>
+				<div class="col-12 m-3">
+					<div>Last Test</div>
+					<div class="mt-2"><strong>@GetValueOrDefault(Model.WellLastInfo.WtDate?.ToString("dd-MM-yyyy")) | @GetValueOrDefault(Model.WellLastInfo.WtBfpd) BFPD | @GetValueOrDefault(Model.WellLastInfo.WtBopd) BOPD | @GetValueOrDefault(Model.WellLastInfo.WtWc) WC</strong></div>
+				</div>
+				<div class="col-12 m-3">
+					<div>Last Pump Info</div>
+					<div class="mt-2"><strong>28-Jan-2023 (491 Days Run Life) | SBP - 538P17</strong></div>
+				</div>
+				<div class="col-12 m-3">
+					<div>Current Exception List</div>
+					<div class="mt-2"><strong>
+							<ul>
+								<li>[ONMSL0001] Active OP well which not ORDC this month at 01-JUN-2024 04:28</li>
+								<li>[ONMSL0007] No ORDC certain duration for certain critical type wells at 02-JUN-2024 04:00</li>
+							</ul>
+
+					</strong></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer class="col-12 mt-auto">
+		<div class="d-flex">
+			<a asp-page="/Passed/WellActionReport" role="button" class="btn btn-primary flex-fill">Follow Up Passed Signal</a>
+		</div>
+	</footer>
+</div>

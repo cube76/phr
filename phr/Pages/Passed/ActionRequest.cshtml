@@ -1,0 +1,63 @@
+﻿@page
+@model phr.Pages.Passed.ActionRequestModel
+@{
+	ViewData["Title"] = "Action Request";
+}
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Action Request</strong></h4>
+	</div>
+	<div class="col-12 pt-2">
+		<dl class="row">
+			<dd class="col-3">Exception List</dd>
+			<dt class="col-9">[WALIFT032] ESP Failure Symptoms from Controller Shutdown and EC Welldown at 01-JUN-2024 05:45</dt>
+			<dd class="col-3">Action Code</dd>
+			<dt class="col-9">ACT128</dt>
+			<dd class="col-3">Action Request Status</dd>
+			<dt class="col-9">OPEN</dt>
+			<dd class="col-3">Request By</dd>
+			<dt class="col-9">MK.FARIS.SESSU</dt>
+			<dd class="col-3">Request Date</dd>
+			<dt class="col-9">6/3/2024 10:50:22 AM</dt>
+			<dd class="col-3">Attach File</dd>
+			<dt class="col-9">No Record Found</dt>
+		</dl>
+	</div>
+	<div class="col-12 bg-secondary bg-opacity-10 p-2">
+		<div><strong>Action Description</strong></div>
+		<div class="mt-2">This is an action to follow up on ESP wells that have repetitive trips due to power supply issues.</div>
+	</div>
+	<div class="col-12 mt-3 bg-secondary bg-opacity-10 p-2">
+		<div><strong>Finding</strong></div>
+		<div class="mt-2">Repetitive CUB and Undervolt throughout April-May, suspected due to low power quality (ST F2 drop). Fluid production running stable within ROR. Need to conduct surface TS.</div>
+		<div class="d-flex justify-content-end mt-2">
+			<button type="button" class="btn btn-primary"><i class="bi bi-plus-lg me-2"></i>Add</button>
+		</div>
+	</div>
+	<div class="col-12 mt-3 bg-secondary bg-opacity-10 p-2">
+		<div><strong>Job Plan</strong></div>
+		<div class="mt-2">Please do TS on surface due to current unbalance and undervolt, re-tighten cable connection on surface and reset parameters if necessary. If after TS job no more CUB/undervolt symptoms, then cancel signal. If CUB symptoms still reoccur, then pass signal to request corrective action by PGT.</div>
+		<div class="d-flex justify-content-end mt-2">
+			<button type="button" class="btn btn-primary"><i class="bi bi-plus-lg me-2"></i>Add</button>
+		</div>
+	</div>
+	<div class="col-12 mt-3 bg-secondary bg-opacity-10 p-2">
+		<div><strong>Remark</strong></div>
+		<div class="mt-2">-</div>
+		<div class="d-flex justify-content-end mt-2">
+			<button type="button" class="btn btn-primary"><i class="bi bi-plus-lg me-2"></i>Add</button>
+		</div>
+	</div>
+	<div class="col-12 pt-3">
+		<dl class="row">
+			<dd class="col-3">Request Type</dd>
+			<dt class="col-9">-</dt>
+			<dd class="col-3">Idle Time</dd>
+			<dt class="col-9">-</dt>
+			<dd class="col-3">Underload Setpoint</dd>
+			<dt class="col-9">-</dt>
+			<dd class="col-3">Execute Date</dd>
+			<dt class="col-9">-</dt>
+		</dl>
+	</div>
+</div>

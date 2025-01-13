@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 using phr.Config;
 using phr.Models;
 
-namespace phr.Pages
+namespace phr.Pages.Passed
 {
-    public class PassedModel : PageModel
+    public class PassedModel : BasePageModel
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly ApiService _apiService;
@@ -42,12 +42,12 @@ namespace phr.Pages
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("pertama" + ex.Message);
+                    return RedirectToPage("/Login");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("kedua" + ex.Message);
+                return RedirectToPage("/Login");
             }
             return Page();
         }

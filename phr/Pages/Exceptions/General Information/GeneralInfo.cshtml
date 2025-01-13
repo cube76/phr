@@ -1,5 +1,6 @@
 ﻿@page
 @model phr.Pages.Exceptions.General_Information.GeneralInfoModel
+@using static phr.Config.Helper
 @{
 	ViewData["Title"] = "General Info";
 }
@@ -18,49 +19,49 @@
 		<div class="tab-content" id="nav-tabContent">
 			<div class="tab-pane fade show active" id="nav-1" role="tabpanel" ar ia-labelledby="nav-1-tab" tabindex="0">
 				<label for="UWI" class="form-label mt-3"><strong>UWI</strong></label>
-				<input class="form-control" id="UWI" type="text" value="MINAA000676VI" readonly>
+				<input class="form-control" id="UWI" type="text" value="@GetValueOrDefault(Model.WellLastInfo.Uwi)" readonly>
 
 				<label for="StringName" class="form-label mt-3"><strong>String Name</strong></label>
-				<input class="form-control" id="StringName" type="text" value="7d-13" readonly>
+				<input class="form-control" id="StringName" type="text" value="@GetValueOrDefault(Model.WellLastInfo.StringName)" readonly>
 
 				<label for="Grid Name" class="form-label mt-3"><strong>Grid Name</strong></label>
-				<input class="form-control" id="Grid Name" type="text" value="7d-13" readonly>
+				<input class="form-control" id="Grid Name" type="text" value="@GetValueOrDefault(Model.WellLastInfo.GridName)" readonly>
 
 				<label for="OU" class="form-label mt-3"><strong>OU</strong></label>
 				<input class="form-control" id="OU" type="text" value="SLS" readonly>
 
 				<label for="Field" class="form-label mt-3"><strong>Field</strong></label>
-				<input class="form-control" id="Field" type="text" value="MINAS" readonly>
+				<input class="form-control" id="Field" type="text" value="@GetValueOrDefault(Model.WellLastInfo.Field)" readonly>
 
 				<label for="Area" class="form-label mt-3"><strong>Area</strong></label>
-				<input class="form-control" id="Area" type="text" value="MINAS" readonly>
+				<input class="form-control" id="Area" type="text" value="@GetValueOrDefault(Model.WellLastInfo.Area)" readonly>
 
 			</div>
 			<div class="tab-pane fade show" id="nav-2" role="tabpanel" ar ia-labelledby="nav-2-tab" tabindex="0">
 				@* Sub Area and Casing *@
 				<label for="osac" class="form-label mt-3"><strong>Op Sub Area Code</strong></label>
-				<input class="form-control" id="osac" type="text" value="MINAA000676VI" readonly disabled>
+				<input class="form-control" id="osac" type="text" value="@GetValueOrDefault(@Model.WellLastInfo.SubAreaCode)" readonly disabled>
 
 				<label for="pc" class="form-label mt-3"><strong>Prod Casing OD/ID/GR/WG</strong></label>
-				<input class="form-control" id="pc" type="text" value="9.625/8.921/J-55/36" readonly disabled>
+				<input class="form-control" id="pc" type="text" value="@GetValueOrDefault(Model.WellLastInfo.ProductionCasing)" readonly disabled>
 
 				<label for="fa" class="form-label mt-3"><strong>Focus Area</strong></label>
-				<input class="form-control" id="fa" type="text" value="3FA3" readonly disabled>
+				<input class="form-control" id="fa" type="text" value="@GetValueOrDefault(Model.WellLastInfo.AssetArea)" readonly disabled>
 
 				<label for="tp" class="form-label mt-3"><strong>Tapping Position</strong></label>
-				<input class="form-control" id="tp" type="text" value="-" readonly disabled>
+				<input class="form-control" id="tp" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.PidodTapPosition)" readonly disabled>
 
 				<label for="si" class="form-label mt-3"><strong>Scada Installed</strong></label>
-				<input class="form-control" id="si" type="text" value="N" readonly disabled>
+				<input class="form-control" id="si" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.InstallDate)" readonly disabled>
 
 				<label for="kva" class="form-label mt-3"><strong>KVA Max</strong></label>
-				<input class="form-control" id="kva" type="text" value="-" readonly disabled>
+				<input class="form-control" id="kva" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.PidodKvaMax)" readonly disabled>
 
 				<label for="sv" class="form-label mt-3"><strong>Secondary Voltage</strong></label>
-				<input class="form-control" id="sv" type="text" value="-" readonly disabled>
+				<input class="form-control" id="sv" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.PidodSecondaryVolt)" readonly disabled>
 
 				<label for="wmo" class="form-label mt-3"><strong>Wall Must On</strong></label>
-				<input class="form-control" id="wmo" type="text" value="N" readonly disabled>
+				<input class="form-control" id="wmo" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.OnOffTimer)" readonly disabled>
 
 				<label for="ve" class="form-label mt-3"><strong>Venting Equipment</strong></label>
 				<input class="form-control" id="ve" type="text" value="Peculator" readonly disabled>
@@ -78,28 +79,28 @@
 			<div class="tab-pane fade show" id="nav-3" role="tabpanel" ar ia-labelledby="nav-3-tab" tabindex="0">
 				@* Control and Completion *@
 				<label for="ct" class="form-label mt-3"><strong>Controller Type</strong></label>
-				<input class="form-control" id="ct" type="text" value="-" readonly disabled>
+				<input class="form-control" id="ct" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.CompletionType)" readonly disabled>
 
 				<label for="tht" class="form-label mt-3"><strong>Tubing Hanger Type</strong></label>
-				<input class="form-control" id="tht" type="text" value="Mandrel EFT" readonly disabled>
+				<input class="form-control" id="tht" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.TubingPress)" readonly disabled>
 
 				<label for="si" class="form-label mt-3"><strong>ScInhibitor Inj</strong></label>
-				<input class="form-control" id="si" type="text" value="-" readonly disabled>
+				<input class="form-control" id="si" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.SclinhibitorInj)" readonly disabled>
 
 				<label for="cl" class="form-label mt-3"><strong>Commingle List</strong></label>
-				<input class="form-control" id="cl" type="text" value="-" readonly disabled>
+				<input class="form-control" id="cl" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.CommingleList)" readonly disabled>
 
 				<label for="wtt" class="form-label mt-3"><strong>W/T Train | Manifold</strong></label>
-				<input class="form-control" id="wtt" type="text" value="-" readonly disabled>
+				<input class="form-control" id="wtt" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.WtTrain)" readonly disabled>
 
 				<label for="onoff" class="form-label mt-3"><strong>ON-OFF Timer</strong></label>
-				<input class="form-control" id="onoff" type="text" value="No" readonly disabled>
+				<input class="form-control" id="onoff" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.OnOffTimer)" readonly disabled>
 
 				<label for="wttype" class="form-label mt-3"><strong>WT Type</strong></label>
-				<input class="form-control" id="wttype" type="text" value="AWT" readonly disabled>
+				<input class="form-control" id="wttype" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.AwtTier)" readonly disabled>
 
 				<label for="awts" class="form-label mt-3"><strong>AWT Status</strong></label>
-				<input class="form-control" id="awts" type="text" value="-" readonly disabled>
+				<input class="form-control" id="awts" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.StatusType)" readonly disabled>
 
 			</div>
 		</div>

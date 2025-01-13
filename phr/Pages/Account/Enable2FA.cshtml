@@ -1,0 +1,30 @@
+﻿@page
+@model phr.Pages.Account.Enable2FAModel
+@{
+    ViewData["Title"] = "Enable 2FA";
+}
+
+<h1>Enable Two-Factor Authentication</h1>
+
+@if (Model.Enabled == null)
+{
+    <h3>Scan this QR Code with your authenticator app:</h3>
+    <img src="data:image/png;base64,@Model.QRCodeUri" alt="QR Code" class="img-fluid" />
+    <p><strong>Manual Key:</strong> @Model.SharedKey</p>
+    <form method="post" asp-page-handler="Refresh">
+    <button>Refresh Page</button>
+    </form>
+    <form method="post">
+        <label>Enter Code from Authenticator App:</label>
+        <input type="text" name="VerificationCode" asp-for="VerificationCode" required />
+        <span asp-validation-for="VerificationCode" class="text-danger"></span>
+        <button type="submit">Verify and Enable</button>
+    </form>
+}
+else
+{
+    <p>2FA is already enabled.</p>
+}
+<form method="post" asp-page-handler="Logout">
+    <button type="submit" class="btn btn-primary">Logout</button>
+</form>

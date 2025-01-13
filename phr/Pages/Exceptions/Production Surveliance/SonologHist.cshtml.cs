@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace phr.Pages.Exceptions.Production_Surveliance
 {
-    public class SonologHistModel : PageModel
+    public class SonologHistModel : BasePageModel
     {
         public void OnGet()
         {

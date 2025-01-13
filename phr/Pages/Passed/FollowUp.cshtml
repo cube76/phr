@@ -1,0 +1,67 @@
+﻿@page
+@model phr.Pages.Passed.FollowUpModel
+@{
+	ViewData["Title"] = "Well Detail Information";
+}
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Exception Signals List</strong></h4>
+	</div>
+	<div class="col-12 pt-2">
+		<dl class="bg-secondary pt-2 bg-opacity-10 row">
+			<dd class="col-4">Passed Signal Number</dd>
+			<dt class="col-8">533696 - 819531</dt>
+		</dl>
+		<dl class="row">
+			<dd class="col-3">UWI</dd>
+			<dt class="col-9">@ViewData["uwi"]</dt>
+			<dd class="col-3">String Name</dd>
+			<dt class="col-9">@ViewData["name"]</dt>
+			<dd class="col-3">Alt Name</dd>
+			<dt class="col-9">@ViewData["field"]</dt>
+			<dd class="col-3">Grid Name</dd>
+			<dt class="col-9">@ViewData["area"]</dt>
+		</dl>
+	</div>
+	<div class="col-12">
+		<nav>
+			<div class="nav nav-underline navbar-scroll d-flex flex-nowrap border-bottom" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Follow Up</button>
+				<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Economic Calculation</button>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-home" role="tabpanel" ar ia-labelledby="nav-home-tab" tabindex="0">
+				<h5 class="mt-3 mb-2"><strong>Attachment</strong></h5>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" id="attachment1" name="attachment">
+					<label class="form-check-label" for="attachment1">
+						Proceed/Approved
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" id="attachment2" name="attachment">
+					<label class="form-check-label" for="attachment2">
+						Reject/Cancel
+					</label>
+				</div>
+				<h5 class="mt-3 mb-2"><strong>Attachment</strong></h5>
+				<label for="file-upload" class="custom-file-upload">
+					<i class="bi bi-file-earmark-plus"></i> Add Document
+				</label>
+				<input id="file-upload" type="file" />
+				<h5 class="mt-3 mb-2"><strong>Remark</strong></h5>
+				<textarea class="form-control" aria-label="With textarea"></textarea>
+			</div>
+			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+				...
+			</div>
+		</div>
+	</div>
+	<footer class="col-12 mt-auto">
+		<div class="d-flex">
+			<button type="button" class="btn btn-primary flex-fill">Submit</button>
+		</div>
+	</footer>
+</div>
+

@@ -1,0 +1,158 @@
+﻿@page
+@model phr.Pages.Passed.WellActionReportModel
+@using static phr.Config.Helper
+@{
+	ViewData["Title"] = "Iem - Well Action Report";
+	int index = 0;
+	int totalSteps = Model.WorkflowSteps.Count();
+}
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Iem - Well Action Report</strong></h4>
+	</div>
+	<div class="col-12 d-flex justify-content-between mt-3">
+		<h5><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" class="link-underline-primary">Average BOPD: 45.20</a></h5>
+		<i class="bi bi-funnel ms-2 cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" id="filter"></i>
+	</div>
+	<div class="col-12">
+		<h5><strong>Action Step</strong></h5>
+	</div>
+	<div class="col-12">
+		<div class="accordion accordion-flush" id="accordionFlushExample">
+			@foreach (var data in Model.WorkflowSteps)
+			{
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@data.Id" aria-expanded="false" aria-controls="flush-collapseOne">
+							<strong>@GetValueOrDefault(data.StepNumber)</strong>
+						</button>
+					</h2>
+					<div id="flush-collapse-@data.Id" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+						<div class="accordion-body">
+							<div class="d-flex flex-column">
+								<div class="d-flex justify-content-between border-bottom pb-3">
+									<div class=""><strong>Role ID</strong></div>
+									<div class="">@GetValueOrDefault(data.RoleId)</div>
+								</div>
+								<div class="d-flex justify-content-between border-bottom py-3">
+									<div class=""><strong>Role Name</strong></div>
+									<div class="">@GetValueOrDefault(data.RoleName)</div>
+								</div>
+								<div class="d-flex justify-content-between py-3">
+									<div class=""><strong>Step Desc</strong></div>
+									<div class="">@GetValueOrDefault(data.StepDesc)</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+
+</div>
+
+<div class="offcanvas offcanvas-end" width="100%" tabindex="1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+	<div class="offcanvas-header">
+		<div class="col">
+			<div class="d-flex align-items-center">
+				<button type="button" class="btn" data-bs-dismiss="offcanvas"><i class="bi bi-x-lg"></i></button>
+				<h5 class="offcanvas-title" id="offcanvasBottomLabel"><strong>Filter</strong></h5>
+			</div>
+		</div>
+	</div>
+	<div class="offcanvas-body">
+
+		<div class="col-12 pt-2">
+			<dl class="bg-secondary pt-2 bg-opacity-10 row">
+				<dd class="col-4">Action Workflow Detail</dd>
+				<dt class="col-8">Well Action Recommendation</dt>
+			</dl>
+		</div>
+		<h5 class="pt-3 border-top">
+			<strong>Action</strong>
+		</h5>
+		<div class="mb-3">
+			<label for="Action" class="form-label"><strong>Action Code</strong></label>
+			<select class="form-select" id="Action">
+				<option selected="">ACT055 - SLO Non premature and n...</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="zona" class="form-label"><strong>Action Status</strong></label>
+			<select class="form-select" id="zona">
+				<option selected="">COMPLETED</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="Aggregate" class="form-label"><strong>Type Aggregate</strong></label>
+			<select class="form-select" id="Aggregate">
+				<option selected="">Median</option>
+			</select>
+		</div>
+
+		<div class="col-12 border rounded p-2">
+			<h6 class="">
+				<strong>Inputed Date</strong>
+			</h6>
+			<div class="mb-2">
+				<label class="form-label mt-3"><strong>Start Date</strong></label>
+				<div class="input-group">
+					<input class="form-control border-end-0" type="text" value="01-Jan-2024">
+					<span class="input-group-text bg-white"><i class="bi bi-calendar"></i></span>
+				</div>
+			</div>
+			<div class="">
+				<label class="form-label mt-3"><strong>End Date</strong></label>
+				<div class="input-group">
+					<input class="form-control border-end-0" type="text" value="01-Jan-2024">
+					<span class="input-group-text bg-white"><i class="bi bi-calendar"></i></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="d-grid gap-2 mt-2">
+			<button class="btn btn-outline-primary" type="button"><i class="bi bi-search me-2"></i>Refresh</button>
+		</div>
+
+	</div>
+</div>
+
+<div class="offcanvas offcanvas-bottom rounded-top-5" style="height: 80%;" tabindex="1" id="offcanvasBottom" aria-labelledby="offcanvasLeftLabel">
+	<div class="offcanvas-header">
+		<div class="col">
+			<div class="d-flex align-items-center">
+				<button type="button" class="btn" data-bs-dismiss="offcanvas"><i class="bi bi-x-lg"></i></button>
+				<h5 class="offcanvas-title" id="offcanvasBottomLabel"><strong>Average BOPD: 45.20</strong></h5>
+			</div>
+		</div>
+	</div>
+	<div class="offcanvas-body">
+
+		@foreach (var data in Model.WorkflowSteps)
+		{
+			<div class="d-flex col-12">
+				<div class="px-2">
+					<div class="p-2 rounded-circle bg-primary bg-opacity-10 d-flex align-items-center flex-column" style="width:64px; height:64px;">
+						<div class="text-primary"><strong>0</strong></div>
+						<div>Days</div>
+					</div>
+					<div class="col d-flex justify-content-center">
+						@if (index != totalSteps - 1)
+						{
+							<div class="vr h-100 position-relative"></div>
+						}
+					</div>
+				</div>
+				<div class="px-2 ms-auto col">
+					<div class="p-2 d-flex align-items-start flex-column">
+						<div><strong>Step @GetValueOrDefault(data.StepNumber)</strong></div>
+						<div>@GetValueOrDefault(data.StepDesc)</div>
+					</div>
+				</div>
+			</div>
+			index++;
+		}
+
+	</div>
+</div>

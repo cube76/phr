@@ -69,33 +69,21 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 	const header = document.getElementById('filterBottom');
-	const mediaQuery = window.matchMedia('(min-height: 845px) and (min-width: 400px) and (orientation: landscape)');
+	const mediaQuery = window.matchMedia('(min-width: 400px) and (orientation: landscape)');
 	function updateClasses(mediaQuery) {
-
-			console.log("masuk")
-
 		if (mediaQuery.matches) {
 			header.classList.remove('offcanvas-bottom');
-			header.classList.add('offcanvas-end'); // Add class for large screens in landscape
-
+			header.classList.add('offcanvas-end'); 
 		} else {
 			header.classList.remove('offcanvas-end');
-			header.classList.add('offcanvas-bottom'); // Add class for other cases
-
+			header.classList.add('offcanvas-bottom'); 
 		}
 
 	}
 
-
-	// Initial check
-
 	updateClasses(mediaQuery);
 
-
-	// Add a listener for changes to the media query
-
-	mediaQuery.addEventListener('change', updateClasses);
-			
+	mediaQuery.addEventListener('change', updateClasses);			
 			
 	var chartData = @Html.Raw(ViewData["ChartData"]);
 	var dates = chartData.map(data => data.testDate);

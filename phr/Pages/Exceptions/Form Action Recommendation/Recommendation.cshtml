@@ -1,0 +1,104 @@
+﻿@page
+@model phr.Pages.Exceptions.Form_Action_Recommendation.RecommendationModel
+@{
+	ViewData["Title"] = "Recommendation";
+}
+<div class="container p-2">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Recommendation</strong></h4>
+	</div>
+	<label class="form-label mt-3"><strong>Action</strong></label>
+	<select class="form-select">
+		<option value="1">ACT - Routine Service (LP)</option>
+		<option value="2">ACT - Routine Service (LP)</option>
+		<option value="3">ACT - Routine Service (LP)</option>
+	</select>
+	<label class="form-label mt-3">
+		<strong>Pass to</strong>
+	</label>
+	<select class="form-select" disabled>
+		<option selected>Pilih</option>
+		<option value="1">ACT - Routine Service (LP)</option>
+		<option value="2">ACT - Routine Service (LP)</option>
+		<option value="3">ACT - Routine Service (LP)</option>
+	</select>
+	<label class="form-label mt-3"><strong>Venting Equipment</strong></label>
+	<select class="form-select" disabled>
+		<option selected>Pilih</option>
+		<option value="1">ACT - Routine Service (LP)</option>
+		<option value="2">ACT - Routine Service (LP)</option>
+		<option value="3">ACT - Routine Service (LP)</option>
+	</select>
+
+	<label class="form-label mt-3"><strong>Hold</strong></label>
+	<div class="d-flex">
+		<select class="form-select flex-grow-1" disabled>
+			<option selected>Pilih</option>
+			<option value="1">ACT - Routine Service (LP)</option>
+			<option value="2">ACT - Routine Service (LP)</option>
+			<option value="3">ACT - Routine Service (LP)</option>
+		</select>
+		<div class="d-flex align-items-end ms-2">Days</div>
+	</div>
+
+	<label class="form-labet mt-3 mb-2"><strong>Attachment</strong></label>
+	<label for="file-upload" class="custom-file-upload">
+		<i class="bi bi-upload"></i> Add Document
+	</label>
+	<input id="file-upload" type="file" />
+
+	<label class="form-labet mt-3"><strong>Finding</strong></label>
+	<textarea class="form-control" aria-label="With textarea"></textarea>
+
+	<label class="form-labet mt-3"><strong>Job Plan</strong></label>
+	<textarea class="form-control" aria-label="With textarea"></textarea>
+
+	<label class="form-labet mt-3"><strong>Remark</strong></label>
+	<textarea class="form-control" aria-label="With textarea"></textarea>
+
+	<label class="form-label mt-3"><strong>General Reason</strong></label>
+	<div class="d-flex align-items-end">
+		<select class="form-select flex-grow-1" disabled>
+			<option selected>Pilih</option>
+			<option value="1">ACT - Routine Service (LP)</option>
+			<option value="2">ACT - Routine Service (LP)</option>
+			<option value="3">ACT - Routine Service (LP)</option>
+		</select>
+		<div class="ms-2" style="white-space: nowrap;">(Only RDP)</div>
+	</div>
+
+	<div class="card p-3 my-3">
+		<label class="form-label"><strong>MASP</strong></label>
+		<label class="form-label"><strong>SFL (TVD-FT)*</strong></label>
+		<input class="form-control" type="text" value="620">
+		
+		<label class="form-label mt-3"><strong>Oil Gravity (API)*</strong></label>
+		<input class="form-control" type="text" value="33.07">
+
+		<label class="form-label mt-3"><strong>GOR MIN/MAX (SCFD/BOPD)</strong></label>
+		<input class="form-control" type="text" value="0">
+
+		<label class="form-label mt-3"><strong>LOC/HES Issue (Yes or No)</strong></label>
+		<select class="form-select">
+			<option value="1">No</option>
+			<option value="2">Yes</option>
+		</select>
+
+		<label class="form-label mt-3"><strong>Top Open Perforation (TVD-FT)*</strong></label>
+		<input class="form-control" type="text" value="2258">
+
+		<label class="form-label mt-3"><strong>GOR AVG (SCFD/BOPD)</strong></label>
+		<input class="form-control" type="text" value="0">
+
+		<label class="form-label mt-3"><strong>LAST GOR (SCFD/BOPD)*</strong></label>
+		<input class="form-control" type="text" value="2258">
+
+		<label class="form-label mt-3"><strong>MASP*</strong></label>
+		<input class="form-control" type="text" value="">
+	</div>
+	<footer class="col-12 mt-auto">
+		<div class="d-flex">
+			<button type="button" class="btn btn-primary flex-fill">Get MASP</button>
+		</div>
+	</footer>
+</div>

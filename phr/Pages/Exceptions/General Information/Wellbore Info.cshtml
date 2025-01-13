@@ -1,5 +1,6 @@
 ﻿@page
 @model phr.Pages.Exceptions.General_Information.Wellbore_InfoModel
+@using static phr.Config.Helper
 @{
 	ViewData["Title"] = "Wellbore Info";
 }
@@ -9,22 +10,22 @@
 	</div>
 	<div class="col-12">
 		<label for="tubing-size" class="form-label mt-3"><strong>Tubing Size</strong></label>
-		<input class="form-control" id="tubing-size" type="text" value="-" readonly disabled>
+		<input class="form-control" id="tubing-size" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.TubingSize)" readonly disabled>
 
 		<label for="prdscg-od" class="form-label mt-3"><strong>PRDSCG OD</strong></label>
-		<input class="form-control" id="prdscg-od" type="text" value="-" readonly disabled>
+		<input class="form-control" id="prdscg-od" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.PrdcsgOd)" readonly disabled>
 
 		<label for="prdscg-bott" class="form-label mt-3"><strong>PRDSCG Bott</strong></label>
-		<input class="form-control" id="prdscg-bott" type="text" value="-" readonly disabled>
+		<input class="form-control" id="prdscg-bott" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.PrdcsgBott)" readonly disabled>
 
 		<label for="scr-liner-od" class="form-label mt-3"><strong>Scr Liner OD</strong></label>
-		<input class="form-control" id="scr-liner-od" type="text" value="-" readonly disabled>
+		<input class="form-control" id="scr-liner-od" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.ScrlinerOd)" readonly disabled>
 
 		<label for="scr-liner-top" class="form-label mt-3"><strong>Scr Liner Top</strong></label>
-		<input class="form-control" id="scr-liner-top" type="text" value="-" readonly disabled>
+		<input class="form-control" id="scr-liner-top" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.ScrlinerTop)" readonly disabled>
 
 		<label for="scr-liner-bott" class="form-label mt-3"><strong>Scr Liner Bott</strong></label>
-		<input class="form-control" id="scr-liner-bott" type="text" value="-" readonly disabled>
+		<input class="form-control" id="scr-liner-bott" type="text" value="@GetValueOrDefault(Model.WellLastInfo?.ScrlinerBott)" readonly disabled>
 
 	</div>
 </div>

@@ -23,7 +23,7 @@ namespace phr.Config
             _httpContextAccessor = httpContextAccessor;
         }
 
-        private string ValidateToken()
+        public string ValidateToken()
         {
             var token = _httpContextAccessor.HttpContext.Session.GetString("Token");
             if (string.IsNullOrEmpty(token))
@@ -69,12 +69,51 @@ namespace phr.Config
 
         public async Task<string> GetProductionCharts()
         {
-            Console.WriteLine("Entering GetProductionCharts method.");
             var token = ValidateToken();
             _httpClient.DefaultRequestHeaders.Clear();
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             _httpClient.DefaultRequestHeaders.Add("X-Api-Key", _apiKeyAzure);
             var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/iem/api/ProductionCharts");
+            return response;
+        }
+
+        public async Task<string> GetWellLastInfo()
+        {
+            var token = ValidateToken();
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Add("X-Api-Key", _apiKeyAzure);
+            var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/iem/api/WellLastInfo");
+            return response;
+        }
+        
+        public async Task<string> GetOutstandingExceptions()
+        {
+            var token = ValidateToken();
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Add("X-Api-Key", _apiKeyAzure);
+            var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/iem/api/OutstandingExceptions");
+            return response;
+        }
+        
+        public async Task<string> GetOutstandingPasseds()
+        {
+            var token = ValidateToken();
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Add("X-Api-Key", _apiKeyAzure);
+            var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/iem/api/OutstandingPasseds");
+            return response;
+        }
+        
+        public async Task<string> GetWorkflowSteps()
+        {
+            var token = ValidateToken();
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            _httpClient.DefaultRequestHeaders.Add("X-Api-Key", _apiKeyAzure);
+            var response = await _httpClient.GetStringAsync($"{_apiBaseUrl}/iem/api/WorkflowSteps");
             return response;
         }
     }

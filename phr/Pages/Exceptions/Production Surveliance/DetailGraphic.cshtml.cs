@@ -6,7 +6,7 @@ using phr.Models;
 
 namespace phr.Pages.Exceptions.Production_Surveliance
 {
-    public class DetailGraphicModel : PageModel
+    public class DetailGraphicModel : BasePageModel
     {
         private readonly ILogger<DetailGraphicModel> _logger;
         private readonly ApiService _apiService;
@@ -34,6 +34,7 @@ namespace phr.Pages.Exceptions.Production_Surveliance
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while fetching production charts.");
+                return RedirectToPage("/Login");
             }
             return Page();
         }

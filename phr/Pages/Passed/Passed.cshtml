@@ -1,10 +1,10 @@
 ﻿@page
-@model phr.Pages.PassedModel
+@model PassedModel
 @{
 	ViewData["Title"] = "Passed";
 }
 
-<div class="container p-2">
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
 	<div class="col-12 pt-2">
 		<h4><strong>Passed Signals</strong></h4>
 	</div>
@@ -39,7 +39,7 @@
 			@foreach (var passed in Model.Signals)
 			{
 				<div class="col-6">
-					<div class="p-3 bg-white border rounded-3" onclick="location.href='@Url.Page("Passed", new { id = @passed.Id })'">
+					<div class="shadow p-3 bg-white rounded-3 cursor-pointer" onclick="location.href='@Url.Page("/Passed/PassedList", new { id = @passed.Id })'">
 						<div class="row">
 							<div class="col text-start fs-5 fw-bold">@passed.TotalAction</div>
 							<div class="col"><img src="~/images/signal.png" class="rounded-3 float-end cursor-pointer" onclick="openModal(event, this)" data-action="Passed" data-code="@passed.ActionCode" data-type="@passed.ActionType" data-desc="@passed.ActionDesc" data-bs-toggle="modal" data-bs-target="#exception-modal" alt="..."></div>

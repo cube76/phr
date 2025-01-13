@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace phr.Pages.Exceptions
 {
-    public class WorkoverHistoryModel : PageModel
+    public class WorkoverHistoryModel : BasePageModel
     {
         public void OnGet()
         {

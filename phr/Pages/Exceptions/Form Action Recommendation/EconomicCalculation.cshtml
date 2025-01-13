@@ -1,0 +1,270 @@
+﻿@page
+@model phr.Pages.Exceptions.Form_Action_Recommendation.EconomicCalculationModel
+@{
+	ViewData["Title"] = "Economic Calculation";
+}
+<div class="container p-2">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Economic Calculation</strong></h4>
+	</div>
+	<div class="col-12">
+		<div class="step-container">
+			<div class="step active" data-step="1">
+				<div class="circle">1</div>
+			</div>
+			<div class="step" data-step="2">
+				<div class="circle">2</div>
+			</div>
+			<div class="step" data-step="3">
+				<div class="circle">3</div>
+			</div>
+		</div>
+
+		<div id="section-1" class="section active">
+			<div class="col-12 d-flex flex-column">
+				<label class="mt-3"><strong>Activity</strong></label>
+				<label class="form-label mt-3"><strong>Activity</strong></label>
+				<select class="form-select">
+					<option value="1">Well Service</option>
+					<option value="2">Well Service</option>
+					<option value="3">Well Service</option>
+				</select>
+			</div>
+			<label class="form-label mt-3"><strong>Curr. Oil Rate</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" disabled type="text" value="33.07">
+				<span class="input-group-text bg-disable"><strong>bopd</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Curr. Fluid Rate</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" disabled type="text" value="33.07">
+				<span class="input-group-text bg-disable"><strong>blpd</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Curr. Fluid Rate</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" disabled type="text" value="33.07">
+				<span class="input-group-text bg-disable"><strong>blpd</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Curr. Oil DR</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" disabled type="text" value="33.07">
+				<span class="input-group-text bg-disable"><strong>%/yr</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Curr. Fluid DR</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" disabled type="text" value="33.07">
+				<span class="input-group-text bg-disable"><strong>%/yr</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Avg 12 MO Run Life</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>days</strong></span>
+			</div>
+			<div class="d-flex mt-3">
+				<button type="button" class="btn btn-primary flex-fill next-btn">Selanjutnya</button>
+			</div>
+		</div>
+		<div id="section-2" class="section">
+			<div class="col-12 d-flex flex-column">
+				<label class="mt-3"><strong>Input</strong></label>
+				<label class="form-label mt-3"><strong>Job Type</strong></label>
+				<select class="form-select">
+					<option value="1">Pilih</option>
+					<option value="2">Well Service</option>
+					<option value="3">Well Service</option>
+				</select>
+			</div>
+			<label class="form-label mt-3"><strong>Oil Production</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>bopd</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Oil Decline Rate</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>%/yr</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Fluid Production</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>bopd</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Fluid Decline Rate</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>%/yr</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Gas Production</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>mscfd</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Gas Decline Rate</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>%/yr</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Steam Injection</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>bspd</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Steam Decline Rate</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>%/yr</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Steam Decline Rate</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>%/yr</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Price Deck Used</strong></label>
+			<select class="form-select">
+				<option value="1">Pertamina</option>
+				<option value="2">Pertamina</option>
+				<option value="3">Pertamina</option>
+			</select>
+			<label class="form-label mt-3"><strong>Avg Oil Price</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>$/bbl</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Fluid Lifting Cost</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>$/bbl</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>EOC</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="08-Aug-2041">
+				<span class="input-group-text bg-white"><i class="bi bi-calendar"></i></span>
+			</div>
+			<label class="form-label mt-3"><strong>Start Date</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="08-Aug-2041">
+				<span class="input-group-text bg-white"><i class="bi bi-calendar"></i></span>
+			</div>
+			<label class="form-label mt-3"><strong>Run Life</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>days</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>WO/WS or Other OPEX</strong></label>
+			<div class="input-group">
+				<input class="form-control border-end-0" type="text" value="33.07">
+				<span class="input-group-text bg-white"><strong>musd</strong></span>
+			</div>
+			<label class="form-label mt-3"><strong>Additional Cost</strong></label>
+			<select class="form-select">
+				<option value="1">No</option>
+				<option value="2">Yes</option>
+			</select>
+			<div class="d-grid gap-2 mt-3">
+				<button type="button" class="btn btn-primary flex-fill next-btn">Selanjutnya</button>
+				<button type="button" class="btn btn-outline-primary flex-fill prev-btn">Sebelumnya</button>
+			</div>
+		</div>
+		<div id="section-3" class="section">
+			<div class="col-12 d-flex flex-column">
+				<label class="my-3"><strong>Output</strong></label>
+				<div class="mb-3">
+					<label for="npv" class="form-label"><strong>NPV</strong></label>
+					<div class="input-group">
+						<input type="text" id="npv" class="form-control" placeholder="" aria-label="NPV">
+						<span class="input-group-text">musd</span>
+					</div>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="irr" class="form-label"><strong>IRR</strong></label>
+				<div class="input-group">
+					<input type="text" id="irr" class="form-control" placeholder="" aria-label="IRR">
+					<span class="input-group-text">%</span>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="pot" class="form-label"><strong>POT</strong></label>
+				<div class="input-group">
+					<input type="text" id="pot" class="form-control" placeholder="" aria-label="POT">
+					<span class="input-group-text">year</span>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="pvi" class="form-label"><strong>PVI</strong></label>
+				<div class="input-group">
+					<input type="text" id="pvi" class="form-control" placeholder="" aria-label="PVI">
+					<span class="input-group-text">musd</span>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="pi" class="form-label"><strong>PI</strong></label>
+				<div class="input-group">
+					<input type="text" id="pi" class="form-control" placeholder="" aria-label="PI">
+					<span class="input-group-text">$/ $</span>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="lifting_cost_oil" class="form-label"><strong>Lifting Cost Oil</strong></label>
+				<div class="input-group">
+					<input type="text" id="lifting_cost_oil" class="form-control" placeholder="" aria-label="Lifting Cost Oil">
+					<span class="input-group-text">$/bbl</span>
+				</div>
+			</div>
+
+			<button type="button" class="btn btn-primary w-100 mb-2">Get Economic Calculation</button>
+			<button type="button" class="btn btn-outline-primary w-100 mb-2">Detail Summary</button>
+			<button type="button" class="btn btn-outline-primary border-0 w-100 prev-btn">Sebelumnya</button>
+		</div>
+	</div>
+</div>
+<script>
+	const steps = document.querySelectorAll('.step');
+	const sections = document.querySelectorAll('.section');
+	var prevBtn = document.querySelectorAll('.prev-btn');
+		var nextBtn = document.querySelectorAll('.next-btn');
+		let currentStep = 1;
+
+		function updateStepsAndSections(position) {
+				steps.forEach((step, index) => {
+
+					if (position === "add") {
+						// Add 'active' class to the current step
+						if (index + 1 === currentStep) {
+							step.classList.add('active');
+						}
+					} else if (position === "remove") {
+						// Remove 'active' class from the next step
+						if (index === currentStep) {
+							steps[currentStep].classList.remove('active');
+						}
+					}
+				});
+
+			sections.forEach((section, index) => {
+				if (index + 1 === currentStep) {
+					section.classList.add('active');
+				} else {
+					section.classList.remove('active');
+				}
+			});
+		}
+
+		prevBtn.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			if (currentStep > 1) {
+				currentStep--;
+				updateStepsAndSections("remove");
+			}
+		});
+		});
+
+		nextBtn.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			if (currentStep < steps.length) {
+				currentStep++;
+				updateStepsAndSections("add");
+			}
+		});
+		});
+</script>

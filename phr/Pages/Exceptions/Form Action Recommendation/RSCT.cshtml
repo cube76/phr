@@ -1,0 +1,48 @@
+﻿@page
+@model phr.Pages.Exceptions.Form_Action_Recommendation.RSCTModel
+@{
+	ViewData["Title"] = "Form RSCT";
+}
+
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Form RSCT</strong></h4>
+	</div>
+	<div class="col-12">
+		<div class="list-group mt-2">
+				<a onclick="location.href='/Exceptions/Form Action Recommendation/WellInformation'" class="list-group-item list-group-item-action cursor-pointer">
+					<div class="d-flex">
+						<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
+							<i class="bi bi-info-circle icon"></i>
+						</div>
+						<div class="p-2">Well Information</div>
+						<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+					</div>
+				</a>
+			<form id="NewRSCT" method="post" asp-page="/Exceptions/Form Action Recommendation/NewRSCT">
+				@* <input type="hidden" name="wellLastInfo" value='@ViewData["WellLastInfo"]' /> *@
+				<a onclick="document.getElementById('NewRSCT').submit();" class="list-group-item list-group-item-action cursor-pointer">
+					<div class="d-flex">
+						<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
+							<i class="bi bi-file-earmark-plus icon"></i>
+						</div>
+						<div class="p-2">Create New RSCT</div>
+						<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+					</div>
+				</a>
+			</form>
+			<form id="Data" method="post" asp-page="/Exceptions/Form Action Recommendation/Data">
+				@* <input type="hidden" name="wellLastInfo" value='@ViewData["WellLastInfo"]' /> *@
+				<a onclick="document.getElementById('Data').submit();" class="list-group-item list-group-item-action cursor-pointer">
+					<div class="d-flex">
+						<div class="p-2 rounded-circle icon-container justify-content-center align-self-center">
+							<i class="bi bi-pie-chart icon"></i>
+						</div>
+						<div class="p-2">Data</div>
+						<div class="p-2 ms-auto"><i class="bi bi-chevron-right" style="color: #CED4DA"></i></div>
+					</div>
+				</a>
+			</form>
+		</div>
+	</div>
+</div>

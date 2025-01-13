@@ -1,0 +1,190 @@
+﻿@page
+@model phr.Pages.Exceptions.Form_Action_Recommendation.NewRSCTModel
+@{
+    ViewData["Title"] = "Create New RSCT";
+}
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+        <h4><strong>Create New RSCT</strong></h4>
+	</div>
+	<div class="col-12">
+		<nav>
+			<div class="nav nav-underline navbar-scroll d-flex flex-nowrap border-bottom" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-1-tab" data-bs-toggle="tab" data-bs-target="#nav-1" type="button" role="tab" aria-selected="true">Create New RSCT</button>
+				<button class="nav-link" id="nav-2-tab" data-bs-toggle="tab" data-bs-target="#nav-2" type="button" role="tab" aria-selected="false">Proposed Pump Design</button>
+				<button class="nav-link" id="nav-3-tab" data-bs-toggle="tab" data-bs-target="#nav-3" type="button" role="tab" aria-selected="false">Cost</button>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-1" role="tabpanel" ar ia-labelledby="nav-1-tab" tabindex="0">
+                <div class="my-3">
+                    <label for="type" class="form-label">Type (RS/Wo/IC)*</label>
+                    <select class="form-select" id="type" name="type">
+                        <option selected>RS</option>
+                        <option value="Wo">Wo</option>
+                        <option value="IC">IC</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="lastJobProblem" class="form-label">Last Job Was Killing Problem?</label>
+                    <select class="form-select" id="lastJobProblem" name="lastJobProblem">
+                        <option selected>No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="pumpChangeType" class="form-label">Pump Change Type</label>
+                    <select class="form-select" id="pumpChangeType" name="pumpChangeType">
+                        <option selected>Pilih</option>
+                        <option value="Option1">Option 1</option>
+                        <option value="Option2">Option 2</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="pumpChangeSize" class="form-label">Pump Change Size</label>
+                    <select class="form-select" id="pumpChangeSize" name="pumpChangeSize">
+                        <option disabled selected>Pilih</option>
+                        <option value="Option1">Option 1</option>
+                        <option value="Option2">Option 2</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="jobCode" class="form-label">Job Code</label>
+                    <select class="form-select" id="jobCode" name="jobCode">
+                        <option disabled selected>Pilih</option>
+                        <option value="Option1">Option 1</option>
+                        <option value="Option2">Option 2</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="statusWell" class="form-label">Status Well</label>
+                    <select class="form-select" id="statusWell" name="statusWell">
+                        <option selected>Off</option>
+                        <option value="On">On</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="pullingReason" class="form-label">Pulling Reason</label>
+                    <select class="form-select" id="pullingReason" name="pullingReason">
+                        <option disabled selected>Pilih</option>
+                        <option value="Reason1">Reason 1</option>
+                        <option value="Reason2">Reason 2</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="hesConcerned" class="form-label">Considered as HES concerned?</label>
+                    <select class="form-select" id="hesConcerned" name="hesConcerned">
+                        <option selected>No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="estimatedGain" class="form-label">Estimated Gain-BOPD</label>
+                    <input type="number" class="form-control" id="estimatedGain" name="estimatedGain" placeholder="Enter estimated gain">
+                </div>
+			</div>
+			<div class="tab-pane fade show" id="nav-2" role="tabpanel" ar ia-labelledby="nav-2-tab" tabindex="0">
+                <div class="my-3">
+                    <label for="artificialLiftType" class="form-label">Artificial Lift Type</label>
+                    <select class="form-select" id="artificialLiftType" name="artificialLiftType">
+                        <option disabled selected>Pilih</option>
+                        <option value="Option1">Option 1</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="provider" class="form-label">Provider</label>
+                    <select class="form-select" id="provider" name="provider">
+                        <option disabled selected>Pilih</option>
+                        <option value="Option1">Option 1</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="pumpSize" class="form-label">Pump Size</label>
+                    <select class="form-select" id="pumpSize" name="pumpSize">
+                        <option disabled selected>Pilih</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="secondarySandCtrl" class="form-label">Add Secondary Sand Ctrl</label>
+                    <select class="form-select" id="secondarySandCtrl" name="secondarySandCtrl">
+                        <option selected>No Need</option>
+                        <option value="Need">Need</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="sandCtrlInstType" class="form-label">Secondary Sand Ctrl Inst Type</label>
+                    <select class="form-select" id="sandCtrlInstType" name="sandCtrlInstType">
+                        <option disabled selected>Pilih</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="designRate" class="form-label">Design Rate</label>
+                    <input type="text" class="form-control" id="designRate" name="designRate">
+                </div>
+                <div class="mb-3">
+                    <label for="stages" class="form-label">Stages</label>
+                    <input type="text" class="form-control" id="stages" name="stages">
+                </div>
+                <div class="mb-3">
+                    <label for="motorHp" class="form-label">Motor HP</label>
+                    <input type="text" class="form-control" id="motorHp" name="motorHp">
+                </div>
+                <div class="mb-3">
+                    <label for="needTrafoChanges" class="form-label">Need Trafo Changes?</label>
+                    <select class="form-select" id="needTrafoChanges" name="needTrafoChanges">
+                        <option disabled selected>Pilih</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="secondaryVolt" class="form-label">Secondary Volt</label>
+                    <select class="form-select" id="secondaryVolt" name="secondaryVolt">
+                        <option disabled selected>Pilih</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="kvaMax" class="form-label">KVA Max</label>
+                    <select class="form-select" id="kvaMax" name="kvaMax">
+                        <option disabled selected>Pilih</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="specialRequirement" class="form-label">Additional Special Requirement</label>
+                    <textarea class="form-control" id="specialRequirement" name="specialRequirement"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="pumpDesign" class="form-label">Pump Design</label>
+                    <textarea class="form-control" id="pumpDesign" name="pumpDesign"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="recommendation" class="form-label">Recommendation / Instruction</label>
+                    <textarea class="form-control" id="recommendation" name="recommendation"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="pumpSetLocation" class="form-label">Pump Set Location (Feet)</label>
+                    <input type="text" class="form-control" id="pumpSetLocation" name="pumpSetLocation" value="1977">
+                </div>
+                <div class="mb-3">
+                    <label for="fbtLocation" class="form-label">FBTD Location (Feet)</label>
+                    <input type="text" class="form-control" id="fbtLocation" name="fbtLocation" value="2517.00008">
+                </div>
+                <div class="mb-3">
+                    <label for="pumpSpacing" class="form-label">Pump Spacing (Plunger/TV to SV)</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control border-end-0" id="pumpSpacing" name="pumpSpacing">
+                        <span class="input-group-text bg-white"><strong>Inch</strong></span>
+                    </div>
+                </div>
+			</div>
+			<div class="tab-pane fade show" id="nav-3" role="tabpanel" ar ia-labelledby="nav-3-tab" tabindex="0">
+				<div class="my-3">
+                    <label for="cost" class="form-label">Estimated Cost (USD)</label>
+                    <input type="text" class="form-control" id="cost" name="cost">
+                </div>
+                <div class="mb-3">
+                    <label for="NPV" class="form-label">NPV/DPI</label>
+                    <input type="text" class="form-control" id="NPV" name="NPV">
+                </div>
+			</div>
+		</div>
+	</div>
+</div>

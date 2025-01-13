@@ -56,8 +56,16 @@ namespace phr.Pages
                 var response = await _apiService.Login(requestBody);
                 var tokenResponse = JsonConvert.DeserializeObject<LoginResponse>(response);
 
-                // Store the token in session or any other storage
+                // Store the token in session
+                var model = new LoginResponse { jwtToken = tokenResponse.jwtToken, userName = tokenResponse.userName, role = tokenResponse.role };
+                HttpContext.Session.SetObjectAsJson("User", model);
                 HttpContext.Session.SetString("Token", tokenResponse.jwtToken);
+
+                if (HttpContext.Session.GetString("2FAEnabled") == "true")
+                {
+                    HttpContext.Session.SetString("2FARequired", "true");
+                    return RedirectToPage("/Account/LoginWith2FA");
+                }
 
                 return RedirectToPage("/Index");
             }

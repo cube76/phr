@@ -1,0 +1,71 @@
+﻿@page
+@model phr.Pages.Passed.ActionFlowModel
+@using static phr.Config.Helper
+@{
+	ViewData["Title"] = "Collaboration";
+}
+<div class="container p-2 d-flex align-items-end flex-column vh-100">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Collaboration / Action Flow 1 of 6</strong></h4>
+	</div>
+	@foreach (var data in Model.WorkflowSteps)
+	{
+		<div class="d-flex col-12">
+			<div class="p-2 flex-shrink-1 d-flex flex-column">
+				<div class="p-2 rounded-circle icon-container justify-content-center">
+					@GetValueOrDefault(data.StepNumber)
+				</div>
+				<div class="position-relative h-100">
+					<div class="vr text-primary position-absolute top-50 start-50 translate-middle h-100"></div>
+				</div>
+			</div>
+			<div class="p-2 w-100">
+				<div class="col-12 bg-secondary bg-opacity-10 p-2">
+					<dl class="row">
+						<dd class="col-3">Role Name</dd>
+						<dt class="col-9">@GetValueOrDefault(data.RoleName)</dt>
+						<dd class="col-3">Action Token</dd>
+						<dt class="col-9">
+							@switch (data.ActionTaken)
+							{
+								case "PROCEED":
+									<span class="badge text-bg-success bg-opacity-100">@data.ActionTaken</span>
+									break;
+								case "WAITING FOR ACTION":
+									<span class="badge text-bg-warning bg-opacity-100">@data.ActionTaken</span>
+									break;
+								default:
+									<span class="badge text-bg-secondary bg-opacity-100">@data.ActionTaken</span>
+									break;
+							}
+						</dt>
+						<dd class="col-3">Passed Signal Status</dd>
+						<dt class="col-9">
+							@switch (data.WorkflowStatus)
+							{
+								case "COMPLETED":
+									<span class="badge text-bg-success bg-opacity-100">@data.WorkflowStatus</span>
+									break;
+								case "WAITING SIGNAL":
+									<span class="badge text-bg-warning bg-opacity-100">@data.WorkflowStatus</span>
+									break;
+								case "PENDING":
+									<span class="badge text-bg-warning bg-opacity-100">@data.WorkflowStatus</span>
+									break;
+								default:
+									<span class="badge text-bg-secondary bg-opacity-100">@data.WorkflowStatus</span>
+									break;
+							}
+						</dt>
+						<dd class="col-3">Remark</dd>
+						<dt class="col-9">@GetValueOrDefault(data.Remark)</dt>
+					</dl>
+					<div class="border-top pt-2"><strong>Step Desc</strong></div>
+					<div class="mt-2">@GetValueOrDefault(data.StepDesc)</div>
+					<div class="mt-3"><strong>File Attachment</strong></div>
+					<div class="mt-2">-</div>
+				</div>
+			</div>
+		</div>
+	}
+</div>

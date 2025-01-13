@@ -73,10 +73,10 @@ body {
 
 /*@media (min-width: 992px) {*/ /* Below lg breakpoint */
 
-    /*.rounded-bottom-lg-5 {
+/*.rounded-bottom-lg-5 {
         border-bottom-left-radius: 3rem;*/ /* 48px */
-        /*border-bottom-right-radius: 3rem;*/ /* 48px */
-    /*}
+/*border-bottom-right-radius: 3rem;*/ /* 48px */
+/*}
 }*/
 
 :root {
@@ -94,16 +94,16 @@ body {
     -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }
 
-.navbar-scroll::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
-}
+    .navbar-scroll::-webkit-scrollbar {
+        display: none; /* For Chrome, Safari, and Opera */
+    }
 
-.navbar-scroll button {
-    display: inline-block;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-}
+    .navbar-scroll button {
+        display: inline-block;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+    }
 
 .nav-link {
     flex: 0 0 auto;
@@ -120,17 +120,129 @@ body {
 }
 
 .icon-container {
-    display: flex; 
+    display: flex;
     height: 32px;
     width: 32px;
     align-items: center;
     background-color: #F0F8FE;
 }
 
+.circle-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+
+    align-items: center; /* Center vertically */
+
+    height: 100vh; /* Full height of the viewport for demonstration */
+}
+
+
+.circle {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+
+    justify-content: center; /* Center items vertically */
+
+    align-items: center; /* Center items horizontally */
+
+    width: 100px; /* Set a fixed width */
+
+    height: 100px; /* Set a fixed height */
+
+    border-radius: 50%; /* Make it a circle */
+
+    text-align: center; /* Center text */
+}
+
 .bg-blue-progress {
-    background: linear-gradient(90deg, #C5D5EB 0%, #2059A8 100%); 
+    background: linear-gradient(90deg, #C5D5EB 0%, #2059A8 100%);
 }
 
 .bg-gray-progress {
     background: linear-gradient(90deg, #C0C4C4 0%, #A2A2A2 100%);
 }
+
+.bg-disable {
+    background-color: #eee;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.custom-file-upload:hover {
+    background-color: #f8f9fa;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.step-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin: 20px 0;
+}
+
+    .step-container::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: #ddd;
+        z-index: 1;
+    }
+
+.step {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .step .circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .step.active .circle {
+        background-color: #007bff;
+    }
+
+    .step .label {
+        margin-top: 5px;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .step.active .label {
+        color: #007bff;
+    }
+
+.section {
+    display: none;
+    margin-top: 20px;
+}
+
+    .section.active {
+        display: block;
+    }
