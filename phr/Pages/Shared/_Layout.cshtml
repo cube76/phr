@@ -82,18 +82,7 @@
 	</div>
 	</footer> *@
 	<script>
-		function urlBase64ToUint8Array(base64String) {
-
-			const padding = '='.repeat((4 - base64String.length % 4) % 4);
-
-			const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
-
-			const rawData = window.atob(base64);
-
-			return new Uint8Array([...rawData].map(char => char.charCodeAt(0)));
-
-		};
-
+		var vapidPublicKey = "BIpSeI-eSgRnXTLbKnRwDn7IiQKwjzGoX7rZ7XV4OAg5xZJyjB8cyyZjEyb_dVZ66Lvz-baaS6JNFNWFE9IrZ6I";
 		async function initServiceWorker() {
 
 			if ('serviceWorker' in navigator) {
@@ -199,6 +188,18 @@
 				console.error('Error sending subscription to server:', error);
 
 			});
+
+		};
+		
+		function urlBase64ToUint8Array(base64String) {
+
+			const padding = '='.repeat((4 - base64String.length % 4) % 4);
+
+			const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+
+			const rawData = window.atob(base64);
+
+			return new Uint8Array([...rawData].map(char => char.charCodeAt(0)));
 
 		};
 
