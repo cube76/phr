@@ -24,12 +24,6 @@ namespace phr.Pages.Passed
 
             try
             {
-                var token = HttpContext.Session.GetString("Token");
-                _logger.LogInformation("dalam: {ExceptCode}", token);
-                if (token.IsNullOrEmpty())
-                {
-                    return RedirectToPage("/Login");
-                }
                 try
                 {
                     var task1 = _apiService.GetPassedSignals();

@@ -2,8 +2,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using phr.Config;
 using phr.Data;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Identity.Web;
+using Microsoft.Identity.Web.UI;
 
 var builder = WebApplication.CreateBuilder(args);
+//builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+//    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -31,6 +36,10 @@ builder.Services.AddControllersWithViews(); // Add MVC services
 
 builder.Services.AddRazorPages();
 
+//builder.Services.AddAuthorization();
+
+//builder.Services.AddRazorPages()
+//    .AddMicrosoftIdentityUI();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -51,6 +60,7 @@ app.UseSession();
 
 app.UseRouting();
 
+//app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

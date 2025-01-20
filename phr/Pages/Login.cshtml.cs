@@ -1,5 +1,7 @@
 using System.Net.Http;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -41,10 +43,10 @@ namespace phr.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
             var requestBody = new
             {
@@ -66,8 +68,8 @@ namespace phr.Pages
                     HttpContext.Session.SetString("2FARequired", "true");
                     return RedirectToPage("/Account/LoginWith2FA");
                 }
-
                 return RedirectToPage("/Index");
+                //return Challenge(new AuthenticationProperties { RedirectUri = "/" }, OpenIdConnectDefaults.AuthenticationScheme);
             }
             catch (HttpRequestException ex)
             {
