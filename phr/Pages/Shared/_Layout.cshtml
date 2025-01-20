@@ -82,7 +82,7 @@
 	</div>
 	</footer> *@
 	<script>
-				async function initServiceWorker() {
+		async function initServiceWorker() {
 
 			if ('serviceWorker' in navigator) {
 
@@ -188,8 +188,9 @@
 
 			});
 
-		}
-			function urlB64ToUint8Array(base64String) {
+		};
+		
+		function urlB64ToUint8Array(base64String) {
 
 			const padding = '='.repeat((4 - base64String.length % 4) % 4);
 
@@ -199,9 +200,9 @@
 
 			return new Uint8Array([...rawData].map(char => char.charCodeAt(0)));
 
-		}
+		};
 
-				window.addEventListener('load', () => {
+		window.addEventListener('load', () => {
 
 			initServiceWorker();
 
