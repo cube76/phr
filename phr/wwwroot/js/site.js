@@ -7,11 +7,23 @@ self.addEventListener('push', function (event) {
     const data = event.data.json();
     const options = {
         body: data ? data.body : 'No payload',
-        icon: '/images/logo_iem.png', 
-        badge: '/images/logo_iem.png' 
+        icon: '/favicon.ico', 
+        badge: '/favicon.ico' 
     };
 
     event.waitUntil(
         self.registration.showNotification(data.title, options)
     );
+});
+
+
+$(document).ready(function() {
+    $('.datePicker').datepicker({
+        format: 'dd-M-yyyy', 
+        autoclose: true 
+    }); 
+
+    $('.datePicker').on('click', function() {
+        $(this).datepicker('show');
+    });
 });

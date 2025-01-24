@@ -1,0 +1,58 @@
+﻿@page
+@model phr.Pages.FilePreviewModel
+@{
+	ViewData["Title"] = "File Preview";
+}
+
+<div class="col-12 py-2 border-bottom">
+	<h4 class="mt-1"><strong>File Preview</strong></h4>
+</div>
+
+@if (Model.IsSupportedPreview)
+{
+	<div>
+		@if (Model.FileExtension == ".pdf")
+		{
+			<!-- PDF Preview -->
+			<div style="height: 100vh;">
+				<iframe src="@Model.FileUrl" width="100%" height="100%"></iframe>
+			</div>
+		}
+		else if (Model.FileExtension == ".jpg" || Model.FileExtension == ".jpeg" || Model.FileExtension == ".png")
+		{
+			<!-- Image Preview -->
+			<img src="@Model.FileUrl" alt="Image Preview" style="max-width: 100%;" />
+		}
+		else if (Model.FileExtension == ".txt")
+		{
+			<!-- Text File Preview -->
+			<div style="max-width: 100%; overflow: hidden;">
+				<pre style="white-space: pre-wrap; overflow-wrap: break-word;">@Model.FileContent</pre>
+			</div>
+		}
+		else if (Model.FileExtension == ".mp4")
+		{
+			<!-- Video Preview -->
+			<video controls width="100%">
+				<source src="@Model.FileUrl" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+		}
+		else if (Model.FileExtension == ".xlsx" || Model.FileExtension == ".xls" || Model.FileExtension == ".docx" || Model.FileExtension == ".pptx")
+		{
+			<!-- Excel Preview -->
+			<div style="height: 100vh;">
+				<iframe src="https://view.officeapps.live.com/op/view.aspx?src=@Model.EncodedFileUrl" width="100%" height="100%"></iframe>
+			</div>
+		}
+	</div>
+}
+else
+{
+	<div class="col-12 p-4">
+		<p>Preview is not supported for this file type.</p>
+		<a href="@Model.FileUrl" download>
+			<button class="btn btn-primary">Download File</button>
+		</a>
+	</div>
+}

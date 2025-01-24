@@ -3,7 +3,7 @@
 @{
 	ViewData["Title"] = "Detail Graphic";
 }
-<div class="container p-2 d-flex flex-column vh-100">
+<div class="container p-2 d-flex flex-column">
 	<div class="col-12 py-2 border-bottom">
 		<div class="d-flex justify-content-between">
 			<h4><strong>Detail Graphic</strong></h4>
@@ -32,7 +32,14 @@
 	<div class="alert alert-danger d-sm-none d-block my-2">
 		Rotate your screen for bigger view
 	</div>
-	<canvas id="chart" width="400" height="200" class="mb-2 border-bottom"></canvas>
+	<div class="text-center" id="loading">
+		<div class="spinner-border m-5" role="status">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+	<div class="col-12 wide">
+		<div id="chart" width="400" height="200"></div>
+	</div>
 	<canvas id="chart2" width="400" height="200" class="mb-2 border-bottom"></canvas>
 </div>
 
@@ -73,92 +80,181 @@
 	function updateClasses(mediaQuery) {
 		if (mediaQuery.matches) {
 			header.classList.remove('offcanvas-bottom');
-			header.classList.add('offcanvas-end'); 
+			header.classList.add('offcanvas-end');
 		} else {
 			header.classList.remove('offcanvas-end');
-			header.classList.add('offcanvas-bottom'); 
+			header.classList.add('offcanvas-bottom');
 		}
-
 	}
 
 	updateClasses(mediaQuery);
 
-	mediaQuery.addEventListener('change', updateClasses);			
-			
+	mediaQuery.addEventListener('change', updateClasses);
+
 	var chartData = @Html.Raw(ViewData["ChartData"]);
+	if(chartData != null){
+		document.getElementById('loading').style.display = 'none';
+	}
 	var dates = chartData.map(data => data.testDate);
 	var fluids = chartData.map(data => data.allocFluid);
 	var oils = chartData.map(data => data.allocOil);
-	const ctx = document.getElementById('chart').getContext('2d');
-	const myChart = new Chart(ctx, {
-		type: 'line',
-		data: {
-			labels: dates.slice(1),
-			datasets: [
-				{
-					label: '(L1) Alloc Fluid',
+	var jobCodes = chartData.map(data => data.jobCode);
+	const datasets = [{
+					name: "(L1) Alloc Fluid",
 					data: fluids.slice(1),
-					borderColor: 'blue',
-					backgroundColor: 'blue',
-					yAxisID: 'y2',
-					fill: false
+					color: "blue",
+					type: "line",
+					yAxis: "y2"
 				},
 				{
-					label: '(L3) Alloc Oil',
+					name: "(L3) Alloc Oil",
 					data: oils.slice(1),
-					borderColor: 'green',
-					backgroundColor: 'green',
-					yAxisID: 'y1',
-					fill: false
+					color: "green",
+					type: "line",
+					yAxis: "y1"
+				}];
+	const jobCode = dates.slice(1).map((date, index) => {
+		return jobCodes[index + 1] !== "" ? 1 : null;
+	});
+	if (jobCodes.some(value => value !== null)) {
+		datasets.push({
+			name: "Annot.jobs",
+			data: jobCode,
+			color: "red",
+			type: "line",
+			yAxis: "y3",
+			markers: {
+				visible: true,
+				background: "red",
+			}
+		});
+	}
+	$(document).ready(function () {
+		$("#chart").kendoChart({
+			title: {
+				text: "Fluid and Oil Allocation"
+			},
+			legend: {
+				position: "top"
+			},
+			series: datasets,
+			categoryAxis: {
+				type: "date",
+				categories: dates.slice(1),
+				title: {
+					text: "Date"
+				},
+				labels: {
+					step: 10,
+					rotation: -45, 
+					format: "dd-MM-yyyy"
+				},
+				justified: true
+			},
+			valueAxes: [
+				{
+					name: "y1",
+					labels: {
+						color: "green"
+					}
 				},
 				{
-					label: 'Annot.jobs',
-					data: [10],
-					borderColor: 'red',
-					backgroundColor: 'red',
-					yAxisID: 'y3',
-					fill: false
+					name: "y2",
+					labels: {
+						color: "rgba(54, 162, 235, 1)"
+					}
 				},
-			]
-		},
-		options: {
-			scales: {
-				y1: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'green',
-					},
-					title: {
-						display: false,
-						text: 'Kilograms (kg)'
-					},
-				},
-				y2: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'rgba(54, 162, 235, 1)',
-					},
-					title: {
-						display: false,
-						text: 'Liters (L)'
-					},
-				},
-				y3: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'red',
-					},
-					title: {
-						display: false,
-						text: 'Liters (L)'
-					},
+				{
+					name: "y3",
+					labels: {
+						color: "red"
+					}
 				}
+			],
+			tooltip: {
+				visible: true,
+				shared: true,
 			}
-		}
+		});
 	});
+	// const ctx = document.getElementById('chart').getContext('2d');
+	// const datasets = [];
+	// const jobCode = dates.slice(1).map((date, index) => {
+	// 	return jobCodes[index + 1] !== "" ? 1 : null;
+	// });
+
+	// if (jobCodes.some(value => value !== null)) {
+	// 	datasets.push({
+	// 		label: 'Annot.jobs',
+	// 		data: jobCode,
+	// 		borderColor: 'red',
+	// 		backgroundColor: 'red',
+	// 		yAxisID: 'y3',
+	// 		fill: false
+	// 	});
+	// }
+	// datasets.push(
+	// 	{
+	// 		label: '(L1) Alloc Fluid',
+	// 		data: fluids.slice(1),
+	// 		borderColor: 'blue',
+	// 		backgroundColor: 'blue',
+	// 		yAxisID: 'y2',
+	// 		fill: false
+	// 	},
+	// 	{
+	// 		label: '(L3) Alloc Oil',
+	// 		data: oils.slice(1),
+	// 		borderColor: 'green',
+	// 		backgroundColor: 'green',
+	// 		yAxisID: 'y1',
+	// 		fill: false
+	// 	}
+	// )
+	// const myChart = new Chart(ctx, {
+	// 	type: 'line',
+	// 	data: {
+	// 		labels: dates.slice(1),
+	// 		datasets: datasets
+	// 	},
+	// 	options: {
+	// 		scales: {
+	// 			y1: {
+	// 				type: 'linear',
+	// 				position: 'left',
+	// 				ticks: {
+	// 					color: 'green',
+	// 				},
+	// 				title: {
+	// 					display: false,
+	// 					text: 'Kilograms (kg)'
+	// 				},
+	// 			},
+	// 			y2: {
+	// 				type: 'linear',
+	// 				position: 'left',
+	// 				ticks: {
+	// 					color: 'rgba(54, 162, 235, 1)',
+	// 				},
+	// 				title: {
+	// 					display: false,
+	// 					text: 'Liters (L)'
+	// 				},
+	// 			},
+	// 			y3: {
+	// 				type: 'linear',
+	// 				position: 'left',
+	// 				ticks: {
+	// 					color: 'red',
+	// 				},
+	// 				title: {
+	// 					display: false,
+	// 					text: 'Liters (L)'
+	// 				},
+	// 			}
+	// 		}
+	// 	}
+	// });
 
 	const ctx2 = document.getElementById('chart2').getContext('2d');
 	const myChart2 = new Chart(ctx2, {

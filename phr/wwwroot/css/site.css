@@ -6,6 +6,16 @@ html {
     html {
         font-size: 16px;
     }
+
+    .container.flex-column {
+        height: 100vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .container.flex-column {
+        height: calc(100vh - 50px);
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -71,14 +81,6 @@ body {
     color: white;
 }
 
-/*@media (min-width: 992px) {*/ /* Below lg breakpoint */
-
-/*.rounded-bottom-lg-5 {
-        border-bottom-left-radius: 3rem;*/ /* 48px */
-/*border-bottom-right-radius: 3rem;*/ /* 48px */
-/*}
-}*/
-
 :root {
     --accordion-active-bg: white; /* Define your CSS variable */
 }
@@ -94,16 +96,16 @@ body {
     -ms-overflow-style: none; /* For Internet Explorer and Edge */
 }
 
-    .navbar-scroll::-webkit-scrollbar {
-        display: none; /* For Chrome, Safari, and Opera */
-    }
+.navbar-scroll::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
 
-    .navbar-scroll button {
-        display: inline-block;
-        text-align: center;
-        padding: 14px;
-        text-decoration: none;
-    }
+.navbar-scroll button {
+    display: inline-block;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
 
 .nav-link {
     flex: 0 0 auto;
@@ -129,30 +131,22 @@ body {
 
 .circle-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-
-    align-items: center; /* Center vertically */
-
-    height: 100vh; /* Full height of the viewport for demonstration */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-
 
 .circle {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-
-    justify-content: center; /* Center items vertically */
-
-    align-items: center; /* Center items horizontally */
-
-    width: 100px; /* Set a fixed width */
-
-    height: 100px; /* Set a fixed height */
-
-    border-radius: 50%; /* Make it a circle */
-
-    text-align: center; /* Center text */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
 }
+
 
 .bg-blue-progress {
     background: linear-gradient(90deg, #C5D5EB 0%, #2059A8 100%);
@@ -193,16 +187,16 @@ input[type="file"] {
     margin: 20px 0;
 }
 
-    .step-container::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background-color: #ddd;
-        z-index: 1;
-    }
+.step-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #ddd;
+    z-index: 1;
+}
 
 .step {
     z-index: 2;
@@ -212,37 +206,37 @@ input[type="file"] {
     cursor: pointer;
 }
 
-    .step .circle {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: #ddd;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-weight: bold;
-    }
+.step .circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+}
 
-    .step.active .circle {
-        background-color: #007bff;
-    }
+.step.active .circle {
+    background-color: #007bff;
+}
 
-    .step .label {
-        margin-top: 5px;
-        font-size: 14px;
-        color: #666;
-    }
+.step .label {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+}
 
-    .step.active .label {
-        color: #007bff;
-    }
+.step.active .label {
+    color: #007bff;
+}
 
 .section {
     display: none;
     margin-top: 20px;
 }
 
-    .section.active {
-        display: block;
-    }
+.section.active {
+    display: block;
+}

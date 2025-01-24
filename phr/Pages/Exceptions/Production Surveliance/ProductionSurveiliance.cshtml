@@ -3,7 +3,7 @@
 @{
 	ViewData["Title"] = "Production Surveiliance";
 }
-<div class="container p-2 d-flex align-items-end flex-column vh-100">
+<div class="container p-2 d-flex align-items-end flex-column">
 	<div class="col-12 py-2 border-bottom">
 		<h4><strong>Production Surveiliancet</strong></h4>
 	</div>
@@ -19,6 +19,11 @@
 				<div class="p-3 bg-gray mt-2">
 					<div><strong>Data Form</strong></div>
 					<div>(1 Mei 2024 - 8 mei 2024)</div>
+				</div>
+				<div class="text-center" id="loading">
+					<div class="spinner-border m-5" role="status">
+						<span class="visually-hidden">Loading...</span>
+					</div>
 				</div>
 				<canvas id="chart" width="400" height="200" class="mb-2 border-bottom"></canvas>
 				<canvas id="chart2" width="400" height="200" class="mt-2"></canvas>
@@ -342,40 +347,54 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 	var chartData = @Html.Raw(ViewData["ChartData"]);
-	var dates = chartData.map(data => data.testDate);
-	var fluids = chartData.map(data => data.allocFluid);
-	var oils = chartData.map(data => data.allocOil);
+	var dates = chartData.map(data => data.testDate).reverse();
+	var fluids = chartData.map(data => data.allocFluid).reverse();
+	var oils = chartData.map(data => data.allocOil).reverse();
+	var jobCodes = chartData.map(data => data.jobCode).reverse();
+
+	if(chartData != null){
+		document.getElementById('loading').style.display = 'none';
+	}
+
 	const ctx = document.getElementById('chart').getContext('2d');
+	const datasets = [];
+	const jobCode = dates.slice(0, -1).map((date, index) => {
+		return jobCodes[index] !== "" ? 1 : null;
+	});
+
+	if (jobCode.some(value => value !== null)) {
+		datasets.push({
+			label: 'Annot.jobs',
+			data: jobCode,
+			borderColor: 'red',
+			backgroundColor: 'red',
+			yAxisID: 'y3',
+			fill: false
+		});
+	}
+	datasets.push(
+		{
+			label: '(L1) Alloc Fluid',
+			data: fluids.slice(0, -1),
+			borderColor: 'blue',
+			backgroundColor: 'blue',
+			yAxisID: 'y2',
+			fill: false
+		},
+		{
+			label: '(L3) Alloc Oil',
+			data: oils.slice(0, -1),
+			borderColor: 'green',
+			backgroundColor: 'green',
+			yAxisID: 'y1',
+			fill: false
+		}
+	)
 	const myChart = new Chart(ctx, {
 		type: 'line',
 		data: {
-			labels: dates.slice(1),
-			datasets: [
-				{
-					label: '(L1) Alloc Fluid',
-					data: fluids.slice(1),
-					borderColor: 'blue',
-					backgroundColor: 'blue',
-					yAxisID: 'y2',
-					fill: false
-				},
-				{
-					label: '(L3) Alloc Oil',
-					data: oils.slice(1),
-					borderColor: 'green',
-					backgroundColor: 'green',
-					yAxisID: 'y1',
-					fill: false
-				},
-				{
-					label: 'Annot.jobs',
-					data: [10],
-					borderColor: 'red',
-					backgroundColor: 'red',
-					yAxisID: 'y3',
-					fill: false
-				},
-			]
+			labels: dates.slice(0, -1),
+			datasets: datasets
 		},
 		options: {
 			scales: {
