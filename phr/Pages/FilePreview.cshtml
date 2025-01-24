@@ -11,6 +11,11 @@
 @if (Model.IsSupportedPreview)
 {
 	<div>
+		<div class="d-flex justify-content-center" id="loadingSpinner">
+			<div class="spinner-border" role="status">
+				<span class="visually-hidden">Loading...</span>
+			</div>
+		</div>
 		@if (Model.FileExtension == ".pdf")
 		{
 			<!-- PDF Preview -->
@@ -56,3 +61,14 @@ else
 		</a>
 	</div>
 }
+
+<script>
+	function hideSpinner() {
+		var spinner = document.getElementById('loadingSpinner');
+		if (spinner) {
+			spinner.hidden = true;
+		}
+	}
+
+	window.onload = hideSpinner;
+</script>
