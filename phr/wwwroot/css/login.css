@@ -1,0 +1,25 @@
+﻿.vh-100-lg {
+    height: auto;
+}
+
+.rounded-bottom-lg-5 {
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+}
+
+@media (min-width: 992px) {
+
+    .vh-100-lg {
+        height: 100vh;
+    }
+
+    .img-lg-fluid {
+        min-height: 400px;
+        min-width: 400px;
+    }
+
+    .rounded-bottom-lg-5 {
+        border-bottom-left-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+    }
+}

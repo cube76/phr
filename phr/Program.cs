@@ -11,9 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 //    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
 
 // Add services to the container.
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//	options.UseSqlServer(connectionString));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+	options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -22,13 +22,13 @@ builder.Services.AddHttpClient();
 builder.Services.AddRazorPages();
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 builder.Services.AddScoped<ApiService>();
-builder.Services.AddDistributedMemoryCache(); // Required for session state
+builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromSeconds(1199); // Set session timeout
     options.Cookie.HttpOnly = true; // Cookie is accessible only by the server
-    options.Cookie.IsEssential = true; // Required for GDPR compliance
+    options.Cookie.IsEssential = true; 
 });
 
 
