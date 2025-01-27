@@ -30,7 +30,7 @@ namespace phr.Pages.Account
             if (existingKey != null)
             {
                 SharedKey = existingKey;
-                QRCodeUri = GenerateQRCodeUri("IEM", "user@google.com", SharedKey);
+                QRCodeUri = GenerateQRCodeUri("IEM", "user@iem.com", SharedKey);
                 SharedKey = FormatKey(SharedKey);
             }
             else
@@ -38,7 +38,7 @@ namespace phr.Pages.Account
                 var sharedKey = GenerateSharedKey();
                 HttpContext.Session.SetString("SharedKey", sharedKey);
 
-                QRCodeUri = GenerateQRCodeUri("IEM", "user@google.com", sharedKey);
+                QRCodeUri = GenerateQRCodeUri("IEM", "user@iem.com", sharedKey);
                 SharedKey = FormatKey(sharedKey);
             }
 
