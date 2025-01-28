@@ -10,12 +10,12 @@
 <div class="d-lg-flex align-items-center justify-content-between px-lg-5 vh-100">
 	<div class="col-lg-6">
 		<div class="d-lg-flex flex-column align-items-center">
-		<div class="col-lg-6 d-flex justify-content-center pt-5">
-			<img src="~/images/logo_iem.png" class="img-fluid" alt="..." style="height: 60px;">
-		</div>
-		<div class="col-lg-6 px-5 pb-5">
+			<div class="col-lg-6 d-flex justify-content-center pt-5">
+				<img src="~/images/logo_iem.png" class="img-fluid" alt="..." style="height: 60px;">
+			</div>
+			<div class="col-lg-6 px-5 pb-5">
 				<img src="~/images/login_img.png" class="img-fluid img-lg-fluid" alt="...">
-		</div>
+			</div>
 		</div>
 	</div>
 	<div class="col-lg-6 h-50">
@@ -35,13 +35,15 @@
 					<div class="d-flex flex-column justify-content-evenly">
 						<div class="form-group mb-3">
 							<label asp-for="Input.Username"><strong>Username</strong></label>
-							<input type="username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email" asp-for="Input.Username"/>
+							<input type="username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email" asp-for="Input.Username" />
 							<span asp-validation-for="Input.Username"></span>
 						</div>
-						<div class="form-group position-relative mb-3">
+						<div class="form-group mb-3">
 							<label asp-for="Input.Password"><strong>Password</strong></label>
-							<input type="password" class="form-control" id="password" placeholder="Password" asp-for="Input.Password"/>
-							<i class="bi bi-eye-slash position-absolute" id="togglePassword" style="right: 10px; top: 65%; transform: translateY(-50%); cursor: pointer;"></i>
+							<div class="input-group mb-3">
+								<input type="password" class="form-control border-end-0" id="password" placeholder="Password" asp-for="Input.Password" />
+								<span class="input-group-text bg-transparent bg-opacity-0"><i class="bi bi-eye-slash" id="togglePassword"></i></span>
+							</div>
 							<span asp-validation-for="Input.Password"></span>
 						</div>
 						<button type="submit" class="btn btn-primary mb-3">Login</button>
