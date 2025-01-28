@@ -5,8 +5,6 @@
 	ViewData["Title"] = "Login";
 }
 
-@* <div class="container-fluid"> *@
-@* <div> *@
 <div class="d-lg-flex align-items-center justify-content-between px-lg-5 vh-100">
 	<div class="col-lg-6">
 		<div class="d-lg-flex flex-column align-items-center">
@@ -56,7 +54,6 @@
 		</div>
 	</div>
 </div>
-@* </div> *@
 
 <script>
 
@@ -64,11 +61,9 @@
 	const password = document.querySelector('#password');
 
 	togglePassword.addEventListener('click', () => {
-		// Toggle the type attribute
 		const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
 		password.setAttribute('type', type);
 
-		// Toggle the eye and bi-eye icon
 		togglePassword.classList.toggle('bi-eye');
 		togglePassword.classList.toggle('bi-eye-slash');
 	});
