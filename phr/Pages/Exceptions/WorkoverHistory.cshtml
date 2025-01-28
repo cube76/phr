@@ -3,7 +3,6 @@
 @{
 	ViewData["Title"] = "Workover History";
 }
-<link href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.0.0/dist/css/datepicker.min.css" rel="stylesheet">
 
 <div class="container p-2 d-flex align-items-end flex-column">
 	<div class="col-12 py-2 border-bottom">
@@ -71,26 +70,3 @@
 		</div>
 	</div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.0.0/dist/datepicker.min.js"></script>
-
-<script>
-
-	// Initialize the datepicker
-
-	const datepicker = new Datepicker(document.getElementById('datepicker'), {
-
-		// Options can be added here
-
-		format: 'dd/mm/yyyy', // Set the date format
-
-		autohide: true // Automatically hide the datepicker after selecting a date
-
-	});
-	document.getElementById('datepicker-icon').addEventListener('click', function() {
-
-		datepicker.show();
-
-	});
-
-</script>

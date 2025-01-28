@@ -4,6 +4,8 @@ using OtpNet;
 using QRCoder;
 using System.Text;
 using System;
+using phr.Config;
+using phr.Models;
 
 namespace phr.Pages.Account
 {
@@ -25,12 +27,13 @@ namespace phr.Pages.Account
              
         public IActionResult OnGet()
         {
+            var user = HttpContext.Session.GetObjectFromJson<LoginResponse>("User");
             var existingKey = HttpContext.Session.GetString("SharedKey");
 
             if (existingKey != null)
             {
                 SharedKey = existingKey;
-                QRCodeUri = GenerateQRCodeUri("IEM", "user@iem.com", SharedKey);
+                QRCodeUri = GenerateQRCodeUri("IEM", user.userName, SharedKey);
                 SharedKey = FormatKey(SharedKey);
             }
             else
@@ -38,7 +41,7 @@ namespace phr.Pages.Account
                 var sharedKey = GenerateSharedKey();
                 HttpContext.Session.SetString("SharedKey", sharedKey);
 
-                QRCodeUri = GenerateQRCodeUri("IEM", "user@iem.com", sharedKey);
+                QRCodeUri = GenerateQRCodeUri("IEM", user.userName, sharedKey);
                 SharedKey = FormatKey(sharedKey);
             }
 
