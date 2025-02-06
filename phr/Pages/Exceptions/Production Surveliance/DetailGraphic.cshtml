@@ -37,10 +37,12 @@
 			<span class="visually-hidden">Loading...</span>
 		</div>
 	</div>
-	<div class="col-12 wide">
+	<div class="col-12 wide my-2">
 		<div id="chart" width="400" height="200"></div>
 	</div>
-	<canvas id="chart2" width="400" height="200" class="mb-2 border-bottom"></canvas>
+	<div class="col-12 wide">
+		<div id="chart2" width="400" height="200"></div>
+	</div>
 </div>
 
 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="filterBottom">
@@ -73,10 +75,10 @@
 	</div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 	const header = document.getElementById('filterBottom');
 	const mediaQuery = window.matchMedia('(min-width: 400px) and (orientation: landscape)');
+	let previousMatch = mediaQuery.matches;
 	function updateClasses(mediaQuery) {
 		if (mediaQuery.matches) {
 			header.classList.remove('offcanvas-bottom');
@@ -85,304 +87,19 @@
 			header.classList.remove('offcanvas-end');
 			header.classList.add('offcanvas-bottom');
 		}
+		if (mediaQuery.matches !== previousMatch) {
+			previousMatch = mediaQuery.matches;
+			location.reload();
+		}
 	}
 
 	updateClasses(mediaQuery);
 
 	mediaQuery.addEventListener('change', updateClasses);
-
-	var chartData = @Html.Raw(ViewData["ChartData"]);
-	if(chartData != null){
-		document.getElementById('loading').style.display = 'none';
-	}
-	var dates = chartData.map(data => data.testDate);
-	var fluids = chartData.map(data => data.allocFluid);
-	var oils = chartData.map(data => data.allocOil);
-	var jobCodes = chartData.map(data => data.jobCode);
-	const datasets = [{
-					name: "(L1) Alloc Fluid",
-					data: fluids.slice(1),
-					color: "blue",
-					type: "line",
-					yAxis: "y2"
-				},
-				{
-					name: "(L3) Alloc Oil",
-					data: oils.slice(1),
-					color: "green",
-					type: "line",
-					yAxis: "y1"
-				}];
-	const jobCode = dates.slice(1).map((date, index) => {
-		return jobCodes[index + 1] !== "" ? 1 : null;
-	});
-	if (jobCodes.some(value => value !== null)) {
-		datasets.push({
-			name: "Annot.jobs",
-			data: jobCode,
-			color: "red",
-			type: "line",
-			yAxis: "y3",
-			markers: {
-				visible: true,
-				background: "red",
-			}
-		});
-	}
-	$(document).ready(function () {
-		$("#chart").kendoChart({
-			title: {
-				text: "Fluid and Oil Allocation"
-			},
-			legend: {
-				position: "top"
-			},
-			series: datasets,
-			categoryAxis: {
-				type: "date",
-				categories: dates.slice(1),
-				title: {
-					text: "Date"
-				},
-				labels: {
-					step: 10,
-					rotation: -45, 
-					format: "dd-MM-yyyy"
-				},
-				justified: true
-			},
-			valueAxes: [
-				{
-					name: "y1",
-					labels: {
-						color: "green"
-					}
-				},
-				{
-					name: "y2",
-					labels: {
-						color: "rgba(54, 162, 235, 1)"
-					}
-				},
-				{
-					name: "y3",
-					labels: {
-						color: "red"
-					}
-				}
-			],
-			tooltip: {
-				visible: true,
-				shared: true,
-			}
-		});
-	});
-	// const ctx = document.getElementById('chart').getContext('2d');
-	// const datasets = [];
-	// const jobCode = dates.slice(1).map((date, index) => {
-	// 	return jobCodes[index + 1] !== "" ? 1 : null;
-	// });
-
-	// if (jobCodes.some(value => value !== null)) {
-	// 	datasets.push({
-	// 		label: 'Annot.jobs',
-	// 		data: jobCode,
-	// 		borderColor: 'red',
-	// 		backgroundColor: 'red',
-	// 		yAxisID: 'y3',
-	// 		fill: false
-	// 	});
-	// }
-	// datasets.push(
-	// 	{
-	// 		label: '(L1) Alloc Fluid',
-	// 		data: fluids.slice(1),
-	// 		borderColor: 'blue',
-	// 		backgroundColor: 'blue',
-	// 		yAxisID: 'y2',
-	// 		fill: false
-	// 	},
-	// 	{
-	// 		label: '(L3) Alloc Oil',
-	// 		data: oils.slice(1),
-	// 		borderColor: 'green',
-	// 		backgroundColor: 'green',
-	// 		yAxisID: 'y1',
-	// 		fill: false
-	// 	}
-	// )
-	// const myChart = new Chart(ctx, {
-	// 	type: 'line',
-	// 	data: {
-	// 		labels: dates.slice(1),
-	// 		datasets: datasets
-	// 	},
-	// 	options: {
-	// 		scales: {
-	// 			y1: {
-	// 				type: 'linear',
-	// 				position: 'left',
-	// 				ticks: {
-	// 					color: 'green',
-	// 				},
-	// 				title: {
-	// 					display: false,
-	// 					text: 'Kilograms (kg)'
-	// 				},
-	// 			},
-	// 			y2: {
-	// 				type: 'linear',
-	// 				position: 'left',
-	// 				ticks: {
-	// 					color: 'rgba(54, 162, 235, 1)',
-	// 				},
-	// 				title: {
-	// 					display: false,
-	// 					text: 'Liters (L)'
-	// 				},
-	// 			},
-	// 			y3: {
-	// 				type: 'linear',
-	// 				position: 'left',
-	// 				ticks: {
-	// 					color: 'red',
-	// 				},
-	// 				title: {
-	// 					display: false,
-	// 					text: 'Liters (L)'
-	// 				},
-	// 			}
-	// 		}
-	// 	}
-	// });
-
-	const ctx2 = document.getElementById('chart2').getContext('2d');
-	const myChart2 = new Chart(ctx2, {
-		type: 'line',
-		data: {
-			labels: [
-				'2023-01-01',
-				'2023-01-02',
-				'2023-01-03',
-				'2023-01-04',
-				'2023-01-05',
-				'2023-01-06'
-			],
-			datasets: [
-				{
-					label: '(L1) Alloc Fluid',
-					data: [200, 400, 500, 300, 500, 700],
-					borderColor: 'blue',
-					backgroundColor: 'blue',
-					yAxisID: 'y2',
-					fill: false
-				},
-				{
-					label: '(L1) PumpFill',
-					data: [15, 60, 35, 5, 55, 100],
-					borderColor: 'green',
-					backgroundColor: 'green',
-					yAxisID: 'y1',
-					fill: false
-				},
-				{
-					label: '(L1) PumpSlip',
-					data: [10, 15, 13, 25, 35, 60],
-					borderColor: 'red',
-					backgroundColor: 'red',
-					yAxisID: 'y3',
-					fill: false
-				},
-				{
-					label: '(L2) WHP',
-					data: [10, 15, 13, 25, 35, 60],
-					borderColor: '#00BFFF',
-					backgroundColor: '#00BFFF',
-					yAxisID: 'y3',
-					fill: false
-				},
-				{
-					label: '(L2) TubingPress',
-					data: [10, 15, 13, 25, 35, 60],
-					borderColor: '#00008B',
-					backgroundColor: '#00008B',
-					yAxisID: 'y3',
-					fill: false
-				},
-				{
-					label: '(L2) CsgPressUp',
-					data: [10, 15, 13, 25, 35, 60],
-					borderColor: '#FF0C0C',
-					backgroundColor: '#FF0C0C',
-					yAxisID: 'y3',
-					fill: false
-				},
-				{
-					label: '(L2) Ampere',
-					data: [10, 15, 13, 25, 35, 60],
-					borderColor: '#8D0303',
-					backgroundColor: '#8D0303',
-					yAxisID: 'y3',
-					fill: false
-				},
-				{
-					label: '(L2) Amp(SCADA)',
-					data: [10, 15, 13, 25, 35, 60],
-					borderColor: '#FF9900',
-					backgroundColor: '#FF9900',
-					yAxisID: 'y3',
-					fill: false
-				},
-				{
-					label: '(L3) Alloc Oil',
-					data: [10, 15, 13, 25, 35, 60],
-					borderColor: '#73C100',
-					backgroundColor: '#73C100',
-					yAxisID: 'y3',
-					fill: false
-				},
-				{
-					label: '(L3) Mtr Winding',
-					data: [10, 15, 13, 25, 35, 60],
-					borderColor: '#EC5800',
-					backgroundColor: '#EC5800',
-					yAxisID: 'y3',
-					fill: false
-				},
-				{
-					label: '(L3) Bottom Hole',
-					data: [10, 15, 13, 25, 35, 60],
-					borderColor: '#ED6778',
-					backgroundColor: '#ED6778',
-					yAxisID: 'y3',
-					fill: false
-				},
-			]
-		},
-		options: {
-			scales: {
-				y1: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'green',
-					},
-				},
-				y2: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'rgba(54, 162, 235, 1)',
-					},
-				},
-				y3: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'red',
-					},
-				}
-			}
-		}
-	});
 </script>
+
+<script id="chartData" type="application/json">
+	@Html.Raw(ViewData["ChartData"])
+</script>
+
+<script src="~/js/graph.js" asp-append-version="true"></script>

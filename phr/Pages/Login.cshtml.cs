@@ -43,10 +43,6 @@ namespace phr.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
 
             var requestBody = new
             {

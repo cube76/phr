@@ -25,8 +25,12 @@
 						<span class="visually-hidden">Loading...</span>
 					</div>
 				</div>
-				<canvas id="chart" width="400" height="200" class="mb-2 border-bottom"></canvas>
-				<canvas id="chart2" width="400" height="200" class="mt-2"></canvas>
+				<div class="col-12 wide my-2">
+					<div id="chart" width="400" height="200"></div>
+				</div>
+				<div class="col-12 wide">
+					<div id="chart2" width="400" height="200"></div>
+				</div>
 				<div class="d-grid gap-2 my-2">
 					<button type="button" class="btn btn-outline-primary" onclick="location.href='/Exceptions/Production Surveliance/DetailGraphic'">View Detail</button>
 				</div>
@@ -248,12 +252,7 @@
 				</div>
 				<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab" tabindex="0">
 					<div class="col-12 my-2">
-						<select class="form-select">
-							<option selected>Start Date</option>
-							<option value="1">2024</option>
-							<option value="2">2023</option>
-							<option value="3">2022</option>
-						</select>
+						<input type="number" class="form-control" name="StartDate" placeholder="Start Date" max="2025" min="2020">
 					</div>
 					<div class="col-12">
 						<div class="accordion accordion-flush" id="accordionFlushExample">
@@ -344,171 +343,8 @@
 	</div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-	var chartData = @Html.Raw(ViewData["ChartData"]);
-	var dates = chartData.map(data => data.testDate).reverse();
-	var fluids = chartData.map(data => data.allocFluid).reverse();
-	var oils = chartData.map(data => data.allocOil).reverse();
-	var jobCodes = chartData.map(data => data.jobCode).reverse();
-
-	if(chartData != null){
-		document.getElementById('loading').style.display = 'none';
-	}
-
-	const ctx = document.getElementById('chart').getContext('2d');
-	const datasets = [];
-	const jobCode = dates.slice(0, -1).map((date, index) => {
-		return jobCodes[index] !== "" ? 1 : null;
-	});
-
-	if (jobCode.some(value => value !== null)) {
-		datasets.push({
-			label: 'Annot.jobs',
-			data: jobCode,
-			borderColor: 'red',
-			backgroundColor: 'red',
-			yAxisID: 'y3',
-			fill: false
-		});
-	}
-	datasets.push(
-		{
-			label: '(L1) Alloc Fluid',
-			data: fluids.slice(0, -1),
-			borderColor: 'blue',
-			backgroundColor: 'blue',
-			yAxisID: 'y2',
-			fill: false
-		},
-		{
-			label: '(L3) Alloc Oil',
-			data: oils.slice(0, -1),
-			borderColor: 'green',
-			backgroundColor: 'green',
-			yAxisID: 'y1',
-			fill: false
-		}
-	)
-	const myChart = new Chart(ctx, {
-		type: 'line',
-		data: {
-			labels: dates.slice(0, -1),
-			datasets: datasets
-		},
-		options: {
-			scales: {
-				y1: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'green',
-					},
-					title: {
-						display: false,
-						text: 'Kilograms (kg)'
-					},
-				},
-				y2: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'rgba(54, 162, 235, 1)',
-					},
-					title: {
-						display: false,
-						text: 'Liters (L)'
-					},
-				},
-				y3: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'red',
-					},
-					title: {
-						display: false,
-						text: 'Liters (L)'
-					},
-				}
-			}
-		}
-	});
-	const ctx2 = document.getElementById('chart2').getContext('2d');
-	const myChart2 = new Chart(ctx2, {
-		type: 'line',
-		data: {
-			labels: [
-				'2023-01-01',
-				'2023-01-02',
-				'2023-01-03',
-				'2023-01-04',
-				'2023-01-05',
-				'2023-01-06'
-			],
-			datasets: [
-				{
-					label: '(L1) Alloc Fluid',
-					data: [200, 400, 500, 300, 500, 700],
-					borderColor: 'blue',
-					backgroundColor: 'blue',
-					yAxisID: 'y2',
-					fill: false
-				},
-				{
-					label: '(L3) Alloc Oil',
-					data: [15, 60, 35, 5, 55, 100],
-					borderColor: 'green',
-					backgroundColor: 'green',
-					yAxisID: 'y1',
-					fill: false
-				},
-				{
-					label: 'Annot.jobs',
-					data: [10, 15, 13, 25, 35, 60],
-					borderColor: 'red',
-					backgroundColor: 'red',
-					yAxisID: 'y3',
-					fill: false
-				},
-			]
-		},
-		options: {
-			scales: {
-				y1: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'green',
-					},
-					title: {
-						display: false,
-						text: 'Kilograms (kg)'
-					},
-				},
-				y2: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'rgba(54, 162, 235, 1)',
-					},
-					title: {
-						display: false,
-						text: 'Liters (L)'
-					},
-				},
-				y3: {
-					type: 'linear',
-					position: 'left',
-					ticks: {
-						color: 'red',
-					},
-					title: {
-						display: false,
-						text: 'Liters (L)'
-					},
-				}
-			}
-		}
-	});
+<script id="chartData" type="application/json">
+	@Html.Raw(ViewData["ChartData"])
 </script>
+
+<script src="~/js/graph.js" asp-append-version="true"></script>
