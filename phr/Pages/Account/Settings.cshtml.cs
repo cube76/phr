@@ -9,11 +9,11 @@ using phr.Models;
 
 namespace phr.Pages.Account
 {
-    public class Enable2FAModel : BasePageModel
+    public class SettingsModel : BasePageModel
     {
-        private readonly ILogger<Enable2FAModel> _logger;
+        private readonly ILogger<SettingsModel> _logger;
 
-        public Enable2FAModel(ILogger<Enable2FAModel> logger)
+        public SettingsModel(ILogger<SettingsModel> logger)
         {
             _logger = logger;
         }

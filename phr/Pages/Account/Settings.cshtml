@@ -1,5 +1,5 @@
 ﻿@page
-@model phr.Pages.Account.Enable2FAModel
+@model phr.Pages.Account.SettingsModel
 @{
 	ViewData["Title"] = "Settings";
 }
@@ -78,41 +78,18 @@
 	});
 
 	$(document).ready(function () {
+		$('#copyButton').click(function () {
+			const textToCopy = $('#textToCopy').text();
 
-			$('#copyButton').click(function () {
-
-				// Get the text to copy
-
-				const textToCopy = $('#textToCopy').text();
-				console.log("cektext",textToCopy)
-
-
-				// Copy the text to clipboard
-
-				navigator.clipboard.writeText(textToCopy).then(function () {
-
-					// Show the toast notification
-
-					var toast = new bootstrap.Toast($('#copyToast')[0]);
-
-					toast.show();
-
-
-					// Hide the toast after 1 second
-
-					setTimeout(function () {
-
-						toast.hide();
-
-					}, 2000);
-
-				}, function (err) {
-
-					console.error('Could not copy text: ', err);
-
-				});
-
+			navigator.clipboard.writeText(textToCopy).then(function () {
+				var toast = new bootstrap.Toast($('#copyToast')[0]);
+				toast.show();
+				setTimeout(function () {
+					toast.hide();
+				}, 2000);
+			}, function (err) {
+				console.error('Could not copy text: ', err);
 			});
-
 		});
+	});
 </script>
