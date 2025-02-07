@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using phr.Config;
 using phr.Models;
+using OtpNet;
 
 namespace phr.Pages
 {
@@ -37,9 +38,7 @@ namespace phr.Pages
 
         [BindProperty]
         public LoginRequest Input { get; set; }
-
         public string ErrorMessage { get; set; }
-
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -61,8 +60,7 @@ namespace phr.Pages
 
                 if (HttpContext.Session.GetString("2FAEnabled") == "true")
                 {
-                    HttpContext.Session.SetString("2FARequired", "true");
-                    return RedirectToPage("/Account/LoginWith2FA");
+                    return RedirectToPage("Account/LoginWith2FA");
                 }
                 return RedirectToPage("/Index");
                 //return Challenge(new AuthenticationProperties { RedirectUri = "/" }, OpenIdConnectDefaults.AuthenticationScheme);

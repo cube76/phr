@@ -61,8 +61,7 @@ namespace phr.Pages.Account
             if (VerifyCode(sharedKey, verificationCode))
             {
                 HttpContext.Session.SetString("2FAEnabled", "true");
-
-                return RedirectToPage("/Index");
+                return RedirectToPage();
             }
                 
             ModelState.AddModelError("VerificationCode", "Invalid code.");
@@ -77,7 +76,6 @@ namespace phr.Pages.Account
         public IActionResult OnPostRefresh()
         {
             return RedirectToPage(); 
-
         }
 
         private string GenerateSharedKey()

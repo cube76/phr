@@ -1,14 +1,33 @@
 ﻿@page
 @model phr.Pages.Account.LoginWith2FAModel
 @{
-    ViewData["Title"] = "2FA Verification";
+	Layout = "_LayoutDefault";
+	ViewData["Title"] = "2FA Verification";
 }
 
-<h1>Two-Factor Authentication</h1>
-<p>Enter the code from your authenticator app:</p>
-<form method="post">
-    <label for="TwoFactorCode">Code:</label>
-    <input asp-for="TwoFactorCode" name="TwoFactorCode" type="text" class="form-control" required />
-    <span asp-validation-for="TwoFactorCode" class="text-danger"></span>
-    <button type="submit" class="btn btn-primary">Verify</button>
-</form>
+@* <h1>Two-Factor Authentication</h1> *@
+@* <p>Enter the code from your authenticator app:</p> *@
+@* <form method="post"> *@
+@*     <label for="TwoFactorCode">Code:</label> *@
+@*     <input asp-for="TwoFactorCode" name="TwoFactorCode" type="text" class="form-control" required /> *@
+@*     <span asp-validation-for="TwoFactorCode" class="text-danger"></span> *@
+@*     <button type="submit" class="btn btn-primary">Verify</button> *@
+@* </form> *@
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+	<div class="card" style="max-width: 18rem;">
+		<div class="card-header">
+			Authenticator Code
+		</div>
+		<div class="card-body">
+			<form method="post">
+				<label for="TwoFactorCode" class="col-form-label">Enter the code from your authenticator app:</label>
+				<input asp-for="TwoFactorCode" name="TwoFactorCode" type="text" class="form-control" required>
+				<span asp-validation-for="TwoFactorCode" class="text-danger"></span>
+				<br />
+				<button type="submit" class="btn btn-primary mx-auto">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+

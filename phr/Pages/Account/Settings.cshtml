@@ -1,0 +1,118 @@
+﻿@page
+@model phr.Pages.Account.Enable2FAModel
+@{
+	ViewData["Title"] = "Settings";
+}
+
+<div class="container p-2 d-flex flex-column">
+	<div class="col-12 py-2 border-bottom">
+		<h4><strong>Settings</strong></h4>
+	</div>
+	<div class="col-12 pt-4 d-grid gap-2">
+		@if (Model.Enabled == null)
+		{
+			<div class="d-flex mb-3">
+				<h3 class="align-self-center">Authentication App</h3>
+				<div class="ms-auto p-2">
+					<form method="post" asp-page-handler="Refresh">
+						<button class="btn btn-success"><i class="bi bi-arrow-clockwise"></i></button>
+					</form>
+				</div>
+			</div>
+			<h6>Scan QR code or copy manual key to Enable Two Factor Authentication:</h6>
+			<div class="d-flex justify-content-center">
+				<img src="data:image/png;base64,@Model.QRCodeUri" alt="QR Code" class="img-fluid" style="height: 300px;" />
+			</div>
+			<div class="col-12 p-4 mt-2 rounded-4" style="background-color: #E4EDF9">
+				<h6>Manual Key:</h6>
+				<div class="text-primary text-center" style="font-size: 18px;">
+					<strong id="textToCopy">@Model.SharedKey</strong>
+					<i class="bi bi-copy cursor-pointer" id="copyButton"></i>
+				</div>
+
+			</div>
+			<form method="post">
+				<label class="col-form-label">Enter Authentication Code:</label>
+				<input type="text" name="VerificationCode" asp-for="VerificationCode" class="form-control" required />
+				<span asp-validation-for="VerificationCode" class="text-danger"></span>
+				<br />
+				<button type="submit" class="btn btn-primary">Verify and Enable</button>
+			</form>
+		}
+		else
+		{
+			<p>2FA is already enabled.</p>
+		}
+		<hr>
+		<button id="notifyButton" class="btn btn-primary">Enable Notifications</button>
+		<form method="post" asp-page-handler="Logout">
+			<button type="submit" class="btn btn-primary">Logout</button>
+		</form>
+
+	</div>
+</div>
+
+<div class="toast" id="copyToast" role="alert" style="position: absolute; top: 20px; right: 20px;" data-bs-autohide="true">
+	<div class="d-flex">
+		<div class="toast-body">
+			Code copied to clipboard!
+		</div>
+		<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+</div>
+
+<script>
+	if (Notification.permission === 'granted') {
+		document.getElementById('notifyButton').style.display = 'none';
+	}
+
+	document.getElementById('notifyButton').addEventListener('click', function() {
+		Notification.requestPermission().then(function(result) {
+			if (result === 'granted') {
+				window.location.href = "/";
+				console.log('Notification permission granted.');
+			} else {
+				console.log('Notification permission denied.');
+			}
+		});
+	});
+
+	$(document).ready(function () {
+
+			$('#copyButton').click(function () {
+
+				// Get the text to copy
+
+				const textToCopy = $('#textToCopy').text();
+				console.log("cektext",textToCopy)
+
+
+				// Copy the text to clipboard
+
+				navigator.clipboard.writeText(textToCopy).then(function () {
+
+					// Show the toast notification
+
+					var toast = new bootstrap.Toast($('#copyToast')[0]);
+
+					toast.show();
+
+
+					// Hide the toast after 1 second
+
+					setTimeout(function () {
+
+						toast.hide();
+
+					}, 2000);
+
+				}, function (err) {
+
+					console.error('Could not copy text: ', err);
+
+				});
+
+			});
+
+		});
+</script>
