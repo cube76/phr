@@ -31,9 +31,9 @@
 		color: "#C2D434",
 		type: "line",
 		axis: "y1"
-	}];
+		}];
 	const jobCode = dates.slice(1).map((date, index) => {
-		return jobCodes[index + 1] !== "" ? 1 : null;
+		return jobCodes[index + 1] !== "" ? 0 : null;
 	});
 	if (jobCodes.some(value => value !== null)) {
 		datasets.push({
@@ -45,6 +45,13 @@
 			markers: {
 				visible: true,
 				background: "#CF2031",
+			},
+			tooltip: {
+				visible: true,
+				template: function (e) {
+					return jobCodes.find(value => value !== "");
+
+				}
 			}
 		});
 	}
