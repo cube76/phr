@@ -17,16 +17,6 @@
 			<i class="bi bi-funnel ms-2" id="filter"></i>
 		</div>
 	</div>
-	@* <div class="col p-2 mt-4 rounded" style="background-color:#e1e2e3"> *@
-	@* 	<div class="d-flex"> *@
-	@* 		<div class="me-auto">Legend Priority</div> *@
-	@* 		<span class="badge text-bg-danger me-2" style="font-size:1rem;">1</span> *@
-	@* 		<span class="badge text-bg-orange me-2" style="font-size:1rem;">2</span> *@
-	@* 		<span class="badge text-bg-green me-2" style="font-size:1rem;">3</span> *@
-	@* 		<span class="badge text-bg-primary me-2" style="font-size:1rem;">4</span> *@
-	@* 		<span class="badge text-bg-purple" style="font-size:1rem;">5</span> *@
-	@* 	</div> *@
-	@* </div> *@
 	<div class="col-12 mt-2">
 		<div class="row d-flex align-items-center">
 			<div class="col fs-6 fw-bold">
@@ -53,6 +43,26 @@
 					</div>
 				</div>
 			}
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="exception-modal">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header border-0">
+				<h5 class="modal-title"><strong>Signal Detail</strong></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p class="mb-0"><strong><span class="action"></span> Description:</strong></p>
+				<p class="mb-0"><span class="action"></span> Code: <span id="code"></span></p>
+				<p><span class="action"></span> Module Type: <span id="type"></span></p>
+				<p id="desc" class="mt-1"></p>
+			</div>
+			<div class="modal-footer border-0">
+				<button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">Close</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -116,22 +126,3 @@
 
 </script>
 
-<div class="modal fade" tabindex="-1" id="exception-modal">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header border-0">
-				<h5 class="modal-title"><strong>Signal Detail</strong></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<p class="mb-0"><strong><span class="action"></span> Description:</strong></p>
-				<p class="mb-0"><span class="action"></span> Code: <span id="code"></span></p>
-				<p><span class="action"></span> Module Type: <span id="type"></span></p>
-				<p id="desc" class="mt-1"></p>
-			</div>
-			<div class="modal-footer border-0">
-				<button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>

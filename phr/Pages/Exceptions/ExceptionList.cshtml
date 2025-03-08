@@ -66,6 +66,9 @@
 	</div>
 	<div class="col-12 pt-4 border-top">
 		<div class="d-flex flex-row align-items-center">
+			<button class="btn btn-sm" id="selectAllButton" onclick="checkAll()">
+				<i class="bi bi-check2-square" id="check-all"></i>
+			</button>
 			<div class="input-group">
 				<span class="input-group-text bg-white" id="basic-addon1"><i class="bi bi-search"></i></span>
 				<input type="text" class="form-control border-start-0" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1" id="searchInput">
@@ -80,7 +83,7 @@
 				<div class="accordion-item code-name-item">
 					<h2 class="accordion-header" id="flush-heading">
 						<div class="form-check ms-2 d-flex ">
-							<input class="form-check-input align-self-center my-auto" type="checkbox" value="" id="flexCheckDefault" onchange="itemCheck(event, element)" style="transform: scale(0.8);">
+							<input class="form-check-input align-self-center my-auto item-checkbox" type="checkbox" value="" id="flexCheckDefault" style="transform: scale(0.8);">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-code-@info.Id" aria-expanded="false" aria-controls="flush-collapseOne">
 								<div class="d-flex w-100">
 									<label class="form-check-label" id="nameCode-@info.Id" for="">
@@ -128,37 +131,6 @@
 	</div>
 </div>
 
-<script>
-	function openModal(event, element) {
-		event.stopPropagation();
-	}
-
-	const toggleFilter = document.querySelector('#filter');
-	var ascending = false;
-	toggleFilter.onclick = function() {
-		const container = document.getElementById('accordionFlushCode');
-		const exceptionsArray = Array.from(container.querySelectorAll('.code-name-item'));
-
-		exceptionsArray.sort((a, b) => {
-			const titleA = a.querySelector('[id^="nameCode"]').textContent.toLowerCase();
-			const titleB = b.querySelector('[id^="nameCode"]').textContent.toLowerCase();
-
-			return ascending ? titleA.localeCompare(titleB) : titleB.localeCompare(titleA);
-		});
-
-		container.innerHTML = ''; 
-		exceptionsArray.forEach(exception => container.appendChild(exception));
-
-		ascending = !ascending;
-		toggleFilter.classList.toggle('bi-sort-down');
-		toggleFilter.classList.toggle('bi-sort-up');
-	};
-
-	function itemCheck(event, element) {
-		console.log('Checkbox checked:', element.checked);
-	}
-</script>
-
 <div class="modal fade" tabindex="-1" id="exception-modal">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
@@ -179,3 +151,42 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function openModal(event, element) {
+		event.stopPropagation();
+	}
+
+	const toggleFilter = document.querySelector('#filter');
+	var ascending = false;
+	toggleFilter.onclick = function () {
+		const container = document.getElementById('accordionFlushCode');
+		const exceptionsArray = Array.from(container.querySelectorAll('.code-name-item'));
+
+		exceptionsArray.sort((a, b) => {
+			const titleA = a.querySelector('[id^="nameCode"]').textContent.toLowerCase();
+			const titleB = b.querySelector('[id^="nameCode"]').textContent.toLowerCase();
+
+			return ascending ? titleA.localeCompare(titleB) : titleB.localeCompare(titleA);
+		});
+
+		container.innerHTML = '';
+		exceptionsArray.forEach(exception => container.appendChild(exception));
+
+		ascending = !ascending;
+		toggleFilter.classList.toggle('bi-sort-down');
+		toggleFilter.classList.toggle('bi-sort-up');
+	};
+
+	function checkAll() {
+		const checkboxes = document.querySelectorAll('.item-checkbox');
+		const button = document.getElementById('selectAllButton');
+		const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+		checkboxes.forEach(checkbox => {
+			checkbox.checked = !allChecked;
+			const event = new Event('change');
+			checkbox.dispatchEvent(event);
+		});
+	}
+</script>

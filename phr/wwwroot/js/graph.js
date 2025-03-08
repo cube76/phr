@@ -27,7 +27,7 @@
     }];
 
     const jobCode1 = dates.slice(1).map((date, index) => {
-        return jobCodes[index + 1] !== "" ? 10 : null;
+        return jobCodes[index + 1] !== "" ? 19 : null;
     });
 
     if (jobCodes.some(value => value !== null)) {
@@ -164,8 +164,7 @@
                 },
                 {
                     name: "y3Job",
-                    color: "#CF2031",
-                    max: 10,
+                    max: 20,
                 },
             ],
             categoryAxis: {

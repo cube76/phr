@@ -2,9 +2,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using phr.Config;
 using phr.Data;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.UI;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
@@ -26,9 +23,9 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromDays(365); // Set session timeout
-    options.Cookie.HttpOnly = true; // Cookie is accessible only by the server
-    options.Cookie.IsEssential = true; 
+	options.IdleTimeout = TimeSpan.FromDays(365); // Set session timeout
+	options.Cookie.HttpOnly = true; // Cookie is accessible only by the server
+	options.Cookie.IsEssential = true;
 });
 
 

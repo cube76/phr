@@ -54,6 +54,10 @@
 	<button class="btn float-start" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
 		<i class="bi bi-list fs-3 text-secondary" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
 	</button>
+	@if (Context.Request.Path != "/" && Context.Request.Path != "/Index")
+	{
+		<i class="bi bi-arrow-left-short fs-3 float-end cursor-pointer me-2 mt-1" onclick="history.back()"></i>
+	}
 	@RenderBody()
 
 	<script src="~/js/site.js" asp-append-version="true"></script>
