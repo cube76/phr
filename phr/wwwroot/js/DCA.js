@@ -334,7 +334,7 @@
     };
 
     // Fetch well data from Flask backend
-    fetch('https://20.6.90.72:5000/get_wells')
+    fetch('https://api-dca.ugmtest.icu/get_wells')
         .then(response => {
             if (!response.ok) {
                 throw new Error("Failed to fetch well data");
@@ -362,7 +362,7 @@
 
     const fetchHistory = (well, startDate, endDate) => {
         showLoading(); // Show loading spinner
-        fetch('https://20.6.90.72:5000/get_history', {
+        fetch('https://api-dca.ugmtest.icu/get_history', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -489,7 +489,7 @@
         }) ?? undefined;
 
 
-        fetch('https://20.6.90.72:5000/automatic_dca', {
+        fetch('https://api-dca.ugmtest.icu/automatic_dca', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -646,7 +646,7 @@
         }
 
         console.log("selectedData", latestItem)
-        fetch('https://20.6.90.72:5000/predict_production', {
+        fetch('https://api-dca.ugmtest.icu/predict_production', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
