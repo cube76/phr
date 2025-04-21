@@ -95,7 +95,7 @@
                 height: 12,
                 radius: 12,
             },
-        },
+        },        
         colors: [
             '#2ca02c', // Oil Green
             '#1f77b4', // Blue
@@ -604,7 +604,7 @@
                 const newSeries = [
                     { name: 'Exponential Decline', type: 'line', data: exponentialData, yaxis: 0, hidden: false },
                     { name: 'Harmonic Decline', type: 'line', data: harmonicData, yaxis: 0, hidden: true },
-                    { name: 'Hyperbolic Decline', type: 'line', data: hyperbolicData, yaxis: 0, hidden: true }
+                    { name: 'Hyperbolic Decline', type: 'line', data: hyperbolicData, yaxis: 0, hidden: true },
                 ]
                 // console.log("current data serr 2: ", currentDataSeries);
                 const finalSeries = appendUniqueSeries(currentDataSeries, newSeries);
@@ -613,7 +613,32 @@
 
                 chart.updateOptions({
                     series: finalSeries,
-                    yaxis: getFinalAxisSeries(finalSeries)
+                    yaxis: getFinalAxisSeries(finalSeries),
+                    chart: {
+                        redrawOnParentResize: true,
+                    }
+                    //responsive: [{
+                    //    breakpoint: 480, // Mobile breakpoint
+                    //    options: {
+                    //        yaxis: [
+                    //            // Left Y-Axis (Index 0)
+                    //            {
+                    //                labels: {
+                    //                    style: { fontSize: '10px' } // Smaller font for left axis
+                    //                },
+                    //                show: true // Ensure visibility
+                    //            },
+                    //            // Right Y-Axis (Index 1)
+                    //            {
+                    //                opposite: true, // Keep on right side
+                    //                labels: {
+                    //                    style: { fontSize: '10px' }, // Smaller font for right axis
+                    //                },
+                    //                show: true // Ensure visibility
+                    //            }
+                    //        ]
+                    //    }
+                    //}],
                 })
                 // chart.updateSeries(finalSeries);
                 updateChartMarkerConfig(finalSeries)
@@ -625,7 +650,18 @@
                 alert('An unexpected error occurred. Please try again.');
             });
     });
-
+    function getResponsiveYAxis(originalAxes) {
+        return originalAxes.map(axis => ({
+            ...axis,
+            labels: {
+                ...axis.labels,
+                style: {
+                    ...(axis.labels?.style || {}),
+                    fontSize: '10px'
+                }
+            }
+        }));
+    }
 
     const fetchPredictionWithSelectedData = (selectedData, elr) => {
         showLoading();
@@ -696,7 +732,7 @@
                 currentDataSeries = finalSeries;
                 chart.updateOptions({
                     series: finalSeries,
-                    yaxis: getFinalAxisSeries(finalSeries)
+                    yaxis: getFinalAxisSeries(finalSeries),              
                 })
                 // chart.updateSeries(finalSeries);
                 updateChartMarkerConfig(finalSeries)
