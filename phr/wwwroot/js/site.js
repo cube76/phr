@@ -3,7 +3,23 @@
 
 // Write your JavaScript code.
 
-var vapidPublicKey = "BFxWi6h09Jl7QIhbSBNq-bxu-VPwbetszwvy8QHUn1F15U13Bbw_MFI1yz_UnYGJAy9T7iorpewAjprhYZ8_6bE";
+let vapidPublicKey;
+
+fetch("https://api.phrdteti.fun")  // your API endpoint
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json(); // parse response as JSON
+    })
+    .then(data => {
+        vapidPublicKey = data.publicKey; // access the "publicKey" field
+        console.log("Fetched VAPID public key:", vapidPublicKey);
+    })
+    .catch(error => {
+        console.error("Error fetching VAPID key:", error);
+    });
+
 async function initServiceWorker() {
     if ('serviceWorker' in navigator) {
         const swRegistration = await navigator.serviceWorker.register('/js/service-worker.js');
@@ -36,7 +52,7 @@ async function subscribeUser(swRegistration) {
 
 function sendSubscriptionToServer(subscription) {
     var userId = "1232"
-    fetch('https://20.6.90.72:4001/subscribe', {
+    fetch('https://api.phrdteti.fun/subscribe', {
         method: 'POST',
         body: JSON.stringify({ userId: userId, subscription: subscription }),
         headers: {
