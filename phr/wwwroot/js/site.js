@@ -78,3 +78,43 @@ $(document).ready(function () {
         $(this).datepicker('show');
     });
 });
+
+const fileInput = document.getElementById('file-upload');
+const listContainer = document.getElementById('attachment-list');
+const alertBox = document.getElementById('upload-alert');
+let currentFiles = [];
+
+fileInput.addEventListener('change', () => {
+    const newFiles = Array.from(fileInput.files);
+    const totalFiles = currentFiles.length + newFiles.length;
+
+    if (totalFiles > 4) {
+        alertBox.textContent = 'Maksimal 4 files.';
+        alertBox.classList.remove('d-none');
+        fileInput.value = ''; // Clear the selection
+        return;
+    }
+
+    alertBox.classList.add('d-none'); // Hide alert if no issue
+    currentFiles = currentFiles.concat(newFiles);
+    renderFileList();
+    fileInput.value = ''; // Reset input so same file can be re-selected if needed
+});
+
+function renderFileList() {
+    listContainer.innerHTML = '';
+    currentFiles.forEach((file, index) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+        listItem.innerHTML = `
+			${file.name}
+			<button type="button" class="btn-close" aria-label="Remove" onclick="removeFile(${index})"></button>
+		  `;
+        listContainer.appendChild(listItem);
+    });
+}
+
+function removeFile(index) {
+    currentFiles.splice(index, 1);
+    renderFileList();
+}

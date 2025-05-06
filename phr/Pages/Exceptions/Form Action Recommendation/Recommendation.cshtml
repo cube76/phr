@@ -45,10 +45,12 @@
 	<label for="file-upload" class="custom-file-upload">
 		<i class="bi bi-upload"></i> Add Document
 	</label>
-	<input id="file-upload" type="file" />
+	<input id="file-upload" name="UploadFiles" type="file" multiple style="display: none;" />
+	<div id="upload-alert" class="alert alert-danger d-none" role="alert"></div>
+	<ul id="attachment-list" class="list-group"></ul>
 
 	<label class="form-labet mt-3"><strong>Finding</strong></label>
-	<textarea class="form-control" aria-label="With textarea"></textarea>
+	<textarea class="form-control" aria-label="With textarea"></textarea>	
 
 	<label class="form-labet mt-3"><strong>Job Plan</strong></label>
 	<textarea class="form-control" aria-label="With textarea"></textarea>

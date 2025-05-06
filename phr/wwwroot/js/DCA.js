@@ -351,7 +351,7 @@
     };
 
     // Fetch well data from Flask backend
-    fetch("https://api-dca.ugmtest.icu/get_wells")
+    fetch("https://api-dca.phrdteti.fun/get_wells")
         .then((response) => {
             if (!response.ok) {
                 throw new Error("Failed to fetch well data");
@@ -379,7 +379,7 @@
 
     const fetchHistory = (well, startDate, endDate) => {
         showLoading(); // Show loading spinner
-        fetch("https://api-dca.ugmtest.icu/get_history", {
+        fetch("https://api-dca.phrdteti.fun/get_history", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -502,7 +502,7 @@
                 };
             }) ?? undefined;
 
-        fetch("https://api-dca.ugmtest.icu/automatic_dca", {
+        fetch("https://api-dca.phrdteti.fun/automatic_dca", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -704,7 +704,7 @@
         };
 
         console.log("selectedData", latestItem);
-        fetch("https://api-dca.ugmtest.icu/predict_production", {
+        fetch("https://api-dca.phrdteti.fun/predict_production", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -819,7 +819,7 @@
 
         showLoading(); // Tampilkan loading spinner
 
-        fetch("https://api-dca.ugmtest.icu/predict_ml", {
+        fetch("https://api-dca.phrdteti.fun/predict_ml", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
