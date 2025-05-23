@@ -56,9 +56,13 @@
 	</button>
 	@if (Context.Request.Path != "/" && Context.Request.Path != "/Index")
 	{
-		<button type="button" class="btn btn-light rounded-circle position-fixed top-0 end-0 m-2 shadow" onclick="history.back()">
+		<button type="button"
+				class="btn btn-light rounded-circle position-fixed top-0 end-0 m-2 shadow"
+				style="z-index: 9999;"
+				onclick="history.back()">
 			<i class="bi bi-arrow-left-short fs-3"></i>
 		</button>
+
 	}
 	@RenderBody()
 
