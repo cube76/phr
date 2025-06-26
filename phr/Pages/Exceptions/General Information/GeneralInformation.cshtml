@@ -148,7 +148,7 @@
 		@* <form method="post" asp-page="/Exceptions/Form Action Recommendation/ActionRecommendation"> *@
 		@* 	<input type="hidden" name="wellLastInfo" value='@ViewData["WellLastInfo"]' /> *@
 			<div class="d-flex my-3">
-			<button type="submit" class="btn btn-primary flex-fill" onclick="location.href='/Exceptions/Form Action Recommendation/ActionRecommendation?uwi=@Model.WellLastInfo.Uwi&name=@Model.WellLastInfo.StringName&alt=@Model.WellLastInfo.AltName&grid=@Model.WellLastInfo.GridName'">Create Recomendation</button>
+			<a class="btn btn-primary flex-fill" href="@Url.Page("/Exceptions/Form Action Recommendation/ActionRecommendation", new { uwi=@Model.WellLastInfo.Uwi, name=@Model.WellLastInfo.StringName, alt=@Model.WellLastInfo.AltName, grid=@Model.WellLastInfo.GridName})">Create Recomendation</a>
 			</div>
 		@* </form> *@
 	</footer>

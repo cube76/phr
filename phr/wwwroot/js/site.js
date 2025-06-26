@@ -5,7 +5,7 @@
 
 let vapidPublicKey;
 
-fetch("https://api.phrdteti.fun")  // your API endpoint
+fetch("http://localhost:4000/")  // your API endpoint
     .then(response => {
         if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -52,7 +52,7 @@ async function subscribeUser(swRegistration) {
 
 function sendSubscriptionToServer(subscription) {
     var userId = "1232"
-    fetch('https://api.phrdteti.fun/subscribe', {
+    fetch('http://localhost:4000/subscribe', {
         method: 'POST',
         body: JSON.stringify({ userId: userId, subscription: subscription }),
         headers: {

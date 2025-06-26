@@ -116,7 +116,9 @@
 									<div class=""><strong>Last BOPD</strong></div>
 									<div class="">@info.LastBopd</div>
 								</div>
-								<button type="button" class="btn btn-outline-primary" onclick="location.href='/Exceptions/WellDetailInformation?id=@info.Id&uwi=@info.Uwi&name=@info.StringName&field=@info.Field&area=@info.Area&bfpd=@info.LastBfpd&bopd=@info.LastBopd'">View Detail</button>
+								<a href="@Url.Page("/Exceptions/WellDetailInformation", new { id=info.Id, uwi=info.Uwi, field=info.AreaCode, name=info.AltName, bfpd=info.LastBfpd, bopd=info.LastBopd, areas=info.AreaCode})" class="btn btn-outline-primary">
+									View Detail
+								</a>
 							</div>
 						</div>
 					</div>

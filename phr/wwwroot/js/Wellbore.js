@@ -139,7 +139,7 @@ let data = []; // Data awal akan diambil dari API
 
 const fetchWellboreData = async (topMd = null, botMd = null) => {
     try {
-        let url = 'https://api-wellbore.phrdteti.fun/api/wellbore-data';
+        let url = 'http://10.236.124.244:8181/api/wellbore-data';
 
         let params = new URLSearchParams();
         if (topMd !== null) params.append("top_md", topMd);
@@ -268,7 +268,7 @@ const renderDiagram = () => {
         // console.log(`Drawing icon for: ${component.ICON_NAME}, TOP_MD: ${component.TOP_MD}, BOT_MD: ${component.BOT_MD}, x: ${xPos}, y: ${yPos}, width: ${imgWidth}, height: ${imgHeight}`);
 
 
-        img.setAttributeNS("http://www.w3.org/1999/xlink", "href", `https://api-wellbore.phrdteti.fun/img/${component.ICON_NAME}.png`);
+        img.setAttributeNS("http://www.w3.org/1999/xlink", "href", `http://10.236.124.244:8181/img/${component.ICON_NAME}.png`);
         img.setAttribute("x", xPos);
         img.setAttribute("y", yPos);
         img.setAttribute("width", imgWidth);
@@ -443,7 +443,7 @@ const populateIconList = async () => {
     container.innerHTML = '';
 
     try {
-        const response = await fetch('https://api-wellbore.phrdteti.fun/api/icons'); // Flask API untuk mendapatkan daftar file
+        const response = await fetch('http://10.236.124.244:8181/api/icons'); // Flask API untuk mendapatkan daftar file
         const icons = await response.json();
 
         icons.forEach(icon => {
@@ -451,7 +451,7 @@ const populateIconList = async () => {
             iconItem.className = "icon-item";
 
             const img = document.createElement("img");
-            img.src = `https://api-wellbore.phrdteti.fun/img/${icon}`; // Path ke gambar di Flask
+            img.src = `http://10.236.124.244:8181/img/${icon}`; // Path ke gambar di Flask
             img.alt = icon;
             img.draggable = true;
 

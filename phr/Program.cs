@@ -38,7 +38,7 @@ builder.Services.AddRazorPages();
 //builder.Services.AddRazorPages()
 //    .AddMicrosoftIdentityUI();
 var app = builder.Build();
-
+app.UsePathBase("/IEM-Mobile/");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
